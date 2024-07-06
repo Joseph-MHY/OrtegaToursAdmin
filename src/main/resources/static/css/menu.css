@@ -41,6 +41,12 @@
     --color-scroll-hover:rgb(85,85,85);
 }
 
+/* Clase sombreado para el botón activo */
+.sombreado {
+    background-color: var(--color-menu-hover); /* Color de fondo al estar sombreado */
+    color: var(--color-menu-hover-texto); /* Color de texto al estar sombreado */
+}
+
 
 *{
     margin: 0;

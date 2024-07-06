@@ -36,8 +36,32 @@ function actualizarEstadoBarraLateral() {
     }
 }
 
+function actualizarSombreadoMenu() {
+    let urlActual = window.location.href;
+
+    // Selecciona los botones del menú
+    let reservasBtn = document.getElementById("reservas");
+    let empleadosBtn= document.getElementById("empleados");
+    let reportesBtn = document.getElementById("reportes")
+
+    // Quitar la clase sombreada de todos
+    reservasBtn.classList.remove("sombreado");
+    empleadosBtn.classList.remove("sombreado");
+    reportesBtn.classList.remove("sombreado")
+
+    // Aplicar la clase sombreada basado en la URL actual
+    if (urlActual.includes("/reservas")) {
+        reservasBtn.classList.add("sombreado");
+    } else if (urlActual.includes("/empleados")) {
+        empleadosBtn.classList.add("sombreado");
+    } else if (urlActual.includes("/reportes")) {
+        reportesBtn.classList.add("sombreado")
+    }
+}
+
 // Llamar a las funciones para establecer el estado inicial cuando la página se carga
 document.addEventListener("DOMContentLoaded", () => {
+    actualizarSombreadoMenu();
     actualizarModoOscuro();
     actualizarEstadoBarraLateral();
 });
