@@ -2,7 +2,6 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Menu Fragment</title>
   <link rel="stylesheet" th:href="@{/css/menu.css}">
 </head>
 <body>
@@ -23,26 +22,26 @@
     <nav class="navegacion">
       <ul>
         <li>
-          <a id="inbox" href="index.html">
+          <a id="reservas" th:href="@{/admin/reservas}">
             <ion-icon name="mail-unread-outline"></ion-icon>
             <span>RESERVAS</span>
           </a>
         </li>
         <li>
-          <a href="holaMundo.html">
-            <ion-icon name="star-outline"></ion-icon>
+          <a id="empleados" th:href="@{/admin/empleados}">
+            <ion-icon name="people-circle-outline"></ion-icon>
             <span>EMPLEADOS</span>
           </a>
         </li>
         <li>
-          <a href="#">
-            <ion-icon name="paper-plane-outline"></ion-icon>
+          <a id="reportes" th:href="@{/admin/reportes}">
+            <ion-icon name="bar-chart-outline"></ion-icon>
             <span>REPORTES</span>
           </a>
         </li>
         <li>
-          <a href="#">
-            <ion-icon name="document-text-outline"></ion-icon>
+          <a th:href="@{/admin/login}">
+            <ion-icon name="exit-outline"></ion-icon>
             <span>SALIR</span>
           </a>
         </li>
