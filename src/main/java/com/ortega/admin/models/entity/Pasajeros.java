@@ -16,6 +16,10 @@ public class Pasajeros {
     @Column(name = "idpasajero", nullable = false)
     private Integer id;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_reserva", nullable = false)
+    private Reservas idReserva;
+
     @Column(name = "nombres", nullable = false, length = 80)
     private String nombres;
 
@@ -31,11 +35,8 @@ public class Pasajeros {
     @Column(name = "num_documento", nullable = false, length = 20)
     private String numDocumento;
 
-    @Column(name = "nacionalidad", nullable = false, length = 80)
-    private String nacionalidad;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_reserva", nullable = false)
-    private Reservas idReserva;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_nacionalidad")
+    private Nacionalidades idNacionalidad;
 
 }

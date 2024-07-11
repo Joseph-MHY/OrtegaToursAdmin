@@ -53,10 +53,16 @@ public class Reservas {
     @Column(name = "costo_total", nullable = false)
     private Double costoTotal;
 
-    @Column(name = "notas_adicionales", length = 150)
+    @Column(name = "notas_adicionales", length = Integer.MAX_VALUE)
     private String notasAdicionales;
 
     @OneToMany(mappedBy = "idReserva")
+    private Set<CostosTours> costosTours = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "idReserva")
     private Set<Pasajeros> pasajeros = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "idReserva")
+    private Set<Transacciones> transacciones = new LinkedHashSet<>();
 
 }
