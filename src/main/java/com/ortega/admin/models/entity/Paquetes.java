@@ -26,8 +26,17 @@ public class Paquetes {
     @JoinColumn(name = "id_categoria_paquete", nullable = false)
     private CategoriaPaquete idCategoriaPaquete;
 
-    @Column(name = "costo_paquete", nullable = false)
-    private Double costoPaquete;
+    @Column(name = "costo_base")
+    private Double costoBase;
+
+    @Column(name = "costo_fijo")
+    private Double costoFijo;
+
+    @Column(name = "descripcion_paquete", nullable = false, length = Integer.MAX_VALUE)
+    private String descripcionPaquete;
+
+    @Column(name = "urlimagen", length = Integer.MAX_VALUE)
+    private String urlimagen;
 
     @OneToMany(mappedBy = "idPaquete")
     private Set<Reservas> reservas = new LinkedHashSet<>();

@@ -3,6 +3,7 @@ package com.ortega.admin.models.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -13,8 +14,8 @@ import java.util.Set;
 @Table(name = "tipocontrato")
 public class Tipocontrato {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tipocontrato_id_gen")
-    @SequenceGenerator(name = "tipocontrato_id_gen", sequenceName = "tipocontrato_id_tipo_contrato_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ColumnDefault("nextval('tipocontrato_id_tipo_contrato_seq'::regclass)")
     @Column(name = "id_tipo_contrato", nullable = false)
     private Integer id;
 

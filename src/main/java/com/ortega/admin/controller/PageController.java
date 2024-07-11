@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class PageController {
 
+    // Pagina inicial
     @GetMapping("/reservas")
     public String reservas() {
         return "reservas.html";
     }
 
+    // Pagina de empleados
     @GetMapping("/empleados")
     public String empleados() {
         return "empleados.html";
