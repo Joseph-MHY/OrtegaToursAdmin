@@ -17,7 +17,12 @@ public class PageController {
     // Pagina de empleados
     @GetMapping("/empleados")
     public String empleados() {
-        return "empleados.html";
+        return "employees/empleados";
+    }
+
+    @GetMapping("/empleados/register")
+    public String empleados_register() {
+        return "employees/register";
     }
 
     @GetMapping("reportes")

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Empleados</title>
+    <link rel="stylesheet" th:href="@{/css/empleados.css}">
+</head>
+<body>
+<div th:replace="menu"></div>
+
+<main>
+    <h1>Empleados</h1>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" placeholder="Ingrese DNI o Nombre...">
+            <button><ion-icon name="search"></ion-icon></button>
+        </div>
+        <h3 style="margin-top: 20px;">Ordenar por:</h3>
+        <div class="filters">
+            <select id="select-orden">
+                <option value="selecciona">Selecciona</option>
+                <option value="nombre-az">nombre (A-Z)</option>
+                <option value="nombre-za">nombre (Z-A)</option>
+                <option value="activos">Empleados Activos</option>
+                <option value="inactivos">Empleados Inactivos</option>
+            </select>
+            <button class="new-employee" onclick="openModal()">Nuevo Empleado</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center;">ID</th>
+                    <th>Nombres y Apellidos</th>
+                    <th style="text-align: center;">DNI</th>
+                    <th style="text-align: center;">Puesto</th>
+                    <th style="text-align: center;">Teléfono</th>
+                    <th style="text-align: center;">Salario</th>
+                    <th style="text-align: center;">Estado</th>
+                    <th style="text-align: center;">Ver</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center;">1</td>
+                    <td>Joseph Manuel Huamani Yalli</td>
+                    <td style="text-align: center;">74814577</td>
+                    <td style="text-align: center;">Conductor</td>
+                    <td style="text-align: center;">+51 987 152 427</td>
+                    <td style="text-align: center;">S/.1250.0</td>
+                    <td style="text-align: center;">Activo</td>
+                    <td class="view-icon"><ion-icon name="eye"></ion-icon></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">2</td>
+                    <td>Tito Salcedo Jhon Vanderlee</td>
+                    <td style="text-align: center;">12345678</td>
+                    <td style="text-align: center;">Oficinista</td>
+                    <td style="text-align: center;">+51 987 412 793</td>
+                    <td style="text-align: center;">S/.1650.0</td>
+                    <td style="text-align: center;">Inactivo</td>
+                    <td class="view-icon"><ion-icon name="eye"></ion-icon></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<!-- Modal Structure -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h1>Registro de Empleado</h1>
+        <div class="form-container">
+            <form>
+                <div class="form-group">
+                    <label for="nombre">Nombre y Apellido:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Joseph Manuel Huamani Yalli">
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" id="direccion" name="direccion" placeholder="Villa el Salvador">
+                </div>
+                <div class="form-group">
+                    <label for="dni">N° de Identidad:</label>
+                    <input type="text" id="dni" name="dni" placeholder="74814577">
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo:</label>
+                    <input type="email" id="correo" name="correo" placeholder="huamanijyalli@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" name="contrasena" placeholder="12345678901234">
+                </div>
+                <div class="form-group">
+                    <label for="fecha-nacimiento">Fecha de Nacimiento (Opcional):</label>
+                    <input type="text" id="fecha-nacimiento" name="fecha-nacimiento" placeholder="dd/MM/yyyy">
+                </div>
+                <div class="form-group">
+                    <label for="fecha-contratacion">Fecha Contratación:</label>
+                    <input type="text" id="fecha-contratacion" name="fecha-contratacion" placeholder="dd/MM/yyyy">
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" id="telefono" name="telefono" placeholder="987152427">
+                </div>
+                <div class="form-group">
+                    <label for="contacto-emergencia">Contacto de Emergencia (Opcional):</label>
+                    <input type="text" id="contacto-emergencia" name="contacto-emergencia" placeholder="987152427">
+                </div>
+                <div class="form-group">
+                    <label for="puesto">Puesto:</label>
+                    <select name="puesto" id="puesto">
+                        <option value="conductor">Conductor</option>
+                        <option value="atencion-cliente">Atención al cliente</option>
+                        <option value="oficinista">Oficina</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="horario-trabajo">Horario de Trabajo:</label>
+                    <textarea type="text" id="horario-trabajo" name="horario-trabajo" placeholder="Lunes a Viernes de 7:00am a 5:00pm"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="cuenta-bancaria">Número de cuenta bancaria (Opcional):</label>
+                    <input type="text" id="cuenta-bancaria" name="cuenta-bancaria" placeholder="123-45678901-2-345">
+                </div>
+                <div class="form-group">
+                    <label for="salario">Salario:</label>
+                    <input type="text" id="salario" name="salario" placeholder="S/.1250.0">
+                </div>
+                <div class="form-group">
+                    <label for="tipo-contrato">Tipo de Contrato:</label>
+                    <select id="tipo-contrato" name="tipo-contrato">
+                        <option value="part-time">Part-Time</option>
+                        <option value="full-time">Full-Time</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="notas-adicionales">Notas Adicionales:</label>
+                    <textarea id="notas-adicionales" name="notas-adicionales" placeholder="(Opcional)"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="register-btn">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script th:src="@{/js/empleadoscripts/empleados.js}"></script>
+</body>
+</html>
