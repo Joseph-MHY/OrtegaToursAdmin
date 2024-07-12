@@ -1,0 +1,177 @@
+/* Estilo para el menú */
+#inbox {
+    background-color: var(--color-menu-hover);
+    color: var(--color-menu-hover-texto);
+}
+
+/* Estilos para el contenido principal */
+main {
+    margin-left: 250px; /* Margen izquierdo para el contenido principal */
+    padding: 20px; /* Espaciado interno */
+    transition: margin-left 0.5s ease; /* Transición suave para el margen izquierdo */
+}
+
+/* Estilo alternativo para el contenido principal con margen reducido */
+main.min-main {
+    margin-left: 80px; /* Margen izquierdo reducido */
+}
+
+/* Estilos para los contenedores de filas */
+.row-container {
+    display: flex; /* Utiliza flexbox para colocar elementos en línea */
+    justify-content: space-between; /* Distribuye el espacio entre las columnas */
+    margin-bottom: 30px; /* Espacio entre cada fila */
+}
+
+/* Estilos para las columnas */
+.column {
+    flex: 1; /* Las columnas ocupan un espacio igual */
+    margin-right: 20px; /* Espacio entre cada columna */
+}
+
+/* Estilos específicos para etiquetas y entradas */
+label {
+    display: block; /* Cada etiqueta en una nueva línea */
+    margin-bottom: 5px; /* Espacio entre etiquetas */
+}
+
+/* Estilo específico para el text area */
+textarea {
+    width: 80%; /* Reducir el ancho a un 80% del contenedor */
+    min-height: 100px; /* Altura mínima del text area */
+    resize: vertical; /* Permitir redimensionamiento vertical */
+}
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+/* Estilos para los contenedores de filas */
+.row-container {
+    display: flex; /* Utiliza flexbox para colocar elementos en línea */
+    justify-content: space-between; /* Distribuye el espacio entre las columnas */
+    margin-bottom: 20px; /* Espacio entre cada fila */
+}
+
+/* Estilos para las columnas */
+.column {
+    flex: 1; /* Las columnas ocupan un espacio igual */
+    margin-right: 10px; /* Espacio entre cada columna */
+}
+
+/* Estilos específicos para etiquetas y entradas */
+label {
+    display: block; /* Cada etiqueta en una nueva línea */
+    margin-bottom: 5px; /* Espacio entre etiquetas */
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+    width: 80%; /* Reducir el ancho a un 80% del contenedor */
+    padding: 8px; /* Espacio interno */
+    font-size: 14px; /* Tamaño de fuente */
+    border: 1px solid #ccc; /* Borde delgada gris */
+    border-radius: 4px; /* Bordes redondeados */
+    box-sizing: border-box; /* Incluye el borde en el ancho total */
+}
+
+select {
+    appearance: auto;
+}
+
+textarea {
+    min-height: 100px; /* Altura mínima del textarea */
+    resize: vertical; /* Permitir redimensionamiento vertical */
+}
+
+#agregarPasajero {
+    background-color: #0056b3; /* Color de fondo azul oscuro */
+    color: #fff; /* Color de texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espacio interno */
+    font-size: 14px; /* Tamaño de fuente */
+    cursor: pointer; /* Cursor de puntero */
+    border-radius: 4px; /* Bordes redondeados */
+    display: inline-block; /* Cambiar a inline-block para permitir ajustar el margen */
+    margin-left: 60px; /* Margen izquierdo */
+    margin-right: auto; /* Alinear a la izquierda */
+    margin-top: 20px; /* Margen superior */
+}
+
+#agregarPasajero:hover {
+    background-color: #007bff; /* Color de fondo azul más claro al pasar el mouse */
+}
+
+
+#costesAdicionales {
+    background-color: #006400;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-block; /* Cambiar a inline-block para permitir ajustar el margen */
+    margin-left: 60px; /* Margen izquierdo */
+    margin-right: auto; /* Alinear a la izquierda */
+    margin-top: 20px; /* Margen superior */
+}
+
+#costesAdicionales:hover {
+    background-color: #008000; /* Color más claro al pasar el mouse */
+}
+
+#modificar {
+    background-color: #FFD700; /* Amarillo */
+    color: #fff;
+    border: 4px solid #000; /* Borde negro */
+    padding: 20px 40px; /* Aumentar el espaciado interno */
+    font-size: 16px; /* Aumentar el tamaño de fuente */
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-block; /* Cambiar a inline-block para permitir ajustar el margen */
+    margin-left: 60px; /* Margen izquierdo */
+    margin-right: auto; /* Alinear a la izquierda */
+    margin-top: 20px; /* Margen superior */
+}
+
+#modificar:hover {
+    background-color: #FFFF00; /* Amarillo más claro al pasar el mouse */
+}
+
+#eliminar {
+    background-color: #FF0000; /* Rojo */
+    color: #fff;
+    border: 4px solid #000; /* Borde negro */
+    padding: 20px 40px; /* Aumentar el espaciado interno */
+    font-size: 16px; /* Aumentar el tamaño de fuente */
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-block; /* Cambiar a inline-block para permitir ajustar el margen */
+    margin-left: 60px; /* Margen izquierdo */
+    margin-right: auto; /* Alinear a la izquierda */
+    margin-top: 20px; /* Margen superior */
+}
+
+#eliminar:hover {
+    background-color: #FF6347; /* Rojo más claro al pasar el mouse */
+}
+
+/* Estilo para todos los inputs de texto, correo y fecha */
+input[type="text"], input[type="email"], input[type="date"], textarea {
+    background-color: #f2f2f2; /* Fondo gris claro */
+    border: 1px solid #ccc; /* Borde gris */
+    padding: 8px; /* Espaciado interno */
+    border-radius: 4px; /* Bordes redondeados */
+    font-size: 14px; /* Tamaño de fuente */
+    margin-left: 10px; /* Margen izquierdo */
+    margin-right: 10px; /* Margen derecho */
+    width: 80%; /* Reducir el ancho a un 80% del contenedor */
+}

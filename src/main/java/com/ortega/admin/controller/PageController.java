@@ -34,4 +34,9 @@ public class PageController {
     public String login() {
         return "login.html";
     }
+
+    @GetMapping("/registrarreservas")
+    public String registroreserva() {
+        return "registroreserva.html";
+    }
 }
