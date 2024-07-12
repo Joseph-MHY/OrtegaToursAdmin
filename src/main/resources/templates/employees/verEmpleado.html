@@ -1,17 +1,113 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Empleado</title>
-    <link rel="stylesheet" th:href="@{/css/verEmpleado.css}">
-</head>
-<body>
-<div th:replace="menu"></div>
+    <link rel="stylesheet" th:href="@{/css/verEmpleado.css}" />
+  </head>
+  <body>
+    <div th:replace="menu"></div>
 
+    <main>
+      <h1>Datos de Empleado:</h1>
 
-<main>
-    <h1>Datos de Empleado:</h1>
-</main>
-</body>
+      <form class="employee-form">
+        <div class="form-group">
+          <label for="nombres-apellidos">Nombres y Apellidos:</label>
+          <input
+            type="text"
+            id="nombres-apellidos"
+            placeholder="Juan Pérez"
+            required
+          />
+        </div>
+        <div class="form-group second-column">
+          <label for="direccion">Dirección:</label>
+          <input
+            type="text"
+            id="direccion"
+            placeholder="Villa el Salvador"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="num-identity">N° de identidad:</label>
+          <input
+            type="text"
+            id="num-identity"
+            placeholder="12345678"
+            required
+          />
+        </div>
+        <div class="form-group second-column">
+          <label for="correo">Correo:</label>
+          <input
+            type="email"
+            id="correo"
+            placeholder="ejemplo@correo.com"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="fecha-nacimiento">Fecha de Nacimiento:</label>
+          <input type="date" id="fecha-nacimiento" required />
+        </div>
+        <div class="form-group second-column">
+          <label for="fecha-contratacion">Fecha de Contratación:</label>
+          <input type="date" id="fecha-contratacion" required />
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono:</label>
+          <input type="text" id="telefono" placeholder="987654321" required />
+        </div>
+        <div class="form-group second-column">
+          <label for="contacto-emergencia">Contacto de Emergencia:</label>
+          <input type="text" id="contacto-emergencia" placeholder="987654321" required />
+        </div>
+        <div class="form-group">
+          <label for="puesto">Puesto:</label>
+          <select name="puesto" id="puesto">
+            <option value="conductor">Conductor</option>
+            <option value="oficinista">Oficinista</option>
+            <option value="atencion-cliente">Atención al cliente</option>
+          </select>
+        </div>
+        <div class="form-group second-column">
+          <label for="horario-trabajo">Horario de Trabajo:</label>
+          <textarea id="horario-trabajo" placeholder="Ejm: Lunes a Viernes de 7:00am a 5:00pm" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="num-cuenta-bancaria">Número de cuenta bancaria:</label>
+          <input type="number" id="num-cuenta-bancaria" placeholder="123-45678901-2-345" required />
+        </div>
+        <div class="form-group second-column">
+          <label for="salario">Salario:</label>
+          <input type="number" id="salario" placeholder="1025.0" required />
+        </div>
+        <div class="form-group">
+          <label for="tipo-contrato">Tipo de Contrato:</label>
+          <select name="tipo-contrato" id="tipo-contrato">
+            <option value="fulltime">Full-Time</option>
+            <option value="parttime">Part-Time</option>
+          </select>
+        </div>
+        <div class="form-group second-column">
+          <label for="notas-adicionales">Notas Adicionales:</label>
+          <textarea id="notas-adicionales" placeholder="(Opcional)" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="estado">Estado:</label>
+          <select name="estado" id="estado">
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+          </select>
+        </div>
+        <div class="form-group buttons-employee second-column">
+          <button type="submit" id="btnModificar">Modificar</button>
+          <button type="submit" id="btnEliminar">Eliminar Empleado</button>
+        </div>
+      </form>
+    </main>
+  </body>
 </html>
