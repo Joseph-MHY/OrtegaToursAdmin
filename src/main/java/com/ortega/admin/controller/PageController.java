@@ -20,9 +20,9 @@ public class PageController {
         return "employees/empleados";
     }
 
-    @GetMapping("/empleados/register")
+    @GetMapping("/empleados/viewEmpleado")
     public String empleados_register() {
-        return "employees/register";
+        return "employees/verEmpleado";
     }
 
     @GetMapping("reportes")

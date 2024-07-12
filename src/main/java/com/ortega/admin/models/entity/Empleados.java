@@ -74,7 +74,7 @@ public class Empleados {
     private String observaciones;
 
     @Column(name = "estado_cuenta", nullable = false)
-    private Boolean estadoCuenta = false;
+    private Boolean estadoCuenta;
 
     @OneToMany(mappedBy = "idEmpleado")
     private Set<Reservas> reservas = new LinkedHashSet<>();
