@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Registrar Reservas</title>
+    <link rel="stylesheet" th:href="@{/css/registrarreserva.css}">
+</head>
+<body>
+<div th:replace="menu"></div>
+
+<main>
+    <!-- Encabezado de la página -->
+    <h1>Datos de Reservas</h1>
+    <br/>
+    <!-- Primera fila de contenedores -->
+    <div class="row-container">
+        <div class="column">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ingrese Nombre">
+        </div>
+        <div class="column">
+            <label for="numPasajeros">Número de Pasajeros:</label>
+            <input type="text" id="numPasajeros" name="numPasajeros" placeholder="Ingrese Cantidad">
+        </div>
+        <div class="column">
+            <label for="tipoMoneda">Tipo Moneda:</label>
+            <select id="tipoMoneda" name="tipoMoneda">
+                <option value="">Seleccionar</option>
+                <!-- Opciones dinámicas de tipo de moneda -->
+            </select>
+        </div>
+    </div>
+
+    <!-- Segunda fila de contenedores -->
+    <div class="row-container">
+        <div class="column">
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" placeholder="Ingrese su Apellido">
+        </div>
+        <div class="column">
+            <button type="button" id="agregarPasajero">
+                Agregar Pasajero
+            </button>
+        </div>
+        <div class="column">
+            <label for="metodoPago">Método de Pago:</label>
+            <select id="metodoPago" name="metodoPago">
+                <option value="">Seleccionar</option>
+                <!-- Opciones dinámicas de métodos de pago -->
+            </select>
+        </div>
+    </div>
+
+    <!-- Tercera fila de contenedores -->
+    <div class="row-container">
+        <div class="column">
+            <label for="dni">DNI o Pasaporte:</label>
+            <input type="text" id="dni" name="dni"  placeholder="Ingrese su DNI">
+        </div>
+        <div class="column">
+            <label for="conductor">Conductor Asignado:</label>
+            <select id="conductor" name="conductor">
+                <option value="">Seleccionar</option>
+                <!-- Opciones dinámicas de conductores -->
+            </select>
+        </div>
+        <div class="column">
+            <label for="estadoPago">Estado de Pago:</label>
+            <select id="estadoPago" name="estadoPago">
+                <option value="">Seleccionar</option>
+                <!-- Opciones dinámicas de estados de pago -->
+            </select>
+        </div>
+    </div>
+
+    <!-- Cuarta fila de contenedores -->
+    <div class="row-container">
+        <div class="column">
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" name="correo" placeholder="Ingrese su Correo">
+        </div>
+        <div class="column">
+            <label for="costeBase">Costo Base:</label>
+            <input type="text" id="costeBase" name="costeBase">
+        </div>
+        <!-- Dejar en blanco -->
+        <div class="column">
+        </div>
+    </div>
+
+    <!-- Quinta fila de contenedores -->
+    <div class="row-container">
+        <div class="column">
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono">
+        </div>
+        <div class="column">
+            <label for="costeFijo">Costo Fijo:</label>
+            <input type="text" id="costeFijo" name="costeFijo">
+        </div>
+        <!-- Dejar en blanco -->
+        <div class="column">
+        </div>
+    </div>
+
+    <!-- Sexta fila de contenedores -->
+    <div class="row-container">
+        <div class="column">
+            <label for="fechaRegistro">Fecha de Registro:</label>
+            <input type="date" id="fechaRegistro" name="fechaRegistro">
+        </div>
+        <div class="column">
+            <button type="button" id="costesAdicionales">Costes Adicionales</button>
+        </div>
+        <!-- Dejar en blanco -->
+        <div class="column">
+        </div>
+    </div>
+
+    <!-- Séptima fila de contenedores -->
+    <div class="row-container">
+        <div class="column">
+            <label for="fechaPartida">Fecha de Partida:</label>
+            <input type="date" id="fechaPartida" name="fechaPartida">
+        </div>
+        <div class="column">
+            <label for="costeTotal">Costo Total:</label>
+            <input type="text" id="costeTotal" name="costeTotal">
+        </div>
+        <!-- Dejar en blanco -->
+        <div class="column">
+        </div>
+    </div>
+
+    <!-- Octava fila de contenedores -->
+    <div class="row-container">
+        <div class="column">
+            <label for="nombrePaquete">Nombre de Paquete:</label>
+            <select id="nombrePaquete" name="nombrePaquete">
+                <option value="">Seleccionar</option>
+                <!-- Opciones dinámicas de nombre de paquete -->
+            </select>
+        </div>
+        <div class="column">
+            <label for="estado">Estado:</label>
+            <select id="estado" name="estado">
+                <option value="">Seleccionar</option>
+                <!-- Opciones dinámicas de estados -->
+            </select>
+        </div>
+        <div class="column">
+            <button type="button" id="modificar">Modificar</button>
+        </div>
+    </div>
+
+    <!-- Novena fila de contenedores -->
+    <div class="row-container">
+        <div class="column">
+            <label for="tipoViaje">Tipo de Viaje:</label>
+            <select id="tipoViaje" name="tipoViaje">
+                <option value="">Seleccionar</option>
+                <!-- Opciones dinámicas de tipo de viaje -->
+            </select>
+        </div>
+        <div class="column">
+            <label for="notas">Notas Adicionales:</label>
+            <textarea id="notas" name="notas" placeholder="Opcional"></textarea>
+        </div>
+        <div class="column">
+            <button type="button" id="eliminar">Eliminar</button>
+        </div>
+    </div>
+
+</main>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
