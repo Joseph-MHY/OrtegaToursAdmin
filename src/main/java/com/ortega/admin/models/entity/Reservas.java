@@ -20,37 +20,37 @@ public class Reservas {
     @Column(name = "id_reserva", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_cliente", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_cliente")
     private Clientes idCliente;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "fecha_registro", nullable = false)
+    @Column(name = "fecha_registro")
     private Date fechaRegistro;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "fecha_partida", nullable = false)
+    @Column(name = "fecha_partida")
     private Date fechaPartida;
 
-    @Column(name = "tipo_viaje", nullable = false, length = 30)
+    @Column(name = "tipo_viaje", length = 30)
     private String tipoViaje;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_estado", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_estado")
     private Estado idEstado;
 
-    @Column(name = "num_pasajeros", nullable = false)
+    @Column(name = "num_pasajeros")
     private Integer numPasajeros;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_paquete", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_paquete")
     private Paquetes idPaquete;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_empleado")
     private Empleados idEmpleado;
 
-    @Column(name = "costo_total", nullable = false)
+    @Column(name = "costo_total")
     private Double costoTotal;
 
     @Column(name = "notas_adicionales", length = Integer.MAX_VALUE)

@@ -1,13 +1,86 @@
-#inbox{
-    background-color: var(--color-menu-hover);
-    color: var(--color-menu-hover-texto);
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
 }
 
-main{
-    margin-left: 250px;
-    padding: 20px;
-    transition: margin-left 0.5s ease;
+main {
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.5s ease;
 }
-main.min-main{
-    margin-left: 80px;
+
+main.min-main {
+  margin-left: 80px;
 }
+
+.employee-form {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+  gap: 5px; /* Espacio entre los elementos */
+  width: 60%;
+}
+
+.second-column {
+  margin-left: -20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group:not(.second-column) {
+  width: 90%;
+  padding-left: 0%;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+#btnModificar {
+  border-radius: 5px;
+  background-color: #25c9df;
+  border: none;
+  width: 50%;
+  flex: 1;
+  font-size: 16px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-top: 20px;
+}
+
+#btnEliminar {
+  border-radius: 5px;
+  background-color: #e23232;
+  border: none;
+  color: white;
+  width: 50%;
+  font-size: 16px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-top: 20px;
+}
+
+.buttons-employee {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 870px) {
+  .employee-form {
+    width: 100%;
+  }
+}
+
