@@ -1,32 +1,33 @@
-/* Estilo para el menú */
 #inbox {
-    background-color: var(--color-menu-hover);
-    color: var(--color-menu-hover-texto);
+  background-color: var(--color-menu-hover);
+  color: var(--color-menu-hover-texto);
 }
 
-/* Estilos para el contenido principal */
+body {
+  font-family: Arial, sans-serif;
+}
+
 main {
-    margin-left: 250px; /* Margen izquierdo para el contenido principal */
-    padding: 20px; /* Espaciado interno */
-    transition: margin-left 0.5s ease; /* Transición suave para el margen izquierdo */
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.5s ease;
 }
 
-/* Estilo alternativo para el contenido principal con margen reducido */
 main.min-main {
-    margin-left: 80px; /* Margen izquierdo reducido */
+  margin-left: 80px;
 }
 
 /* Estilos para los contenedores de filas */
 .row-container {
     display: flex; /* Utiliza flexbox para colocar elementos en línea */
     justify-content: space-between; /* Distribuye el espacio entre las columnas */
-    margin-bottom: 30px; /* Espacio entre cada fila */
+    margin-bottom: 10px; /* Espacio entre cada fila */
 }
 
 /* Estilos para las columnas */
 .column {
     flex: 1; /* Las columnas ocupan un espacio igual */
-    margin-right: 20px; /* Espacio entre cada columna */
+    margin-right: 10px; /* Espacio entre cada columna */
 }
 
 /* Estilos específicos para etiquetas y entradas */
@@ -47,7 +48,7 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background-color: #f0f0f0;
-    padding: 20px;
+    padding: 0px;
 }
 
 /* Estilos para los contenedores de filas */
@@ -60,13 +61,13 @@ body {
 /* Estilos para las columnas */
 .column {
     flex: 1; /* Las columnas ocupan un espacio igual */
-    margin-right: 10px; /* Espacio entre cada columna */
+    margin-right: 5px; /* Espacio entre cada columna */
 }
 
 /* Estilos específicos para etiquetas y entradas */
 label {
     display: block; /* Cada etiqueta en una nueva línea */
-    margin-bottom: 5px; /* Espacio entre etiquetas */
+    margin-bottom: 0px; /* Espacio entre etiquetas */
     font-weight: bold;
 }
 
@@ -75,7 +76,7 @@ input[type="email"],
 select,
 textarea {
     width: 80%; /* Reducir el ancho a un 80% del contenedor */
-    padding: 8px; /* Espacio interno */
+    padding: 4px; /* Espacio interno */
     font-size: 14px; /* Tamaño de fuente */
     border: 1px solid #ccc; /* Borde delgada gris */
     border-radius: 4px; /* Bordes redondeados */
@@ -155,7 +156,7 @@ textarea {
     cursor: pointer;
     border-radius: 4px;
     display: inline-block; /* Cambiar a inline-block para permitir ajustar el margen */
-    margin-left: 60px; /* Margen izquierdo */
+    margin-left: 65px; /* Margen izquierdo */
     margin-right: auto; /* Alinear a la izquierda */
     margin-top: 20px; /* Margen superior */
 }
@@ -165,7 +166,7 @@ textarea {
 }
 
 /* Estilo para todos los inputs de texto, correo y fecha */
-input[type="text"], input[type="email"], input[type="date"], textarea {
+input[type="text"], input[type="email"], input[type="date"], textarea, select {
     background-color: #f2f2f2; /* Fondo gris claro */
     border: 1px solid #ccc; /* Borde gris */
     padding: 8px; /* Espaciado interno */
@@ -174,4 +175,109 @@ input[type="text"], input[type="email"], input[type="date"], textarea {
     margin-left: 10px; /* Margen izquierdo */
     margin-right: 10px; /* Margen derecho */
     width: 80%; /* Reducir el ancho a un 80% del contenedor */
+}
+/* Estilos para la ventana modal */
+
+/* El modal se oculta por defecto */
+.modal {
+    display: none;
+    position: fixed; /* Mantener el modal en su lugar */
+    z-index: 1; /* Asegurarse que el modal esté en frente */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    overflow: auto; /* Habilitar el scroll si es necesario */
+    background-color: rgb(0,0,0); /* Color de fondo */
+    background-color: rgba(0,0,0,0.4); /* Color de fondo con opacidad */
+}
+/* Estilos para la ventana modal */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px; /* Limitar el ancho máximo */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 40%; /* Reducir el ancho */
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group button {
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.form-group button:hover {
+    background-color: #007bff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    text-align: center; /* Centrar el contenido de la tabla */
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+}
+
+table th {
+    background-color: #f2f2f2; /* Fondo gris claro para el encabezado */
+}
+
+button[type="button"] {
+    background-color: #006400;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="button"]:hover {
+    background-color: #008000;
 }

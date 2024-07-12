@@ -39,4 +39,9 @@ public class PageController {
     public String registroreserva() {
         return "registroreserva.html";
     }
+
+    @GetMapping("/agregarpasajeros")
+    public String agregarpasajeros() {
+        return "pasajeros.html";
+    }
 }

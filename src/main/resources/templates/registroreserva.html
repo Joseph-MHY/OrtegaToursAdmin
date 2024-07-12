@@ -39,10 +39,11 @@
             <input type="text" id="apellido" name="apellido" placeholder="Ingrese su Apellido">
         </div>
         <div class="column">
-            <button type="button" id="agregarPasajero">
+            <button type="button" id="agregarPasajero" onclick="redirectToRegistrarpasajeros()">
                 Agregar Pasajero
             </button>
         </div>
+
         <div class="column">
             <label for="metodoPago">Método de Pago:</label>
             <select id="metodoPago" name="metodoPago">
@@ -82,7 +83,7 @@
         </div>
         <div class="column">
             <label for="costeBase">Costo Base:</label>
-            <input type="text" id="costeBase" name="costeBase">
+            <input type="text" id="costeBase" name="costeBase" placeholder="S/ 0.00">
         </div>
         <!-- Dejar en blanco -->
         <div class="column">
@@ -93,11 +94,11 @@
     <div class="row-container">
         <div class="column">
             <label for="telefono">Teléfono:</label>
-            <input type="text" id="telefono" name="telefono">
+            <input type="text" id="telefono" name="telefono" placeholder="Ingrese su Telefono">
         </div>
         <div class="column">
             <label for="costeFijo">Costo Fijo:</label>
-            <input type="text" id="costeFijo" name="costeFijo">
+            <input type="text" id="costeFijo" name="costeFijo" placeholder="S/ 0.00">
         </div>
         <!-- Dejar en blanco -->
         <div class="column">
@@ -111,7 +112,9 @@
             <input type="date" id="fechaRegistro" name="fechaRegistro">
         </div>
         <div class="column">
-            <button type="button" id="costesAdicionales">Costes Adicionales</button>
+            <button type="button" id="costesAdicionales" onclick="openModalCostosAdicionales()">
+                Costes Adicionales
+            </button>
         </div>
         <!-- Dejar en blanco -->
         <div class="column">
@@ -126,7 +129,7 @@
         </div>
         <div class="column">
             <label for="costeTotal">Costo Total:</label>
-            <input type="text" id="costeTotal" name="costeTotal">
+            <input type="text" id="costeTotal" name="costeTotal" placeholder="S/ 0.00">
         </div>
         <!-- Dejar en blanco -->
         <div class="column">
@@ -172,8 +175,40 @@
         </div>
     </div>
 
+    <!-- Modal de Costos Adicionales -->
+    <div id="costosAdicionalesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModalCostosAdicionales()">&times;</span>
+            <h2>Costos Adicionales</h2>
+            <!-- Contenido del modal de costos adicionales -->
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <input type="text" id="descripcion" name="descripcion">
+                <label for="costo">Costo:</label>
+                <input type="text" id="costo" name="costo">
+                <button type="button" onclick="agregarCosto()">Agregar</button>
+            </div>
+            <table id="tablaCostos">
+                <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Costo</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Aquí se añadirán las filas de costos adicionales dinámicamente -->
+                </tbody>
+            </table>
+            <button type="button" onclick="registrarCostos()">Guardar Costos</button>
+        </div>
+    </div>
+</main>
+
 </main>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script th:src="@{/js/registroreserva.js}"></script>
+<script th:src="@{/js/pasajero.js}"></script>
 </body>
 </html>
