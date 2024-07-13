@@ -1,17 +1,108 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Página Reportes</title>
-    <link rel="stylesheet" th:href="@{/css/reportes.css}">
-</head>
-<body>
-<div th:replace="menu"></div>
+    <link rel="stylesheet" th:href="@{/css/reportes.css}" />
+  </head>
+  <body>
+    <div th:replace="menu"></div>
 
+    <main>
+      <h1>Reportes</h1>
 
-<main>
-    <h1>Reportes</h1>
-</main>
-</body>
+      <h2>Indique parámetros de filtro:</h2>
+
+      <div class="form-group">
+        <h3>DNI:</h3>
+        <input type="number" placeholder="Ingresar DNI" />
+      </div>
+      <div class="form-group">
+        <h3>Paquete de Viaje:</h3>
+        <select>
+          <option value="tour">Tour</option>
+          <option value="promocion">Promoción</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <h3>Tipo de Viaje:</h3>
+        <select>
+          <option value="publico">Público</option>
+          <option value="privado">Privado</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <h3>Estado de la Reserva:</h3>
+        <select>
+          <option value="contacto">Contacto</option>
+          <option value="en_progreso">En Progreso</option>
+          <option value="por_finalizar">Por Finalizar</option>
+          <option value="reservado">Reservado</option>
+          <option value="cancelado">Cancelado</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <h3>Fecha de Reserva:</h3>
+        <input type="date" placeholder="dd/yy/mmmm" />
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align: center">ID de Reserva</th>
+            <th>Nombre del Cliente</th>
+            <th style="text-align: center">DNI</th>
+            <th style="text-align: center">Fecha de Reserva</th>
+            <th style="text-align: center">Número de Pasajeros</th>
+            <th style="text-align: center">Nombre del Paquete</th>
+            <th style="text-align: center">Categoría del Paquete</th>
+            <th style="text-align: center">Tipo de Viaje</th>
+            <th style="text-align: center">Estado de la Reserva</th>
+            <th style="text-align: center">Nombre del Conductor</th>
+            <th style="text-align: center">Estado de Pago</th>
+            <th style="text-align: center">Monto Pagado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align: center">1</td>
+            <td>Juan Pérez</td>
+            <td style="text-align: center">12345678</td>
+            <td style="text-align: center">2024-08-01</td>
+            <td style="text-align: center">4</td>
+            <td>Paquete Familiar</td>
+            <td>Aventura</td>
+            <td style="text-align: center">PRIVADO</td>
+            <td style="text-align: center">Confirmado</td>
+            <td>Pedro González</td>
+            <td style="text-align: center">Completado</td>
+            <td style="text-align: center">1000.00</td>
+          </tr>
+          <tr>
+            <td style="text-align: center">2</td>
+            <td>Maria López</td>
+            <td style="text-align: center">87654321</td>
+            <td style="text-align: center">2024-08-10</td>
+            <td style="text-align: center">2</td>
+            <td>Paquete Romántico</td>
+            <td>Relax</td>
+            <td style="text-align: center">PUBLICO</td>
+            <td style="text-align: center">Pendiente</td>
+            <td>Carlos Ruiz</td>
+            <td style="text-align: center">Pendiente</td>
+            <td style="text-align: center">500.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
+    <!-- Botón flotante de Excel -->
+    <div class="excel-float">
+      <a href="#">
+        <img th:src="@{/images/office365.png}" alt="Exportar a Excel" />
+      </a>
+    </div>
+
+    <script th:src="@{/js/reportes.js}"></script>
+  </body>
 </html>
