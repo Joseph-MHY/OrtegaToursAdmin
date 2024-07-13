@@ -26,9 +26,6 @@ public class Transacciones {
     @Column(name = "fecha_transaccion", nullable = false)
     private Date fechaTransaccion;
 
-    @Column(name = "monto_a_pagar", nullable = false)
-    private Double montoAPagar;
-
     @Column(name = "monto_pagado", nullable = false)
     private Double montoPagado;
 

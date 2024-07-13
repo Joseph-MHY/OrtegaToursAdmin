@@ -1,4 +1,4 @@
-package com.ortega.admin.Service;
+package com.ortega.admin.service;
 
 public interface ReservaService {
 }
