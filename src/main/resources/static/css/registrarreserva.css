@@ -130,9 +130,8 @@ textarea {
 }
 
 #modificar {
-    background-color: #FFD700; /* Amarillo */
+    background-color: #f1cd02; /* Amarillo */
     color: #fff;
-    border: 4px solid #000; /* Borde negro */
     padding: 20px 40px; /* Aumentar el espaciado interno */
     font-size: 16px; /* Aumentar el tamaño de fuente */
     cursor: pointer;
@@ -144,13 +143,12 @@ textarea {
 }
 
 #modificar:hover {
-    background-color: #FFFF00; /* Amarillo más claro al pasar el mouse */
+    background-color: #b0b00c; /* Amarillo más claro al pasar el mouse */
 }
 
-#eliminar {
-    background-color: #FF0000; /* Rojo */
-    color: #fff;
-    border: 4px solid #000; /* Borde negro */
+#guardar {
+    background-color: #4bcd3a; /* Rojo */
+    color: black;
     padding: 20px 40px; /* Aumentar el espaciado interno */
     font-size: 16px; /* Aumentar el tamaño de fuente */
     cursor: pointer;
@@ -161,8 +159,8 @@ textarea {
     margin-top: 20px; /* Margen superior */
 }
 
-#eliminar:hover {
-    background-color: #FF6347; /* Rojo más claro al pasar el mouse */
+#guardar:hover {
+    background-color: #44ae36; /* Rojo más claro al pasar el mouse */
 }
 
 /* Estilo para todos los inputs de texto, correo y fecha */
