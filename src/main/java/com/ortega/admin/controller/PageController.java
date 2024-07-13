@@ -11,7 +11,7 @@ public class PageController {
     // Pagina inicial
     @GetMapping("/reservas")
     public String reservas() {
-        return "reservas.html";
+        return "reserves/reservas.html";
     }
 
     // Pagina de empleados
@@ -35,13 +35,13 @@ public class PageController {
         return "login.html";
     }
 
-    @GetMapping("/registrarreservas")
+    @GetMapping("/reservas/registrarreservas")
     public String registroreserva() {
-        return "registroreserva.html";
+        return "reserves/registroreserva.html";
     }
 
-    @GetMapping("/agregarpasajeros")
+    @GetMapping("/reservas/agregarpasajeros")
     public String agregarpasajeros() {
-        return "pasajeros.html";
+        return "reserves/pasajeros.html";
     }
 }

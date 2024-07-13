@@ -18,5 +18,5 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function redirectToRegistrarpasajeros() {
-    window.location.href = '/admin/agregarpasajeros';  // Esta URL debe coincidir con la ruta definida en tu controlador
+    window.location.href = '/admin/reservas/agregarpasajeros';  // Esta URL debe coincidir con la ruta definida en tu controlador
 }
