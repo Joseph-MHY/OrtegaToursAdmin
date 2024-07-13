@@ -1,0 +1,283 @@
+#inbox {
+  background-color: var(--color-menu-hover);
+  color: var(--color-menu-hover-texto);
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+main {
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.5s ease;
+}
+
+main.min-main {
+  margin-left: 80px;
+}
+
+/* Estilos para los contenedores de filas */
+.row-container {
+    display: flex; /* Utiliza flexbox para colocar elementos en línea */
+    justify-content: space-between; /* Distribuye el espacio entre las columnas */
+    margin-bottom: 10px; /* Espacio entre cada fila */
+}
+
+/* Estilos para las columnas */
+.column {
+    flex: 1; /* Las columnas ocupan un espacio igual */
+    margin-right: 10px; /* Espacio entre cada columna */
+}
+
+/* Estilos específicos para etiquetas y entradas */
+label {
+    display: block; /* Cada etiqueta en una nueva línea */
+    margin-bottom: 5px; /* Espacio entre etiquetas */
+}
+
+/* Estilo específico para el text area */
+textarea {
+    width: 80%; /* Reducir el ancho a un 80% del contenedor */
+    min-height: 100px; /* Altura mínima del text area */
+    resize: vertical; /* Permitir redimensionamiento vertical */
+}
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f0f0;
+    padding: 0px;
+}
+
+/* Estilos para los contenedores de filas */
+.row-container {
+    display: flex; /* Utiliza flexbox para colocar elementos en línea */
+    justify-content: space-between; /* Distribuye el espacio entre las columnas */
+    margin-bottom: 20px; /* Espacio entre cada fila */
+}
+
+/* Estilos para las columnas */
+.column {
+    flex: 1; /* Las columnas ocupan un espacio igual */
+    margin-right: 5px; /* Espacio entre cada columna */
+}
+
+/* Estilos específicos para etiquetas y entradas */
+label {
+    display: block; /* Cada etiqueta en una nueva línea */
+    margin-bottom: 0px; /* Espacio entre etiquetas */
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+    width: 80%; /* Reducir el ancho a un 80% del contenedor */
+    padding: 4px; /* Espacio interno */
+    font-size: 14px; /* Tamaño de fuente */
+    border: 1px solid #ccc; /* Borde delgada gris */
+    border-radius: 4px; /* Bordes redondeados */
+    box-sizing: border-box; /* Incluye el borde en el ancho total */
+}
+
+select {
+    appearance: auto;
+}
+
+textarea {
+    min-height: 100px; /* Altura mínima del textarea */
+    resize: vertical; /* Permitir redimensionamiento vertical */
+}
+
+#agregarPasajero {
+    background-color: #0056b3; /* Color de fondo azul oscuro */
+    color: #fff; /* Color de texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espacio interno */
+    font-size: 14px; /* Tamaño de fuente */
+    cursor: pointer; /* Cursor de puntero */
+    border-radius: 4px; /* Bordes redondeados */
+    display: inline-block; /* Cambiar a inline-block para permitir ajustar el margen */
+    margin-left: 60px; /* Margen izquierdo */
+    margin-right: auto; /* Alinear a la izquierda */
+    margin-top: 20px; /* Margen superior */
+}
+
+#agregarPasajero:hover {
+    background-color: #007bff; /* Color de fondo azul más claro al pasar el mouse */
+}
+
+
+#costesAdicionales {
+    background-color: #006400;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-block; /* Cambiar a inline-block para permitir ajustar el margen */
+    margin-left: 60px; /* Margen izquierdo */
+    margin-right: auto; /* Alinear a la izquierda */
+    margin-top: 20px; /* Margen superior */
+}
+
+#costesAdicionales:hover {
+    background-color: #008000; /* Color más claro al pasar el mouse */
+}
+
+#modificar {
+    background-color: #FFD700; /* Amarillo */
+    color: #fff;
+    border: 4px solid #000; /* Borde negro */
+    padding: 20px 40px; /* Aumentar el espaciado interno */
+    font-size: 16px; /* Aumentar el tamaño de fuente */
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-block; /* Cambiar a inline-block para permitir ajustar el margen */
+    margin-left: 60px; /* Margen izquierdo */
+    margin-right: auto; /* Alinear a la izquierda */
+    margin-top: 20px; /* Margen superior */
+}
+
+#modificar:hover {
+    background-color: #FFFF00; /* Amarillo más claro al pasar el mouse */
+}
+
+#eliminar {
+    background-color: #FF0000; /* Rojo */
+    color: #fff;
+    border: 4px solid #000; /* Borde negro */
+    padding: 20px 40px; /* Aumentar el espaciado interno */
+    font-size: 16px; /* Aumentar el tamaño de fuente */
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-block; /* Cambiar a inline-block para permitir ajustar el margen */
+    margin-left: 65px; /* Margen izquierdo */
+    margin-right: auto; /* Alinear a la izquierda */
+    margin-top: 20px; /* Margen superior */
+}
+
+#eliminar:hover {
+    background-color: #FF6347; /* Rojo más claro al pasar el mouse */
+}
+
+/* Estilo para todos los inputs de texto, correo y fecha */
+input[type="text"], input[type="email"], input[type="date"], textarea, select {
+    background-color: #f2f2f2; /* Fondo gris claro */
+    border: 1px solid #ccc; /* Borde gris */
+    padding: 8px; /* Espaciado interno */
+    border-radius: 4px; /* Bordes redondeados */
+    font-size: 14px; /* Tamaño de fuente */
+    margin-left: 10px; /* Margen izquierdo */
+    margin-right: 10px; /* Margen derecho */
+    width: 80%; /* Reducir el ancho a un 80% del contenedor */
+}
+/* Estilos para la ventana modal */
+
+/* El modal se oculta por defecto */
+.modal {
+    display: none;
+    position: fixed; /* Mantener el modal en su lugar */
+    z-index: 1; /* Asegurarse que el modal esté en frente */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    overflow: auto; /* Habilitar el scroll si es necesario */
+    background-color: rgb(0,0,0); /* Color de fondo */
+    background-color: rgba(0,0,0,0.4); /* Color de fondo con opacidad */
+}
+/* Estilos para la ventana modal */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px; /* Limitar el ancho máximo */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 40%; /* Reducir el ancho */
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group button {
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.form-group button:hover {
+    background-color: #007bff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    text-align: center; /* Centrar el contenido de la tabla */
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+}
+
+table th {
+    background-color: #f2f2f2; /* Fondo gris claro para el encabezado */
+}
+
+button[type="button"] {
+    background-color: #006400;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="button"]:hover {
+    background-color: #008000;
+}
