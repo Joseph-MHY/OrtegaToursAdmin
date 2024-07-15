@@ -1,4 +1,4 @@
-package com.ortega.admin.Repository;
+package com.ortega.admin.repositories;
 
 public interface ReservaRepository {
 }

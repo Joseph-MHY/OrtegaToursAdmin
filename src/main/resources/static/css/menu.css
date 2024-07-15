@@ -78,7 +78,6 @@ body{
     z-index: 100;
 }
 
-
 /*----------------Barra Lateral*/
 .barra-lateral{
     position: fixed;
@@ -96,6 +95,9 @@ body{
 
 .mini-barra-lateral{
     width: 80px;
+}
+.nombre-pagina span{
+    font-size: small;
 }
 .barra-lateral span{
     width: 100px;

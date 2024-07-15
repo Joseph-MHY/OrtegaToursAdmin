@@ -1,5 +1,6 @@
 package com.ortega.admin.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,7 @@ public class Rol {
     @Column(name = "nombre_rol", nullable = false, length = 30)
     private String nombreRol;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "idRol")
     private Set<Empleados> empleados = new LinkedHashSet<>();
 
