@@ -1,9 +1,7 @@
 package com.ortega.admin.models.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
+import lombok.*;
 
 import java.util.Date;
 import java.util.LinkedHashSet;
@@ -12,11 +10,15 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "empleados")
 public class Empleados {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ColumnDefault("nextval('empleados_id_empleado_seq'::regclass)")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empleados_id_gen")
+    @SequenceGenerator(name = "empleados_id_gen", sequenceName = "empleados_id_empleado_seq", allocationSize = 1)
     @Column(name = "id_empleado", nullable = false)
     private Integer id;
 
@@ -36,7 +38,7 @@ public class Empleados {
     @Column(name = "correo", nullable = false, length = 90)
     private String correo;
 
-    @Column(name = "password", nullable = false, length = 20)
+    @Column(name = "password", nullable = false, length = Integer.MAX_VALUE)
     private String password;
 
     @Temporal(TemporalType.DATE)
@@ -53,7 +55,7 @@ public class Empleados {
     @Column(name = "contacto_emergencia", length = 9)
     private String contactoEmergencia;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_rol", nullable = false)
     private Rol idRol;
 
