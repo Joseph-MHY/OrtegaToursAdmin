@@ -5,6 +5,7 @@ import com.ortega.admin.security.CustomSuccesHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -32,7 +33,9 @@ public class SecurityConfig {
 
     private final String[] ADMIN_URL = {
             "/admin/reservas",
-            "/admin/empleados"
+            "/admin/empleados",
+            "/utils/estados",
+            "/actions/empleados"
     };
 
     @Bean
@@ -51,7 +54,8 @@ public class SecurityConfig {
                         .successHandler(customSuccesHandler).permitAll())
                 .logout(form -> form.invalidateHttpSession(true).clearAuthentication(true)
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/login?logout").permitAll());
+                        .logoutSuccessUrl("/login?logout").permitAll())
+                .httpBasic(Customizer.withDefaults());
         return http.build();
     }
 

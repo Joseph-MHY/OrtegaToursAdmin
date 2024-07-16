@@ -1,6 +1,6 @@
 package com.ortega.admin.controller;
 
-import com.ortega.admin.models.DTO.EmpleadoDTO;
+import com.ortega.admin.models.DTO.EmpleadoRequest;
 import com.ortega.admin.models.entity.Empleados;
 import com.ortega.admin.service.IMPL.EmpServiceImpl;
 import jakarta.validation.Valid;
@@ -20,9 +20,9 @@ public class EmpleadosController {
     private EmpServiceImpl empService;
 
     @PostMapping("/empleados")
-    public ResponseEntity<EmpleadoDTO> createEmpleado(@Valid @RequestBody EmpleadoDTO empleadoDTO) {
-        Empleados empleado = empService.save(empleadoDTO);
-        return new ResponseEntity<>(EmpleadoDTO.fromEntity(empleado), HttpStatus.CREATED);
+    public ResponseEntity<Empleados> createEmpleado(@Valid @RequestBody EmpleadoRequest empleadoRequest) {
+        Empleados empleado = empService.save(empleadoRequest);
+        return new ResponseEntity<>(empleado, HttpStatus.CREATED);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.ortega.admin.models.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ortega.admin.models.entity.Empleados;
 import com.ortega.admin.models.entity.Rol;
 import com.ortega.admin.models.entity.Tipocontrato;
@@ -10,15 +11,15 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class EmpleadoDTO {
-
-    private Integer id;
+public class EmpleadoRequest {
 
     @NotBlank(message = "El nombre y apellidos son obligatorios")
     @Size(max = 80, message = "El nombre y apellidos no pueden exceder los 80 caracteres")
@@ -45,9 +46,9 @@ public class EmpleadoDTO {
     private String password;
 
     @NotNull(message = "La fecha de nacimiento es obligatoria")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fechaNac;
 
-    @NotNull(message = "La fecha de contratación es obligatoria")
     private Date fechaContratacion;
 
     @NotBlank(message = "El teléfono es obligatorio")
@@ -75,32 +76,39 @@ public class EmpleadoDTO {
 
     // Método para convertir DTO a Entidad
     public Empleados toEntity(Tipodocumento tipoDocumento, Rol rol, Tipocontrato tipoContrato, String passwordEMP) {
-        return Empleados.builder()
-                .id(this.id)
-                .nombreApellidos(this.nombreApellidos)
-                .direccion(this.direccion)
-                .idTipoDocumento(tipoDocumento)
-                .numDocumento(this.numDocumento)
-                .correo(this.correo)
-                .password(passwordEMP)
-                .fechaNac(this.fechaNac)
-                .fechaContratacion(new Date())
-                .telefono(this.telefono)
-                .contactoEmergencia(this.contactoEmergencia)
-                .idRol(rol)
-                .idTipoContrato(tipoContrato)
-                .horarioTrabajo(this.horarioTrabajo)
-                .cuentaBancaria(this.cuentaBancaria)
-                .salario(this.salario)
-                .observaciones(this.observaciones)
-                .estadoCuenta(this.estadoCuenta)
-                .build();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaFormateada = sdf.format(new Date());
+        try {
+            Date fechaDesdeString = sdf.parse(fechaFormateada);
+            return Empleados.builder()
+                    .id(null)
+                    .nombreApellidos(this.nombreApellidos)
+                    .direccion(this.direccion)
+                    .idTipoDocumento(tipoDocumento)
+                    .numDocumento(this.numDocumento)
+                    .correo(this.correo)
+                    .password(passwordEMP)
+                    .fechaNac(this.fechaNac)
+                    .fechaContratacion(fechaDesdeString)
+                    .telefono(this.telefono)
+                    .contactoEmergencia(this.contactoEmergencia)
+                    .idRol(rol)
+                    .idTipoContrato(tipoContrato)
+                    .horarioTrabajo(this.horarioTrabajo)
+                    .cuentaBancaria(this.cuentaBancaria)
+                    .salario(this.salario)
+                    .observaciones(this.observaciones)
+                    .estadoCuenta(true)
+                    .build();
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 
     // Método para convertir Entidad a DTO
-    public static EmpleadoDTO fromEntity(Empleados empleado) {
-        return EmpleadoDTO.builder()
-                .id(empleado.getId())
+    public static EmpleadoRequest fromEntity(Empleados empleado) {
+        return EmpleadoRequest.builder()
                 .nombreApellidos(empleado.getNombreApellidos())
                 .direccion(empleado.getDireccion())
                 .idTipoDocumento(empleado.getIdTipoDocumento().getId())

@@ -1,6 +1,6 @@
 package com.ortega.admin.service.IMPL;
 
-import com.ortega.admin.models.DTO.EmpleadoDTO;
+import com.ortega.admin.models.DTO.EmpleadoRequest;
 import com.ortega.admin.models.entity.Empleados;
 import com.ortega.admin.models.entity.Rol;
 import com.ortega.admin.models.entity.Tipocontrato;
@@ -29,21 +29,21 @@ public class EmpServiceImpl implements EmpService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public Empleados save(EmpleadoDTO empleadoDTO) {
+    public Empleados save(EmpleadoRequest empleadoRequest) {
         // Obtener las entidades necesarias
-        Tipodocumento tipoDocumento = tipodocumentoRepository.findById(empleadoDTO.getIdTipoDocumento())
+        Tipodocumento tipoDocumento = tipodocumentoRepository.findById(empleadoRequest.getIdTipoDocumento())
                 .orElseThrow(() -> new RuntimeException("Tipo de documento no encontrado"));
-        Rol rol = rolRepository.findById(empleadoDTO.getIdRol())
+        Rol rol = rolRepository.findById(empleadoRequest.getIdRol())
                 .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
-        Tipocontrato tipoContrato = tipocontratoRepository.findById(empleadoDTO.getIdTipoContrato())
+        Tipocontrato tipoContrato = tipocontratoRepository.findById(empleadoRequest.getIdTipoContrato())
                 .orElseThrow(() -> new RuntimeException("Tipo de contrato no encontrado"));
 
         // Convertir DTO a Entidad
-        Empleados empleado = empleadoDTO.toEntity(tipoDocumento, rol, tipoContrato, passwordEncoder.encode(empleadoDTO.getPassword()));
+        Empleados empleado = empleadoRequest.toEntity(tipoDocumento, rol, tipoContrato, passwordEncoder.encode(empleadoRequest.getPassword()));
 
         // Guardar entidad en el repositorio
-        Empleados empleadoGuardado = empleadoRepository.save(empleado);
+        empleadoRepository.save(empleado);
 
-        return empleadoGuardado;
+        return empleado;
     }
 }

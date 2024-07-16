@@ -24,6 +24,8 @@ public class CustomSuccesHandler implements AuthenticationSuccessHandler {
         System.out.println(roles);
         if (roles.orElse("").equals("ROLE_ADMIN")) {
             response.sendRedirect("/admin/reservas");
+        } else if (roles.orElse("").equals("ROLE_ATTENTION")) {
+            response.sendRedirect("/admin/reservas");
         } else {
             response.sendRedirect("/error");
         }
