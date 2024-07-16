@@ -17,7 +17,7 @@ public class CustomEmpDetail implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> empleado.getIdRol().getNombreRol());
+        return List.of(new CustomGrantedAuthority(empleado.getIdRol().getNombreRol()));
     }
 
     public String getFullname() {

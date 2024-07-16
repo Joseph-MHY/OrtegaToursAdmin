@@ -1,5 +1,6 @@
 package com.ortega.admin.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -43,10 +44,12 @@ public class Empleados {
 
     @Temporal(TemporalType.DATE)
     @Column(name = "fecha_nac", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fechaNac;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "fecha_contratacion", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fechaContratacion;
 
     @Column(name = "telefono", nullable = false, length = 9)
