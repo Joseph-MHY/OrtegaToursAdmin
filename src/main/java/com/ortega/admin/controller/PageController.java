@@ -4,6 +4,7 @@ import com.ortega.admin.service.EmpService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
@@ -23,17 +24,27 @@ public class PageController {
     @Autowired
     private EmpService empService;
 
-    @GetMapping("admin/reservas")
+    @GetMapping("/admin/reservas")
     public String reservas(Model model, Principal principal) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
         model.addAttribute("empleado", userDetails);
+        model.addAttribute("rol", userDetails.getAuthorities().toString());
+        String role = userDetails.getAuthorities().toString();
+        System.out.println("User details: " + userDetails);
+
+        if (role.contains("ROLE_ATTENTION")) {
+            System.out.println("El usuario es atención al cliente? " + true + " " + role);
+        } else {
+            System.out.println("Este es el rol: " + role);
+        }
         return "reserves/reservas";
     }
 
-    @GetMapping("admin/empleados")
+    @GetMapping("/admin/empleados")
     public String empleados(Model model, Principal principal) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
         model.addAttribute("empleado", userDetails);
+        model.addAttribute("rol", userDetails.getAuthorities().toString());
         return "employees/empleados";
     }
 
@@ -41,6 +52,7 @@ public class PageController {
     public String empleados_register(Model model, Principal principal) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
         model.addAttribute("empleado", userDetails);
+        model.addAttribute("rol", userDetails.getAuthorities().toString());
         return "employees/verEmpleado";
     }
 
@@ -48,6 +60,7 @@ public class PageController {
     public String reportes(Model model, Principal principal) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
         model.addAttribute("empleado", userDetails);
+        model.addAttribute("rol", userDetails.getAuthorities().toString());
         return "reportes.html";
     }
 
@@ -60,6 +73,7 @@ public class PageController {
     public String registroreserva(Model model, Principal principal) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
         model.addAttribute("empleado", userDetails);
+        model.addAttribute("rol", userDetails.getAuthorities().toString());
         return "reserves/registroreserva.html";
     }
 
@@ -67,6 +81,7 @@ public class PageController {
     public String agregarpasajeros(Model model, Principal principal) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
         model.addAttribute("empleado", userDetails);
+        model.addAttribute("rol", userDetails.getAuthorities().toString());
         return "reserves/pasajeros.html";
     }
 }
