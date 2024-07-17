@@ -20,11 +20,11 @@ public class CustomSuccesHandler implements AuthenticationSuccessHandler {
             throws IOException, ServletException
     {
         var authorities = authentication.getAuthorities();
+        var details = authentication.getDetails();
         var roles = authorities.stream().map(GrantedAuthority::getAuthority).findFirst();
         System.out.println(roles);
-        if (roles.orElse("").equals("ROLE_ADMIN")) {
-            response.sendRedirect("/admin/reservas");
-        } else if (roles.orElse("").equals("ROLE_ATTENTION")) {
+        System.out.println("Details: " + details.toString());
+        if (roles.orElse("").equals("ROLE_ADMIN") || roles.orElse("").equals("ROLE_ATTENTION")) {
             response.sendRedirect("/admin/reservas");
         } else {
             response.sendRedirect("/error");

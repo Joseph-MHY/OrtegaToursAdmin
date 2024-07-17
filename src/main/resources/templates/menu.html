@@ -22,19 +22,19 @@
 
     <nav class="navegacion">
       <ul>
-        <li>
+        <li th:if="${rol.contains('ROLE_ADMIN') || rol.contains('ROLE_ATTENTION')}">
           <a id="reservas" th:href="@{/admin/reservas}">
             <ion-icon name="mail-unread-outline"></ion-icon>
             <span>RESERVAS</span>
           </a>
         </li>
-        <li>
+        <li th:if="${rol.contains('ROLE_ADMIN')}">
           <a id="empleados" th:href="@{/admin/empleados}">
             <ion-icon name="people-circle-outline"></ion-icon>
             <span>EMPLEADOS</span>
           </a>
         </li>
-        <li>
+        <li th:if="${rol.contains('ROLE_ADMIN')}">
           <a id="reportes" th:href="@{/admin/reportes}">
             <ion-icon name="bar-chart-outline"></ion-icon>
             <span>REPORTES</span>
@@ -47,6 +47,7 @@
           </a>
         </li>
       </ul>
+
     </nav>
 
     <div>
@@ -59,8 +60,7 @@
         </div>
         <div class="switch">
           <div class="base">
-            <div class="circulo">
-            </div>
+            <div class="circulo"></div>
           </div>
         </div>
       </div>

@@ -33,9 +33,18 @@ public class SecurityConfig {
 
     private final String[] ADMIN_URL = {
             "/admin/reservas",
-            "/admin/empleados",
-            "/utils/estados",
-            "/actions/empleados"
+            "/admin/empleados/viewEmpleado",
+            "/admin/reportes",
+            "/admin/reservas/registrarreservas",
+            "/admin/reservas/agregarpasajeros",
+            "/utils/estados"
+    };
+
+    private final String[] ATTENTION_URL = {
+            "/admin/reservas",
+            "/admin/reservas/registrarreservas",
+            "/admin/reservas/agregarpasajeros",
+            "/utils/estados"
     };
 
     @Bean
@@ -47,9 +56,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request ->
-                        request.requestMatchers(ADMIN_URL).hasAuthority("ROLE_ADMIN")
-                                .requestMatchers(FREE_URL).permitAll()
-                                .anyRequest().authenticated())
+                        request.requestMatchers(FREE_URL).permitAll()
+                                .requestMatchers(ATTENTION_URL).hasAnyRole("ATTENTION", "ADMIN")
+                                .requestMatchers(ADMIN_URL).hasRole("ADMIN")
+                                .anyRequest().denyAll())
                 .formLogin(form -> form.loginPage("/login").loginProcessingUrl("/login")
                         .successHandler(customSuccesHandler).permitAll())
                 .logout(form -> form.invalidateHttpSession(true).clearAuthentication(true)
