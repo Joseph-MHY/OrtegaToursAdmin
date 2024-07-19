@@ -5,6 +5,7 @@ import com.ortega.admin.security.CustomSuccesHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +15,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -33,11 +37,15 @@ public class SecurityConfig {
 
     private final String[] ADMIN_URL = {
             "/admin/reservas",
-            "/admin/empleados/viewEmpleado",
-            "/admin/reportes",
             "/admin/reservas/registrarreservas",
             "/admin/reservas/agregarpasajeros",
-            "/utils/estados"
+            "/admin/empleados",
+            "/admin/empleados/viewEmpleado",
+            "/actions/empleados",
+            "/actions/empleados/crear",
+            "/admin/reportes",
+            "/utils/estados",
+            "/favicon.ico"
     };
 
     private final String[] ATTENTION_URL = {
@@ -57,8 +65,12 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request ->
                         request.requestMatchers(FREE_URL).permitAll()
-                                .requestMatchers(ATTENTION_URL).hasAnyRole("ATTENTION", "ADMIN")
-                                .requestMatchers(ADMIN_URL).hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.GET,ATTENTION_URL).hasAnyRole("ATTENTION", "ADMIN")
+                                .requestMatchers(HttpMethod.POST,ATTENTION_URL).hasAnyRole("ATTENTION", "ADMIN")
+                                .requestMatchers(HttpMethod.GET,ADMIN_URL).hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST,ADMIN_URL).hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.PUT,ADMIN_URL).hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE,ADMIN_URL).hasRole("ADMIN")
                                 .anyRequest().denyAll())
                 .formLogin(form -> form.loginPage("/login").loginProcessingUrl("/login")
                         .successHandler(customSuccesHandler).permitAll())

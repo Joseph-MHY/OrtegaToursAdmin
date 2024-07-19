@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Empleados</title>
     <link rel="stylesheet" th:href="@{/css/empleados.css}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <div th:replace="menu"></div>
@@ -13,8 +17,10 @@
     <h1>Empleados</h1>
     <div class="container">
         <div class="search-bar">
-            <input type="text" placeholder="Ingrese DNI o Nombre...">
-            <button><ion-icon name="search"></ion-icon></button>
+            <input id="searchInput" type="text" placeholder="Ingrese DNI o Nombre...">
+            <button id="searchBtn">
+                <ion-icon name="search"></ion-icon>
+            </button>
         </div>
         <h3 style="margin-top: 20px;">Ordenar por:</h3>
         <div class="filters">
@@ -40,27 +46,8 @@
                     <th style="text-align: center;">Ver</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td style="text-align: center;">1</td>
-                    <td>Joseph Manuel Huamani Yalli</td>
-                    <td style="text-align: center;">74814577</td>
-                    <td style="text-align: center;">Conductor</td>
-                    <td style="text-align: center;">+51 987 152 427</td>
-                    <td style="text-align: center;">S/.1250.0</td>
-                    <td style="text-align: center;">Activo</td>
-                    <td class="view-icon"><a th:href="@{/admin/empleados/viewEmpleado}"><ion-icon name="eye"></ion-icon></a></td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;">2</td>
-                    <td>Tito Salcedo Jhon Vanderlee</td>
-                    <td style="text-align: center;">12345678</td>
-                    <td style="text-align: center;">Oficinista</td>
-                    <td style="text-align: center;">+51 987 412 793</td>
-                    <td style="text-align: center;">S/.1650.0</td>
-                    <td style="text-align: center;">Inactivo</td>
-                    <td class="view-icon"><a th:href="@{/admin/empleados/viewEmpleado}"><ion-icon name="eye"></ion-icon></a></td>
-                </tr>
+            <tbody id="tablaEmpleados">
+
             </tbody>
         </table>
     </div>
@@ -72,76 +59,78 @@
         <span class="close" onclick="closeModal()">&times;</span>
         <h1>Registro de Empleado</h1>
         <div class="form-container">
-            <form>
+            <form id="registroEmpleadoForm">
                 <div class="form-group">
                     <label for="nombre">Nombre y Apellido:</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Joseph Manuel Huamani Yalli">
+                    <input type="text" id="nombre" name="nombre" placeholder="Ingresar nombres y apellidos completos" maxlength="80" required>
                 </div>
                 <div class="form-group">
                     <label for="direccion">Dirección:</label>
-                    <input type="text" id="direccion" name="direccion" placeholder="Villa el Salvador">
+                    <input type="text" id="direccion" name="direccion" placeholder="Ingresar Dirección" maxlength="160" required>
+                </div>
+                <div class="form-group">
+                    <label for="tipo-documento">Tipo de Documento de identidad:</label>
+                    <select name="idTipoDocumento" id="tipo-documento" required>
+                        <option value="1">DNI</option>
+                        <option value="2">Pasaporte</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="dni">N° de Identidad:</label>
-                    <input type="text" id="dni" name="dni" placeholder="74814577">
+                    <input type="text" id="dni" name="numDocumento" placeholder="Ingresar número de documento" maxlength="20" required>
                 </div>
                 <div class="form-group">
                     <label for="correo">Correo:</label>
-                    <input type="email" id="correo" name="correo" placeholder="huamanijyalli@gmail.com">
+                    <input type="email" id="correo" name="correo" placeholder="huamanijyalli@gmail.com" required>
                 </div>
                 <div class="form-group">
                     <label for="contrasena">Contraseña:</label>
-                    <input type="password" id="contrasena" name="contrasena" placeholder="12345678901234">
+                    <input type="password" id="contrasena" name="password" placeholder="Ingresar contraseña del empleado" required>
                 </div>
                 <div class="form-group">
-                    <label for="fecha-nacimiento">Fecha de Nacimiento (Opcional):</label>
-                    <input type="text" id="fecha-nacimiento" name="fecha-nacimiento" placeholder="dd/MM/yyyy">
-                </div>
-                <div class="form-group">
-                    <label for="fecha-contratacion">Fecha Contratación:</label>
-                    <input type="text" id="fecha-contratacion" name="fecha-contratacion" placeholder="dd/MM/yyyy">
+                    <label for="fecha-nacimiento">Fecha de Nacimiento:</label>
+                    <input type="date" id="fecha-nacimiento" name="fechaNac" placeholder="yyyy-mm-dd" required>
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono:</label>
-                    <input type="text" id="telefono" name="telefono" placeholder="987152427">
+                    <input type="text" id="telefono" name="telefono" placeholder="Ingresar número de teléfono" maxlength="9" required>
                 </div>
                 <div class="form-group">
                     <label for="contacto-emergencia">Contacto de Emergencia (Opcional):</label>
-                    <input type="text" id="contacto-emergencia" name="contacto-emergencia" placeholder="987152427">
+                    <input type="text" id="contacto-emergencia" name="contactoEmergencia" placeholder="Teléfono de emergencia" maxlength="9">
                 </div>
                 <div class="form-group">
                     <label for="puesto">Puesto:</label>
-                    <select name="puesto" id="puesto">
-                        <option value="conductor">Conductor</option>
-                        <option value="atencion-cliente">Atención al cliente</option>
-                        <option value="oficinista">Oficina</option>
+                    <select name="idRol" id="puesto">
+                        <option value="1">Atención al cliente</option>
+                        <option value="2">Administrador</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="horario-trabajo">Horario de Trabajo:</label>
-                    <textarea type="text" id="horario-trabajo" name="horario-trabajo" placeholder="Lunes a Viernes de 7:00am a 5:00pm"></textarea>
+                    <textarea type="text" id="horario-trabajo" name="horarioTrabajo" placeholder="Ejm: Lunes a Viernes de 7:00am a 5:00pm" maxlength="150" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="cuenta-bancaria">Número de cuenta bancaria (Opcional):</label>
-                    <input type="text" id="cuenta-bancaria" name="cuenta-bancaria" placeholder="123-45678901-2-345">
+                    <input type="text" id="cuenta-bancaria" name="cuentaBancaria" placeholder="Ingresar número de cuenta bancaria" maxlength="40">
                 </div>
                 <div class="form-group">
                     <label for="salario">Salario:</label>
-                    <input type="text" id="salario" name="salario" placeholder="S/.1250.0">
+                    <input type="number" id="salario" name="salario" placeholder="1250.0" required>
                 </div>
                 <div class="form-group">
                     <label for="tipo-contrato">Tipo de Contrato:</label>
-                    <select id="tipo-contrato" name="tipo-contrato">
-                        <option value="part-time">Part-Time</option>
-                        <option value="full-time">Full-Time</option>
+                    <select id="tipo-contrato" name="idTipoContrato" required>
+                        <option value="1">Tiempo Completo</option>
+                        <option value="2">Medio Tiempo</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="notas-adicionales">Notas Adicionales:</label>
-                    <textarea id="notas-adicionales" name="notas-adicionales" placeholder="(Opcional)"></textarea>
+                    <textarea id="notas-adicionales" name="notasAdicionales" placeholder="(Opcional)"></textarea>
                 </div>
                 <div class="form-group">
-                    <button class="register-btn">Registrar</button>
+                    <button type="submit" class="register-btn">Registrar</button>
                 </div>
             </form>
         </div>

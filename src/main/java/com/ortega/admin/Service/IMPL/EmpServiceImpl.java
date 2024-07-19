@@ -1,6 +1,7 @@
 package com.ortega.admin.service.IMPL;
 
 import com.ortega.admin.models.DTO.EmpleadoRequest;
+import com.ortega.admin.models.DTO.EmpleadoResponse;
 import com.ortega.admin.models.entity.Empleados;
 import com.ortega.admin.models.entity.Rol;
 import com.ortega.admin.models.entity.Tipocontrato;
@@ -13,6 +14,9 @@ import com.ortega.admin.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EmpServiceImpl implements EmpService {
@@ -45,5 +49,26 @@ public class EmpServiceImpl implements EmpService {
         empleadoRepository.save(empleado);
 
         return empleado;
+    }
+
+    public List<EmpleadoResponse> obtenerTodosLosEmpleados() {
+        List<Empleados> empleados = empleadoRepository.findAll();
+        return empleados.stream().map(this::convertirAEmpleadoResponse).collect(Collectors.toList());
+    }
+
+    private EmpleadoResponse convertirAEmpleadoResponse(Empleados empleado) {
+        EmpleadoResponse response = new EmpleadoResponse();
+        response.setId(empleado.getId());
+        response.setNombreApellidos(empleado.getNombreApellidos());
+        response.setNumDocumento(empleado.getNumDocumento());
+        if (empleado.getIdRol().getNombreRol().equals("ROLE_ADMIN")){
+            response.setPuesto("Administrador");
+        } else if (empleado.getIdRol().getNombreRol().equals("ROLE_ATTENTION")){
+            response.setPuesto("Atención al cliente");
+        }
+        response.setTelefono(empleado.getTelefono());
+        response.setSalario(empleado.getSalario());
+        response.setEstado(empleado.getEstadoCuenta() ? "Activo" : "Inactivo");
+        return response;
     }
 }
