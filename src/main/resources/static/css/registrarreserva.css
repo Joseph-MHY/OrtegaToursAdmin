@@ -1,204 +1,151 @@
-#inbox {
-  background-color: var(--color-menu-hover);
-  color: var(--color-menu-hover-texto);
-}
-
-body {
-  font-family: Arial, sans-serif;
-}
-
-main {
-  margin-left: 250px;
-  padding: 20px;
-  transition: margin-left 0.5s ease;
-}
-
-main.min-main {
-  margin-left: 80px;
-}
-
-/* Estilos para los contenedores de filas */
-.row-container {
-    display: flex; /* Utiliza flexbox para colocar elementos en línea */
-    justify-content: space-between; /* Distribuye el espacio entre las columnas */
-    margin-bottom: 10px; /* Espacio entre cada fila */
-}
-
-/* Estilos para las columnas */
-.column {
-    flex: 1; /* Las columnas ocupan un espacio igual */
-    margin-right: 10px; /* Espacio entre cada columna */
-}
-
-/* Estilos específicos para etiquetas y entradas */
-label {
-    display: block; /* Cada etiqueta en una nueva línea */
-    margin-bottom: 5px; /* Espacio entre etiquetas */
-}
-
-/* Estilo específico para el text area */
-textarea {
-    width: 80%; /* Reducir el ancho a un 80% del contenedor */
-    min-height: 100px; /* Altura mínima del text area */
-    resize: vertical; /* Permitir redimensionamiento vertical */
-}
-
 /* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f0f0f0;
-    padding: 0px;
 }
 
-/* Estilos para los contenedores de filas */
-.row-container {
-    display: flex; /* Utiliza flexbox para colocar elementos en línea */
-    justify-content: space-between; /* Distribuye el espacio entre las columnas */
-    margin-bottom: 20px; /* Espacio entre cada fila */
+main {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.5s ease;
 }
 
-/* Estilos para las columnas */
-.column {
-    flex: 1; /* Las columnas ocupan un espacio igual */
-    margin-right: 5px; /* Espacio entre cada columna */
+main.min-main {
+    margin-left: 80px;
 }
 
-/* Estilos específicos para etiquetas y entradas */
-label {
-    display: block; /* Cada etiqueta en una nueva línea */
-    margin-bottom: 0px; /* Espacio entre etiquetas */
-    font-weight: bold;
+.container {
+    display: flex;
+    gap: 20px;
 }
 
-input[type="text"],
-input[type="email"],
-select,
-textarea {
-    width: 80%; /* Reducir el ancho a un 80% del contenedor */
-    padding: 4px; /* Espacio interno */
-    font-size: 14px; /* Tamaño de fuente */
-    border: 1px solid #ccc; /* Borde delgada gris */
-    border-radius: 4px; /* Bordes redondeados */
-    box-sizing: border-box; /* Incluye el borde en el ancho total */
+.section {
+    flex: 1;
 }
 
-select {
-    appearance: auto;
+/* Estilos para los grupos de formularios */
+.form-group {
+    display: flex;
+    flex-direction: column; /* Mostrar los elementos en una columna */
+    margin-bottom: 20px;
 }
 
-textarea {
-    min-height: 100px; /* Altura mínima del textarea */
-    resize: vertical; /* Permitir redimensionamiento vertical */
+.form-group label {
+    margin-bottom: 5px; /* Espacio debajo del label */
 }
 
-#agregarPasajero {
-    background-color: #0056b3; /* Color de fondo azul oscuro */
-    color: #fff; /* Color de texto blanco */
-    border: none; /* Sin borde */
-    padding: 10px 20px; /* Espacio interno */
-    font-size: 14px; /* Tamaño de fuente */
-    cursor: pointer; /* Cursor de puntero */
-    border-radius: 4px; /* Bordes redondeados */
-    display: inline-block; /* Cambiar a inline-block para permitir ajustar el margen */
-    margin-left: 60px; /* Margen izquierdo */
-    margin-right: auto; /* Alinear a la izquierda */
-    margin-top: 20px; /* Margen superior */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-#agregarPasajero:hover {
-    background-color: #007bff; /* Color de fondo azul más claro al pasar el mouse */
-}
+/* Estilos independientes para los botones */
 
-
-#costesAdicionales {
-    background-color: #006400;
+/* Botón Pasajero */
+#Pasajero {
+    background-color: #006400; /* Verde oscuro */
     color: #fff;
-    border: none;
     padding: 10px 20px;
     font-size: 14px;
-    cursor: pointer;
-    border-radius: 4px;
-    display: inline-block; /* Cambiar a inline-block para permitir ajustar el margen */
-    margin-left: 60px; /* Margen izquierdo */
-    margin-right: auto; /* Alinear a la izquierda */
-    margin-top: 20px; /* Margen superior */
+    border: 2px solid #004d00; /* Bordes más oscuros */
+    border-radius: 8px;
+    text-transform: uppercase; /* Mayúsculas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
+    display: block; /* Asegura que el botón se comporte como bloque */
+    margin: 10px auto; /* Centra el botón horizontalmente */
+}
+
+#Pasajero:hover {
+    background-color: #008000; /* Verde más brillante */
+    border-color: #005700; /* Bordes más brillantes */
+}
+
+/* Botón Costes Adicionales */
+#costesAdicionales {
+    background-color: #007bff; /* Azul brillante */
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #0056b3; /* Bordes más oscuros */
+    border-radius: 8px;
+    text-transform: uppercase; /* Mayúsculas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
+    display: block; /* Asegura que el botón se comporte como bloque */
+    margin: 10px auto; /* Centra el botón horizontalmente */
 }
 
 #costesAdicionales:hover {
-    background-color: #008000; /* Color más claro al pasar el mouse */
+    background-color: #0056b3; /* Azul más oscuro */
+    border-color: #004494; /* Bordes más oscuros */
 }
 
+/* Botón Modificar */
 #modificar {
-    background-color: #f1cd02; /* Amarillo */
-    color: #fff;
-    padding: 20px 40px; /* Aumentar el espaciado interno */
-    font-size: 16px; /* Aumentar el tamaño de fuente */
-    cursor: pointer;
-    border-radius: 4px;
-    display: inline-block; /* Cambiar a inline-block para permitir ajustar el margen */
-    margin-left: 60px; /* Margen izquierdo */
-    margin-right: auto; /* Alinear a la izquierda */
-    margin-top: 20px; /* Margen superior */
+    background-color: #ffc107; /* Amarillo */
+    color: #000;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #e0a800; /* Bordes más oscuros */
+    border-radius: 8px;
+    text-transform: uppercase; /* Mayúsculas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
+    display: block; /* Asegura que el botón se comporte como bloque */
+    margin: 10px auto; /* Centra el botón horizontalmente */
 }
-
 #modificar:hover {
-    background-color: #b0b00c; /* Amarillo más claro al pasar el mouse */
+    background-color: #ffca28; /* Amarillo más claro */
+    border-color: #d39e00; /* Bordes más oscuros */
 }
 
+/* Botón Guardar */
 #guardar {
-    background-color: #4bcd3a; /* Rojo */
-    color: black;
-    padding: 20px 40px; /* Aumentar el espaciado interno */
-    font-size: 16px; /* Aumentar el tamaño de fuente */
-    cursor: pointer;
-    border-radius: 4px;
-    display: inline-block; /* Cambiar a inline-block para permitir ajustar el margen */
-    margin-left: 65px; /* Margen izquierdo */
-    margin-right: auto; /* Alinear a la izquierda */
-    margin-top: 20px; /* Margen superior */
+    background-color: #28a745; /* Verde */
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #1e7e34; /* Bordes más oscuros */
+    border-radius: 8px;
+    text-transform: uppercase; /* Mayúsculas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
+    display: block; /* Asegura que el botón se comporte como bloque */
+    margin: 10px auto; /* Centra el botón horizontalmente */
 }
+
 
 #guardar:hover {
-    background-color: #44ae36; /* Rojo más claro al pasar el mouse */
+    background-color: #218838; /* Verde más oscuro */
+    border-color: #1c7430; /* Bordes más oscuros */
 }
 
-/* Estilo para todos los inputs de texto, correo y fecha */
-input[type="text"], input[type="email"], input[type="date"], textarea, select {
-    background-color: #f2f2f2; /* Fondo gris claro */
-    border: 1px solid #ccc; /* Borde gris */
-    padding: 8px; /* Espaciado interno */
-    border-radius: 4px; /* Bordes redondeados */
-    font-size: 14px; /* Tamaño de fuente */
-    margin-left: 10px; /* Margen izquierdo */
-    margin-right: 10px; /* Margen derecho */
-    width: 80%; /* Reducir el ancho a un 80% del contenedor */
-}
-/* Estilos para la ventana modal */
 
-/* El modal se oculta por defecto */
+
+
+/* Estilos para el modal */
 .modal {
     display: none;
-    position: fixed; /* Mantener el modal en su lugar */
-    z-index: 1; /* Asegurarse que el modal esté en frente */
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Ancho completo */
-    height: 100%; /* Altura completa */
-    overflow: auto; /* Habilitar el scroll si es necesario */
-    background-color: rgb(0,0,0); /* Color de fondo */
-    background-color: rgba(0,0,0,0.4); /* Color de fondo con opacidad */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
 }
-/* Estilos para la ventana modal */
+
 .modal-content {
     background-color: #fefefe;
-    margin: 5% auto;
+    margin-left:420px;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    max-width: 600px; /* Limitar el ancho máximo */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    width: auto; /* Reducido el ancho del modal */
+    border-radius: 8px; /* Borde redondeado */
+    max-width: 800px; /* Ancho máximo para asegurar que no sea muy grande en pantallas grandes */
 }
 
 .close {
@@ -214,38 +161,72 @@ input[type="text"], input[type="email"], input[type="date"], textarea, select {
     text-decoration: none;
     cursor: pointer;
 }
-
-.form-group {
+.form-group-modal {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    flex-direction:column ; /* Mostrar los elementos en una columna */
     margin-bottom: 20px;
+    margin-left:240px;
 }
 
-.form-group input {
-    width: 40%; /* Reducir el ancho */
+
+/* Estilos para los labels en el modal */
+.label-modal {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    /* Añade más estilos según sea necesario */
+}
+
+/* Estilos para los campos de entrada en el modal */
+
+.input-modal,
+.select-modal {
+    width: 50%; /* Ajusta el ancho según sea necesario */
     padding: 8px;
-    font-size: 14px;
+    border-radius: 4px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+
+    box-sizing: border-box; /* Incluye el padding en el ancho total */
 }
 
-.form-group button {
-    background-color: #0056b3;
-    color: #fff;
+
+.button-modal {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px auto; /* Centra el botón horizontalmente */
     border: none;
-    padding: 10px 15px;
-    font-size: 14px;
-    cursor: pointer;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block; /* Asegura que el botón se comporte como bloque */
+    text-align: center; /* Centra el texto del botón */
 }
 
-.form-group button:hover {
+.button-modal:hover {
+    background-color: #45a049;
+}
+
+.button-modal-registrar {
     background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px auto; /* Centra el botón horizontalmente */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block; /* Asegura que el botón se comporte como bloque */
+    text-align: center; /* Centra el texto del botón */
 }
 
+.button-modal-registrar:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* tabla modal */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -262,20 +243,18 @@ th, td {
 }
 
 table th {
-    background-color: #f2f2f2; /* Fondo gris claro para el encabezado */
+    background-color: #007bff; /* Azul brillante para el encabezado */
+    color: #fff; /* Texto en blanco para el encabezado */
 }
 
-button[type="button"] {
-    background-color: #006400;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+/* Estilo para el ícono de eliminar */
+ion-icon[name="trash-outline"] {
+    color: red; /* Color del ícono */
+    cursor: pointer; /* Cambia el cursor a una mano para indicar que es clickeable */
 }
 
-button[type="button"]:hover {
-    background-color: #008000;
+ion-icon[name="trash-outline"]:hover {
+    color: darkred; /* Color del ícono al pasar el mouse */
 }
+
+
