@@ -53,6 +53,6 @@ public class CustomEmpDetail implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return empleado.getEstadoCuenta();
     }
 }

@@ -1,5 +1,8 @@
 const EMPLEADOS_URL = 'http://localhost:8080';
 const searchBtn = document.getElementById('searchBtn');
+const tablaEmpleados = document.getElementById('tablaEmpleados');
+const modal = document.getElementById("modal");
+const selectOrden = document.getElementById('select-orden');
 
 toastr.options = {
     "closeButton": false,
@@ -20,9 +23,6 @@ toastr.options = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    const tablaEmpleados = document.getElementById('tablaEmpleados');
-    const modal = document.getElementById("modal");
-
     window.openModal = function () {
         modal.style.display = "block";
     }
@@ -170,10 +170,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function verEmpleado(id) {
         console.log('ID del empleado:', id);
-        // Implementa lógica para ver detalles de empleado aquí
     }
 
     mostrarEmpleados();
+
+    function aplicarOrden(empleados) {
+        const opcion = selectOrden.value;
+        let empleadosOrdenados;
+
+        switch (opcion) {
+            case 'nombre-az':
+                empleadosOrdenados = empleados.sort((a, b) => a.nombreApellidos.localeCompare(b.nombreApellidos));
+                break;
+            case 'nombre-za':
+                empleadosOrdenados = empleados.sort((a, b) => b.nombreApellidos.localeCompare(a.nombreApellidos));
+                break;
+            case 'activos':
+                empleadosOrdenados = empleados.filter(e => e.estado === 'Activo');
+                break;
+            case 'inactivos':
+                empleadosOrdenados = empleados.filter(e => e.estado === 'Inactivo');
+                break;
+            default:
+                empleadosOrdenados = empleados; // Sin ordenar
+        }
+
+        mostrarTabla(empleadosOrdenados);
+    }
+
+    selectOrden.addEventListener('change', async () => {
+        try {
+            const response = await axios.get(EMPLEADOS_URL + '/actions/empleados');
+            const empleados = response.data;
+            aplicarOrden(empleados); // Aplicar orden según la selección
+        } catch (error) {
+            console.error('Error al obtener los empleados:', error);
+        }
+    });
 });
 
 

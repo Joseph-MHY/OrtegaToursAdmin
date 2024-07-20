@@ -1,4 +1,4 @@
-const cloud = document.getElementById("cloud");
+const logoOrtega = document.getElementById("logoOrtega");
 const barraLateral = document.querySelector(".barra-lateral");
 const spans = document.querySelectorAll("span");
 const palanca = document.querySelector(".switch");
@@ -79,7 +79,7 @@ palanca.addEventListener("click", () => {
     console.log(!modoOscuro);  // false si está en modo oscuro, true si no está en modo oscuro
 });
 
-cloud.addEventListener("click", () => {
+logoOrtega.addEventListener("click", () => {
     barraLateral.classList.toggle("mini-barra-lateral");
     spans.forEach((span) => {
         span.classList.toggle("oculto");
