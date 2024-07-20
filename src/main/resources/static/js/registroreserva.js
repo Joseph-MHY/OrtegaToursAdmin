@@ -25,7 +25,7 @@ function agregarCosto() {
 
         cell1.innerHTML = descripcion;
         cell2.innerHTML = costo;
-        cell3.innerHTML = '<button onclick="eliminarCosto(this)">Eliminar</button>';
+        cell3.innerHTML = '<ion-icon name="trash-outline" onclick="eliminarCosto(this)" style="cursor: pointer; color: red;"></ion-icon>'; // Usando Ionicons
 
         document.getElementById("descripcion").value = "";
         document.getElementById("costo").value = "";
@@ -35,8 +35,8 @@ function agregarCosto() {
 }
 
 // Función para eliminar un costo adicional de la tabla
-function eliminarCosto(btn) {
-    const row = btn.parentNode.parentNode;
+function eliminarCosto(icon) {
+    const row = icon.parentNode.parentNode;
     row.parentNode.removeChild(row);
 }
 
