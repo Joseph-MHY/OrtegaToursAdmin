@@ -44,8 +44,7 @@ public class SecurityConfig {
             "/actions/empleados",
             "/actions/empleados/crear",
             "/admin/reportes",
-            "/utils/estados",
-            "/favicon.ico"
+            "/utils/estados"
     };
 
     private final String[] ATTENTION_URL = {

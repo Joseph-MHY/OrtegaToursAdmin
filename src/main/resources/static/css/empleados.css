@@ -191,3 +191,13 @@ td {
   background-color: #218838;
 }
 
+@media (max-width: 962px) {
+  table {
+    width: 100%;
+  }
+  .view-icon {
+    cursor: pointer;
+    padding-left: revert-layer;
+  }
+}
+

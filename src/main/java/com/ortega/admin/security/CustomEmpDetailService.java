@@ -20,6 +20,8 @@ public class CustomEmpDetailService implements UserDetailsService {
 
         if (empleado == null){
             throw new UsernameNotFoundException("El correo no existe");
+        } else if (!empleado.getEstadoCuenta()) {
+            throw new UsernameNotFoundException("Sin acceso, estado de empleado Inhabilitado");
         }
         return new CustomEmpDetail(empleado);
     }
