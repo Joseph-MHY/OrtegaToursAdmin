@@ -48,8 +48,8 @@ public class PageController {
         return "employees/empleados";
     }
 
-    @GetMapping("admin/empleados/viewEmpleado")
-    public String empleados_register(Model model, Principal principal) {
+    @GetMapping("admin/empleados/viewEmpleado/{id}")
+    public String empleados_register(Model model, Principal principal, @PathVariable(value = "id", required = false) Integer id) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
         model.addAttribute("empleado", userDetails);
         model.addAttribute("rol", userDetails.getAuthorities().toString());

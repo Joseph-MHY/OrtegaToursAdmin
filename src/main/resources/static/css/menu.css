@@ -93,9 +93,6 @@ body{
     z-index: 50;
 }
 
-.mini-barra-lateral{
-    width: 80px;
-}
 .nombre-pagina span{
     font-size: small;
 }
@@ -106,10 +103,6 @@ body{
     text-align: left;
     opacity: 1;
     transition: opacity 0.5s ease,width 0.5s ease;
-}
-.barra-lateral span.oculto{
-    opacity: 0;
-    width: 0;
 }
 
 /*------------> Nombre de la página */
@@ -124,7 +117,6 @@ body{
 .barra-lateral .nombre-pagina #logoOrtega{
     min-width: 50px;
     font-size: 40px;
-    cursor: pointer;
     margin-top: auto;
 }
 .barra-lateral .nombre-pagina span{
