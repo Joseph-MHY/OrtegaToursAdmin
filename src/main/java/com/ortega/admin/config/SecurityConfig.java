@@ -40,9 +40,10 @@ public class SecurityConfig {
             "/admin/reservas/registrarreservas",
             "/admin/reservas/agregarpasajeros",
             "/admin/empleados",
+            "/admin/empleados/**",
+            "/admin/empleados/viewEmpleado/{id}",
             "/admin/empleados/viewEmpleado",
-            "/actions/empleados",
-            "/actions/empleados/crear",
+            "/actions/**",
             "/admin/reportes",
             "/utils/estados"
     };

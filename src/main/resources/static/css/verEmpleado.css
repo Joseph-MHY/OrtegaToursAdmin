@@ -20,7 +20,7 @@ main.min-main {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
   gap: 5px; /* Espacio entre los elementos */
-  width: 60%;
+  width: 70%;
 }
 
 .second-column {
@@ -32,7 +32,8 @@ main.min-main {
   flex-direction: column;
 }
 
-.form-group:not(.second-column) {
+.form-group:not(.second-column),
+.form-group:not(.buttons-employee){
   width: 90%;
   padding-left: 0%;
 }

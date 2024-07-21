@@ -51,9 +51,15 @@ public class EmpServiceImpl implements EmpService {
         return empleado;
     }
 
+    @Override
     public List<EmpleadoResponse> obtenerTodosLosEmpleados() {
         List<Empleados> empleados = empleadoRepository.findAll();
         return empleados.stream().map(this::convertirAEmpleadoResponse).collect(Collectors.toList());
+    }
+
+    @Override
+    public EmpleadoResponse.EmpleadoUnitResponse obtenerEmpleadoPorId(Integer id) {
+        return convetirEmpleado(empleadoRepository.findById(id).orElseThrow(() -> new RuntimeException("Empleado no encontrado")));
     }
 
     private EmpleadoResponse convertirAEmpleadoResponse(Empleados empleado) {
@@ -70,5 +76,9 @@ public class EmpServiceImpl implements EmpService {
         response.setSalario(empleado.getSalario());
         response.setEstado(empleado.getEstadoCuenta() ? "Activo" : "Inactivo");
         return response;
+    }
+
+    private EmpleadoResponse.EmpleadoUnitResponse convetirEmpleado(Empleados empleado) {
+        return EmpleadoResponse.EmpleadoUnitResponse.convertToDTO(empleado);
     }
 }

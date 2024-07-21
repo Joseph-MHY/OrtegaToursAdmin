@@ -20,8 +20,6 @@ public class EmpleadosController {
     @Autowired
     private EmpServiceImpl empService;
 
-
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/empleados/crear")
     public ResponseEntity<Empleados> createEmpleado(@Valid @RequestBody EmpleadoRequest empleadoRequest) {
         Empleados empleado = empService.save(empleadoRequest);
@@ -31,6 +29,11 @@ public class EmpleadosController {
     @GetMapping("/empleados")
     public List<EmpleadoResponse> listarEmpleados() {
         return empService.obtenerTodosLosEmpleados();
+    }
+
+    @GetMapping("/empleados/{id}")
+    public EmpleadoResponse.EmpleadoUnitResponse obtenerEmpleado(@PathVariable int id) {
+        return empService.obtenerEmpleadoPorId(id);
     }
 
 }

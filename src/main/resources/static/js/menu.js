@@ -1,4 +1,3 @@
-const logoOrtega = document.getElementById("logoOrtega");
 const barraLateral = document.querySelector(".barra-lateral");
 const spans = document.querySelectorAll("span");
 const palanca = document.querySelector(".switch");
@@ -77,20 +76,6 @@ palanca.addEventListener("click", () => {
 
     // Imprimir el estado
     console.log(!modoOscuro);  // false si está en modo oscuro, true si no está en modo oscuro
-});
-
-logoOrtega.addEventListener("click", () => {
-    barraLateral.classList.toggle("mini-barra-lateral");
-    spans.forEach((span) => {
-        span.classList.toggle("oculto");
-    });
-
-    // Verificar el estado y almacenar en sessionStorage
-    let barraMinimizada = barraLateral.classList.contains("mini-barra-lateral");
-    sessionStorage.setItem("barraMinimizada", barraMinimizada);
-
-    // Imprimir el estado
-    console.log(barraMinimizada);
 });
 
 menu.addEventListener("click", () => {
