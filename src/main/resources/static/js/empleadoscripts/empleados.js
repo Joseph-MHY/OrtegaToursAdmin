@@ -1,4 +1,6 @@
 const EMPLEADOS_URL = 'http://localhost:8080';
+let empleados = [];
+let empleadosFiltrados = [];
 const searchBtn = document.getElementById('searchBtn');
 const tablaEmpleados = document.getElementById('tablaEmpleados');
 const modal = document.getElementById("modal");
@@ -9,7 +11,7 @@ toastr.options = {
     "closeButton": false,
     "debug": false,
     "newestOnTop": false,
-    "progressBar": true,
+    "progressBar": false,
     "positionClass": "toast-top-center",
     "preventDuplicates": false,
     "onclick": null,
@@ -40,7 +42,7 @@ window.onclick = function (event) {
 async function mostrarEmpleados() {
     try {
         const response = await axios.get(EMPLEADOS_URL + '/actions/empleados');
-        const empleados = response.data;
+        empleados = response.data;
         mostrarTabla(empleados);
     } catch (error) {
         console.error('Error al obtener los empleados:', error);
@@ -52,14 +54,14 @@ function mostrarTabla(empleados) {
     if (empleados.length === 0) {
         mostrarMensajeNoRegistros();
     } else {
-        empleados.forEach((empleado, index) => {
+        empleados.forEach((empleado) => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                    <td style="text-align: center; width: 1px">${index + 1}</td>
-                    <td>${empleado.nombreApellidos}</td>
+                    <td style="text-align: center; width: 1px">${empleado.id}</td>
+                    <td style="width: 17rem">${empleado.nombreApellidos}</td>
                     <td style="text-align: center; width: 3px">${empleado.numDocumento}</td>
-                    <td style="text-align: center; width: 50px">${empleado.puesto}</td>
-                    <td style="text-align: center;  width: 3px">${empleado.telefono}</td>
+                    <td style="text-align: center; width: 12rem">${empleado.puesto}</td>
+                    <td style="text-align: center; width: 6rem">${empleado.telefono}</td>
                     <td style="text-align: center;">S/.${empleado.salario}</td>
                     <td style="text-align: center;">${empleado.estado}</td>
                     <td class="view-icon" style="width: 1px; text-align: center"><a href="#" class="ver-empleado" data-id="${empleado.id}"><ion-icon name="eye"></ion-icon></a></td>
@@ -72,8 +74,7 @@ function mostrarTabla(empleados) {
         linksVerEmpleado.forEach(link => {
             link.addEventListener('click', function (event) {
                 event.preventDefault();
-                const empleadoId = this.getAttribute('data-id');
-                verEmpleado(empleadoId);
+                window.location.href = `http://localhost:8080/admin/empleados/viewEmpleado/${this.getAttribute('data-id')}`
             });
         });
     }
@@ -83,25 +84,54 @@ async function buscarEmpleado() {
     const searchInput = document.getElementById('searchInput');
     const searchTerm = searchInput.value.trim().toLowerCase();
 
-    try {
-        const response = await axios.get(EMPLEADOS_URL + '/actions/empleados');
-        const empleados = response.data;
-
-        // Filtrar empleados según el término de búsqueda
-        const empleadosFiltrados = empleados.filter(empleado =>
+    if (searchTerm === '') {
+        empleadosFiltrados = empleados;
+    } else {
+        empleadosFiltrados = empleados.filter(empleado =>
             empleado.nombreApellidos.toLowerCase().includes(searchTerm) ||
             empleado.numDocumento.includes(searchTerm)
         );
-
-        mostrarTabla(empleadosFiltrados);
-    } catch (error) {
-        console.error('Error al obtener los empleados:', error);
     }
+
+    mostrarTabla(empleadosFiltrados);
 }
 
 searchBtn.addEventListener('click', async () => {
     await buscarEmpleado();
 });
+
+function aplicarOrden() {
+    const opcion = selectOrden.value;
+    let empleadosOrdenados;
+
+    // Si no hay empleados filtrados, usar la lista completa
+    const listaEmpleados = empleadosFiltrados.length > 0 ? empleadosFiltrados : empleados;
+
+    switch (opcion) {
+        case 'nombre-az':
+            empleadosOrdenados = listaEmpleados.sort((a, b) => a.nombreApellidos.localeCompare(b.nombreApellidos));
+            break;
+        case 'nombre-za':
+            empleadosOrdenados = listaEmpleados.sort((a, b) => b.nombreApellidos.localeCompare(a.nombreApellidos));
+            break;
+        case 'activos':
+            empleadosOrdenados = listaEmpleados.filter(e => e.estado === 'Activo');
+            break;
+        case 'inactivos':
+            empleadosOrdenados = listaEmpleados.filter(e => e.estado === 'Inactivo');
+            break;
+        case 'seleccionar':
+            empleadosOrdenados = listaEmpleados;
+            break;
+        default:
+            empleadosOrdenados = listaEmpleados;
+            mostrarMensajeNoRegistros();
+    }
+
+    mostrarTabla(empleadosOrdenados);
+}
+
+selectOrden.addEventListener('change', aplicarOrden);
 
 document.getElementById('registroEmpleadoForm').addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -153,6 +183,9 @@ document.getElementById('registroEmpleadoForm').addEventListener('submit', async
     })
         .then(res => {
             toastr["success"]("Empleado registrado exitosamente");
+            setTimeout(function() {
+                location.reload();
+            }, 3500);
         })
         .catch(error => {
             console.error('Error al registrar el empleado:', error);
@@ -168,44 +201,6 @@ function mostrarMensajeNoRegistros() {
     tablaEmpleados.appendChild(row);
 }
 
-function verEmpleado(id) {
-    console.log('ID del empleado:', id);
-}
-
 mostrarEmpleados();
-
-function aplicarOrden(empleados) {
-    const opcion = selectOrden.value;
-    let empleadosOrdenados;
-
-    switch (opcion) {
-        case 'nombre-az':
-            empleadosOrdenados = empleados.sort((a, b) => a.nombreApellidos.localeCompare(b.nombreApellidos));
-            break;
-        case 'nombre-za':
-            empleadosOrdenados = empleados.sort((a, b) => b.nombreApellidos.localeCompare(a.nombreApellidos));
-            break;
-        case 'activos':
-            empleadosOrdenados = empleados.filter(e => e.estado === 'Activo');
-            break;
-        case 'inactivos':
-            empleadosOrdenados = empleados.filter(e => e.estado === 'Inactivo');
-            break;
-        default:
-            empleadosOrdenados = empleados; // Sin ordenar
-    }
-
-    mostrarTabla(empleadosOrdenados);
-}
-
-selectOrden.addEventListener('change', async () => {
-    try {
-        const response = await axios.get(EMPLEADOS_URL + '/actions/empleados');
-        const empleados = response.data;
-        aplicarOrden(empleados); // Aplicar orden según la selección
-    } catch (error) {
-        console.error('Error al obtener los empleados:', error);
-    }
-})
 
 
