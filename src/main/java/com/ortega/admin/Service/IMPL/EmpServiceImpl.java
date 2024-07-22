@@ -71,6 +71,8 @@ public class EmpServiceImpl implements EmpService {
             response.setPuesto("Administrador");
         } else if (empleado.getIdRol().getNombreRol().equals("ROLE_ATTENTION")){
             response.setPuesto("Atención al cliente");
+        } else if (empleado.getIdRol().getNombreRol().equals("ROLE_CONDUCTOR")){
+            response.setPuesto("Conductor");
         }
         response.setTelefono(empleado.getTelefono());
         response.setSalario(empleado.getSalario());
