@@ -52,31 +52,13 @@ main.min-main {
   border-radius: 5px;
   background-color: #25c9df;
   border: none;
-  width: 50%;
+  width: 100%;
   flex: 1;
   font-size: 16px;
   padding: 10px 15px;
   cursor: pointer;
   margin-right: 5px;
   margin-top: 20px;
-}
-
-#btnEliminar {
-  border-radius: 5px;
-  background-color: #e23232;
-  border: none;
-  color: white;
-  width: 50%;
-  font-size: 16px;
-  padding: 10px 15px;
-  cursor: pointer;
-  margin-left: 5px;
-  margin-top: 20px;
-}
-
-.buttons-employee {
-  display: flex;
-  flex-direction: row;
 }
 
 @media (max-width: 870px) {

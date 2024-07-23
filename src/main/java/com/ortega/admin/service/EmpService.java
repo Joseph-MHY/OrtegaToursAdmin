@@ -11,4 +11,5 @@ public interface EmpService {
     Empleados save(EmpleadoRequest empleadoRequest);
     List<EmpleadoResponse> obtenerTodosLosEmpleados();
     EmpleadoResponse.EmpleadoUnitResponse obtenerEmpleadoPorId(Integer id);
+    String updateEmpleado(Integer id, EmpleadoRequest.EmpleadoUpdateRequest empleadoUpdateDTO);
 }

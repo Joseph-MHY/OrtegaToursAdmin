@@ -36,4 +36,18 @@ public class EmpleadosController {
         return empService.obtenerEmpleadoPorId(id);
     }
 
+    @PutMapping("/empleados/{id}")
+    public ResponseEntity<String> updateEmpleado(@PathVariable Integer id,
+                                                    @RequestBody EmpleadoRequest.EmpleadoUpdateRequest empleadoUpdateDTO) {
+        try {
+            System.out.println(empleadoUpdateDTO);
+            return new ResponseEntity<>(empService.updateEmpleado(id, empleadoUpdateDTO), HttpStatus.OK);
+        } catch (RuntimeException e) {
+            // En caso de que el empleado o entidades relacionadas no se encuentren
+            return new ResponseEntity<>("Error al crear usuario RuntimeException: " + e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            // Para cualquier otro tipo de error
+            return new ResponseEntity<>("Error al crear usuario Exception: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
