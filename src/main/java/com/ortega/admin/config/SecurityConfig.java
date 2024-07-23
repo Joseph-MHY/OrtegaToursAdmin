@@ -33,23 +33,15 @@ public class SecurityConfig {
     };
 
     private final String[] ADMIN_URL = {
-            "/admin/reservas",
-            "/admin/reservas/registrarreservas",
-            "/admin/reservas/agregarpasajeros",
-            "/admin/empleados",
-            "/admin/empleados/**",
-            "/admin/empleados/viewEmpleado/{id}",
-            "/admin/empleados/viewEmpleado",
+            "/admin/**",
             "/actions/**",
-            "/admin/reportes",
             "/utils/estados"
     };
 
     private final String[] ATTENTION_URL = {
             "/admin/reservas",
             "/admin/reservas/registrarreservas",
-            "/admin/reservas/agregarpasajeros",
-            "/utils/estados"
+            "/admin/reservas/agregarpasajeros"
     };
 
     @Bean
@@ -62,12 +54,8 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request ->
                         request.requestMatchers(FREE_URL).permitAll()
-                                .requestMatchers(HttpMethod.GET,ATTENTION_URL).hasAnyRole("ATTENTION", "ADMIN")
-                                .requestMatchers(HttpMethod.POST,ATTENTION_URL).hasAnyRole("ATTENTION", "ADMIN")
-                                .requestMatchers(HttpMethod.GET,ADMIN_URL).hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.POST,ADMIN_URL).hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.PUT,ADMIN_URL).hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.DELETE,ADMIN_URL).hasRole("ADMIN")
+                                .requestMatchers(ATTENTION_URL).hasAnyRole("ATTENTION", "ADMIN")
+                                .requestMatchers(ADMIN_URL).hasRole("ADMIN")
                                 .anyRequest().denyAll())
                 .formLogin(form -> form.loginPage("/login").loginProcessingUrl("/login")
                         .successHandler(customSuccesHandler).permitAll())

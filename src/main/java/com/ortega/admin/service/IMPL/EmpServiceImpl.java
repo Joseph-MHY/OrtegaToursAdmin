@@ -11,10 +11,13 @@ import com.ortega.admin.repositories.RolRepository;
 import com.ortega.admin.repositories.TipocontratoRepository;
 import com.ortega.admin.repositories.TipodocumentoRepository;
 import com.ortega.admin.service.EmpService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,6 +63,41 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public EmpleadoResponse.EmpleadoUnitResponse obtenerEmpleadoPorId(Integer id) {
         return convetirEmpleado(empleadoRepository.findById(id).orElseThrow(() -> new RuntimeException("Empleado no encontrado")));
+    }
+
+    @Transactional
+    @Override
+    public String updateEmpleado(Integer id, EmpleadoRequest.EmpleadoUpdateRequest empleadoUpdateDTO) {
+        Empleados empleado = empleadoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Empleado no encontrado"));
+
+        Tipodocumento tipoDocumento = tipodocumentoRepository.findById(empleadoUpdateDTO.getIdTipoDocumento())
+                .orElseThrow(() -> new RuntimeException("Tipo de documento no encontrado"));
+        Rol rol = rolRepository.findById(empleadoUpdateDTO.getIdRol())
+                .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+        Tipocontrato tipoContrato = tipocontratoRepository.findById(empleadoUpdateDTO.getIdTipoContrato())
+                .orElseThrow(() -> new RuntimeException("Tipo de contrato no encontrado"));
+
+        empleado.setNombreApellidos(empleadoUpdateDTO.getNombreApellidos());
+        empleado.setDireccion(empleadoUpdateDTO.getDireccion());
+        // Conversión de idTipoDocumento, idRol, idTipoContrato a entidades se debe manejar
+        empleado.setIdTipoDocumento(tipoDocumento);
+        empleado.setNumDocumento(empleadoUpdateDTO.getNumDocumento());
+        empleado.setCorreo(empleadoUpdateDTO.getCorreo());
+        // La contraseña no se actualiza aquí
+        empleado.setFechaNac(Date.from(empleadoUpdateDTO.getFechaNac().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        empleado.setFechaContratacion(Date.from(empleadoUpdateDTO.getFechaContratacion().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        empleado.setTelefono(empleadoUpdateDTO.getTelefono());
+        empleado.setContactoEmergencia(empleadoUpdateDTO.getContactoEmergencia());
+        empleado.setIdRol(rol);
+        empleado.setIdTipoContrato(tipoContrato);
+        empleado.setHorarioTrabajo(empleadoUpdateDTO.getHorarioTrabajo());
+        empleado.setCuentaBancaria(empleadoUpdateDTO.getCuentaBancaria());
+        empleado.setSalario(empleadoUpdateDTO.getSalario());
+        empleado.setObservaciones(empleadoUpdateDTO.getObservaciones());
+        empleado.setEstadoCuenta(empleadoUpdateDTO.getEstadoCuenta());
+        empleadoRepository.save(empleado);
+        return "Usuario actualizado exitosamente";
     }
 
     private EmpleadoResponse convertirAEmpleadoResponse(Empleados empleado) {

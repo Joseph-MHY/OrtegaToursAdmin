@@ -29,9 +29,6 @@ public class Transacciones {
     @Column(name = "monto_pagado", nullable = false)
     private Double montoPagado;
 
-    @Column(name = "referencia_pago", length = 50)
-    private String referenciaPago;
-
     @ColumnDefault("'PENDIENTE'")
     @Column(name = "estado_pago", length = 10)
     private String estadoPago;

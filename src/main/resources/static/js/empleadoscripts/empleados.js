@@ -4,8 +4,7 @@ let empleadosFiltrados = [];
 const searchBtn = document.getElementById('searchBtn');
 const tablaEmpleados = document.getElementById('tablaEmpleados');
 const modal = document.getElementById("modal");
-const selectOrden = document.getElementById('select-orden')
-const main = document.querySelector('main');
+const selectOrden = document.getElementById('select-orden');
 
 toastr.options = {
     "closeButton": false,
@@ -74,7 +73,7 @@ function mostrarTabla(empleados) {
         linksVerEmpleado.forEach(link => {
             link.addEventListener('click', function (event) {
                 event.preventDefault();
-                window.location.href = `http://localhost:8080/admin/empleados/viewEmpleado/${this.getAttribute('data-id')}`
+                window.location.href = `${EMPLEADOS_URL}/admin/empleados/viewEmpleado/${this.getAttribute('data-id')}`
             });
         });
     }
@@ -124,7 +123,6 @@ function aplicarOrden() {
             empleadosOrdenados = listaEmpleados;
             break;
         default:
-            empleadosOrdenados = listaEmpleados;
             mostrarMensajeNoRegistros();
     }
 
