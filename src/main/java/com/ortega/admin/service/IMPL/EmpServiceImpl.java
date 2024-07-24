@@ -6,10 +6,10 @@ import com.ortega.admin.models.entity.Empleados;
 import com.ortega.admin.models.entity.Rol;
 import com.ortega.admin.models.entity.Tipocontrato;
 import com.ortega.admin.models.entity.Tipodocumento;
-import com.ortega.admin.repositories.EmpleadoRepository;
-import com.ortega.admin.repositories.RolRepository;
-import com.ortega.admin.repositories.TipocontratoRepository;
-import com.ortega.admin.repositories.TipodocumentoRepository;
+import com.ortega.admin.repositories.IEmpleado;
+import com.ortega.admin.repositories.IRol;
+import com.ortega.admin.repositories.ITipoContrato;
+import com.ortega.admin.repositories.ITipoDocumento;
 import com.ortega.admin.service.EmpService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,24 +25,24 @@ import java.util.stream.Collectors;
 public class EmpServiceImpl implements EmpService {
 
     @Autowired
-    private RolRepository rolRepository;
+    private IRol IRol;
     @Autowired
-    private TipocontratoRepository tipocontratoRepository;
+    private ITipoContrato ITipoContrato;
     @Autowired
-    private TipodocumentoRepository tipodocumentoRepository;
+    private ITipoDocumento ITipoDocumento;
     @Autowired
-    private EmpleadoRepository empleadoRepository;
+    private IEmpleado empleadoRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
     public Empleados save(EmpleadoRequest empleadoRequest) {
         // Obtener las entidades necesarias
-        Tipodocumento tipoDocumento = tipodocumentoRepository.findById(empleadoRequest.getIdTipoDocumento())
+        Tipodocumento tipoDocumento = ITipoDocumento.findById(empleadoRequest.getIdTipoDocumento())
                 .orElseThrow(() -> new RuntimeException("Tipo de documento no encontrado"));
-        Rol rol = rolRepository.findById(empleadoRequest.getIdRol())
+        Rol rol = IRol.findById(empleadoRequest.getIdRol())
                 .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
-        Tipocontrato tipoContrato = tipocontratoRepository.findById(empleadoRequest.getIdTipoContrato())
+        Tipocontrato tipoContrato = ITipoContrato.findById(empleadoRequest.getIdTipoContrato())
                 .orElseThrow(() -> new RuntimeException("Tipo de contrato no encontrado"));
 
         // Convertir DTO a Entidad
@@ -71,11 +71,11 @@ public class EmpServiceImpl implements EmpService {
         Empleados empleado = empleadoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Empleado no encontrado"));
 
-        Tipodocumento tipoDocumento = tipodocumentoRepository.findById(empleadoUpdateDTO.getIdTipoDocumento())
+        Tipodocumento tipoDocumento = ITipoDocumento.findById(empleadoUpdateDTO.getIdTipoDocumento())
                 .orElseThrow(() -> new RuntimeException("Tipo de documento no encontrado"));
-        Rol rol = rolRepository.findById(empleadoUpdateDTO.getIdRol())
+        Rol rol = IRol.findById(empleadoUpdateDTO.getIdRol())
                 .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
-        Tipocontrato tipoContrato = tipocontratoRepository.findById(empleadoUpdateDTO.getIdTipoContrato())
+        Tipocontrato tipoContrato = ITipoContrato.findById(empleadoUpdateDTO.getIdTipoContrato())
                 .orElseThrow(() -> new RuntimeException("Tipo de contrato no encontrado"));
 
         empleado.setNombreApellidos(empleadoUpdateDTO.getNombreApellidos());

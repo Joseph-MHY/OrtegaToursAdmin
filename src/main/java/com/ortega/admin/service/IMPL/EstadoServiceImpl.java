@@ -2,7 +2,7 @@ package com.ortega.admin.service.IMPL;
 
 import com.ortega.admin.models.DTO.EstadoDTO;
 import com.ortega.admin.models.entity.Estado;
-import com.ortega.admin.repositories.EstadoRepository;
+import com.ortega.admin.repositories.IEstado;
 import com.ortega.admin.service.EstadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class EstadoServiceImpl implements EstadoService {
 
     @Autowired
-    private EstadoRepository estadoRepository;
+    private IEstado estadoRepository;
 
     @Override
     public Collection<EstadoDTO> getAllEstados() {
