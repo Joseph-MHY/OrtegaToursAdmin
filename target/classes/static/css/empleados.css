@@ -1,0 +1,207 @@
+#inbox {
+  background-color: var(--color-menu-hover);
+  color: var(--color-menu-hover-texto);
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+main {
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.5s ease;
+}
+
+main.min-main {
+  margin-left: 80px;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 1rem;
+}
+
+.search-bar input {
+  padding: 10px;
+  font-size: 16px;
+  flex: 1;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-bar button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #0069d9;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.filters select {
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.filters button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filters button:hover {
+  background-color: #218838;
+}
+
+table {
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+table,
+th,
+td {
+  border: 1px solid #ccc;
+}
+thead th {
+  background-color: #343a40;
+  color: white;
+}
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+td {
+  font-size: small;
+}
+.view-icon {
+  cursor: pointer;
+}
+.view-icon ion-icon {
+  width: 1.5rem;
+  height: 1.3rem;
+}
+.view-icon ion-icon:hover {
+  color: rgb(130, 130, 130);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.register-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 15px;
+  margin-top: 10px;
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.register-btn:hover {
+  background-color: #218838;
+}
+
+@media (max-width: 962px) {
+  table {
+    width: 100%;
+  }
+  .view-icon ion-icon {
+    cursor: pointer;
+    margin-left: 20%;
+    padding-left: revert-layer;
+  }
+  .view-icon {
+    cursor: pointer;
+    margin-left: 20%;
+    padding-left: revert-layer;
+  }
+}
+

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Registrar Reservas</title>
+    <link rel="stylesheet" th:href="@{/css/registrarreserva.css}">
+</head>
+<body>
+<div th:replace="menu"></div>
+
+<main>
+    <!-- Encabezado de la página -->
+    <h1>Datos de Reservas</h1>
+    <br/>
+
+    <div class="container">
+        <!-- Sección de la izquierda -->
+        <div class="section left-section">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ingrese Nombre">
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Ingrese su Apellido">
+            </div>
+            <div class="form-group">
+                <label for="dni">DNI o Pasaporte:</label>
+                <input type="text" id="dni" name="dni" placeholder="Ingrese su DNI">
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" name="correo" placeholder="Ingrese su Correo">
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono" placeholder="Ingrese su Teléfono">
+            </div>
+            <div class="form-group">
+                <label for="fechaRegistro">Fecha de Registro:</label>
+                <input type="date" id="fechaRegistro" name="fechaRegistro">
+            </div>
+            <div class="form-group">
+                <label for="fechaPartida">Fecha de Partida:</label>
+                <input type="date" id="fechaPartida" name="fechaPartida">
+            </div>
+            <div class="form-group">
+                <label for="nombrePaquete">Nombre de Paquete:</label>
+                <select id="nombrePaquete" name="nombrePaquete">
+                    <option value="">Seleccionar</option>
+                    <!-- Opciones dinámicas de paquetes -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tipoViaje">Tipo de Viaje:</label>
+                <select id="tipoViaje" name="tipoViaje">
+                    <option value="">Seleccionar</option>
+                    <!-- Opciones dinámicas de tipo de viaje -->
+                </select>
+            </div>
+        </div>
+
+        <!-- Sección media -->
+        <div class="section middle-section">
+            <div class="form-group">
+                <label for="conductor">Conductor Asignado:</label>
+                <select id="conductor" name="conductor">
+                    <option value="">Seleccionar</option>
+                    <!-- Opciones dinámicas de conductores -->
+                </select>
+            </div>
+            <button type="button" id="Pasajero" onclick="openModalPasajeros()">
+                Pasajero
+            </button>
+            <div class="form-group">
+                <label for="costeBase">Costo Base:</label>
+                <input type="text" id="costeBase" name="costeBase" placeholder="S/ 0.00">
+            </div>
+            <div class="form-group">
+                <label for="costeFijo">Costo Fijo:</label>
+                <input type="text" id="costeFijo" name="costeFijo" placeholder="S/ 0.00">
+            </div>
+            <button type="button" id="costesAdicionales" onclick="openModalCostosAdicionales()">
+                Costos Adicionales
+            </button>
+            <div class="form-group">
+                <label for="costeTotal">Costo Total:</label>
+                <input type="text" id="costeTotal" name="costeTotal" placeholder="S/ 0.00">
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                <select id="estado" name="estado">
+                    <option value="">Seleccionar</option>
+                    <!-- Opciones dinámicas de estados -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="notas">Notas Adicionales:</label>
+                <textarea id="notas" name="notas" placeholder="Opcional"></textarea>
+            </div>
+        </div>
+
+        <!-- Sección derecha final -->
+        <div class="section right-section">
+            <div class="form-group">
+                <label for="tipoMoneda">Tipo de Moneda:</label>
+                <select id="tipoMoneda" name="tipoMoneda">
+                    <option value="">Seleccionar</option>
+                    <!-- Opciones dinámicas de tipo de moneda -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="metodoPago">Método de Pago:</label>
+                <select id="metodoPago" name="metodoPago">
+                    <option value="">Seleccionar</option>
+                    <!-- Opciones dinámicas de métodos de pago -->
+                </select>
+            </div>
+            <button type="button" id="modificar">Modificar</button>
+            <button type="button" id="guardar">Guardar</button>
+        </div>
+    </div>
+
+    <!-- Modal de Costos Adicionales -->
+    <div id="costosAdicionalesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModalCostosAdicionales()">&times;</span>
+            <h2>Costos Adicionales</h2>
+            <!-- Contenido del modal de costos adicionales -->
+            <div class="form-group-modal">
+                <label class="label-modal" for="descripcion" >Descripción:</label>
+                <input class="input-modal" type="text" id="descripcion" name="descripcion" placeholder="Ingrese Descripcion">
+                <label class="label-modal" for="costo"  >Costo:</label>
+                <input class="input-modal" type="text" id="costo" name="costo" placeholder="Ingrese Monto">
+            </div>
+            <button class="button-modal" type="button" onclick="agregarCosto()">Agregar</button>
+            <table id="tablaCostos">
+                <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Costo</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Aquí se añadirán las filas de costos adicionales dinámicamente -->
+                </tbody>
+            </table>
+            <button class="button-modal-registrar" type="button" onclick="registrarCostos()">Guardar Costos</button>
+        </div>
+    </div>
+
+    <!-- Modal de Costos pasajeros -->
+
+    <!-- Modal de Pasajeros -->
+    <div id="pasajerosModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModalPasajeros()">&times;</span>
+            <h2>Pasajeros</h2>
+
+                <div class="form-group-modal">
+                    <label class="label-modal"  for="nombrePasajero">Nombre:</label>
+                    <input class="input-modal"  type="text" id="nombrePasajero" name="nombrePasajero" placeholder="Ingrese Nombre">
+                    <label class="label-modal"  for="apellidoPasajero">Apellido:</label>
+                    <input class="input-modal"  type="text" id="apellidoPasajero" name="apellidoPasajero" placeholder="Ingrese Apellido">
+                    <label class="label-modal"  for="nacionalidadPasajero">Nacionalidad:</label>
+                    <select  class="select-modal"  id="nacionalidadPasajero" name="nacionalidadPasajero">
+                        <option value="">Seleccionar</option>
+                        <option value="valor1">valor1</option>
+                        <!-- Opciones dinámicas de nacionalidades -->
+                    </select>
+                    <label class="label-modal"  for="tipoDocumentoPasajero">Tipo de Documento:</label>
+                    <select class="select-modal"  id="tipoDocumentoPasajero" name="tipoDocumentoPasajero">
+                        <option value="">Seleccionar</option>
+                        <option value="valor1">valor1</option>
+                        <!-- Opciones dinámicas de tipos de documento -->
+                    </select>
+                    <label class="label-modal"  for="numeroDocumentoPasajero">Número de Documento:</label>
+                    <input class="input-modal"  type="text" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingrese Número de Documento">
+                </div>
+            <button class="button-modal" type="button" onclick="agregarPasajero()">Agregar Pasajero</button>
+            <table id="tablaPasajeros">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Nacionalidad</th>
+                    <th>Tipo de Documento</th>
+                    <th>Número de Documento</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Aquí se añadirán las filas de pasajeros dinámicamente -->
+                </tbody>
+            </table>
+            <button class="button-modal-registrar" type="button" onclick="registrarPasajeros()">Guardar Pasajeros</button>
+        </div>
+    </div>
+</main>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script th:src="@{/js/registroreserva.js}"></script>
+<script th:src="@{/js/pasajero.js}"></script>
+</body>
+</html>

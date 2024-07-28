@@ -1,0 +1,262 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+}
+
+main {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.5s ease;
+}
+
+main.min-main {
+    margin-left: 80px;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+.section {
+    flex: 1;
+}
+
+/* Estilos para los grupos de formularios */
+.form-group {
+    display: flex;
+    flex-direction: column; /* Mostrar los elementos en una columna */
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    margin-bottom: 5px; /* Espacio debajo del label */
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Estilos independientes para los botones */
+
+/* Botón Pasajero */
+#Pasajero {
+    background-color: #006400; /* Verde oscuro */
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #004d00; /* Bordes más oscuros */
+    border-radius: 8px;
+    text-transform: uppercase; /* Mayúsculas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
+    display: block; /* Asegura que el botón se comporte como bloque */
+    margin: 10px auto; /* Centra el botón horizontalmente */
+}
+
+#Pasajero:hover {
+    background-color: #008000; /* Verde más brillante */
+    border-color: #005700; /* Bordes más brillantes */
+}
+
+/* Botón Costes Adicionales */
+#costesAdicionales {
+    background-color: #007bff; /* Azul brillante */
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #0056b3; /* Bordes más oscuros */
+    border-radius: 8px;
+    text-transform: uppercase; /* Mayúsculas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
+    display: block; /* Asegura que el botón se comporte como bloque */
+    margin: 10px auto; /* Centra el botón horizontalmente */
+}
+
+#costesAdicionales:hover {
+    background-color: #0056b3; /* Azul más oscuro */
+    border-color: #004494; /* Bordes más oscuros */
+}
+
+/* Botón Modificar */
+#modificar {
+    background-color: #ffc107; /* Amarillo */
+    color: #000;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #e0a800; /* Bordes más oscuros */
+    border-radius: 8px;
+    text-transform: uppercase; /* Mayúsculas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
+    display: block; /* Asegura que el botón se comporte como bloque */
+    margin: 10px auto; /* Centra el botón horizontalmente */
+}
+#modificar:hover {
+    background-color: #ffca28; /* Amarillo más claro */
+    border-color: #d39e00; /* Bordes más oscuros */
+}
+
+/* Botón Guardar */
+#guardar {
+    background-color: #28a745; /* Verde */
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #1e7e34; /* Bordes más oscuros */
+    border-radius: 8px;
+    text-transform: uppercase; /* Mayúsculas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
+    display: block; /* Asegura que el botón se comporte como bloque */
+    margin: 10px auto; /* Centra el botón horizontalmente */
+}
+
+
+#guardar:hover {
+    background-color: #218838; /* Verde más oscuro */
+    border-color: #1c7430; /* Bordes más oscuros */
+}
+
+
+
+
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin-left:420px;
+    padding: 20px;
+    border: 1px solid #888;
+    width: auto; /* Reducido el ancho del modal */
+    border-radius: 8px; /* Borde redondeado */
+    max-width: 800px; /* Ancho máximo para asegurar que no sea muy grande en pantallas grandes */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.form-group-modal {
+    display: flex;
+    flex-direction:column ; /* Mostrar los elementos en una columna */
+    margin-bottom: 20px;
+    margin-left:240px;
+}
+
+
+
+
+/* Estilos para los labels en el modal */
+.label-modal {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    /* Añade más estilos según sea necesario */
+}
+
+/* Estilos para los campos de entrada en el modal */
+
+.input-modal,
+.select-modal {
+    width: 50%; /* Ajusta el ancho según sea necesario */
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+
+    box-sizing: border-box; /* Incluye el padding en el ancho total */
+}
+
+
+.button-modal {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px auto; /* Centra el botón horizontalmente */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block; /* Asegura que el botón se comporte como bloque */
+    text-align: center; /* Centra el texto del botón */
+}
+
+.button-modal:hover {
+    background-color: #45a049;
+}
+
+.button-modal-registrar {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px auto; /* Centra el botón horizontalmente */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block; /* Asegura que el botón se comporte como bloque */
+    text-align: center; /* Centra el texto del botón */
+}
+
+.button-modal-registrar:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* tabla modal */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    text-align: center; /* Centrar el contenido de la tabla */
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+}
+
+table th {
+    background-color: #007bff; /* Azul brillante para el encabezado */
+    color: #fff; /* Texto en blanco para el encabezado */
+}
+
+/* Estilo para el ícono de eliminar */
+ion-icon[name="trash-outline"] {
+    color: red; /* Color del ícono */
+    cursor: pointer; /* Cambia el cursor a una mano para indicar que es clickeable */
+}
+
+ion-icon[name="trash-outline"]:hover {
+    color: darkred; /* Color del ícono al pasar el mouse */
+}
+
+

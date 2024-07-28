@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Reservas</title>
+  <link rel="stylesheet" th:href="@{/css/reservas.css}">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div th:replace="menu"></div>
+
+<main>
+  <!-- Encabezado de la página -->
+  <h1>Reservas
+  </h1>
+  <br/>
+  <!-- Sección de búsqueda -->
+  <div class="search-section">
+    <label for="searchInput">Buscar por:</label>
+    <input type="text" id="searchInput" placeholder="Ingrese DNI o Nombre">
+    <button type="button" id="searchButton" class="search-button">
+      <ion-icon name="search-circle-outline"></ion-icon>
+    </button>
+  </div>
+
+  <section>
+    <div class="filters">
+      <div class="filter-column">
+        <div class="filter-row">
+          <label for="nombrePaqueteFilter">Nombre Paquete:</label>
+          <select id="nombrePaqueteFilter">
+            <option value="">Selecciona</option>
+            <!-- Otras opciones para nombrePaqueteFilter -->
+          </select>
+        </div>
+        <div class="filter-row">
+          <label for="tipoViajeFilter">Tipo de Viaje:</label>
+          <select id="tipoViajeFilter">
+            <option value="">Selecciona</option>
+            <!-- Otras opciones para tipoViajeFilter -->
+          </select>
+        </div>
+      </div>
+      <div class="filter-column">
+        <div class="filter-row">
+          <label for="estadoFilter">Estado de Reserva:</label>
+          <select id="estadoFilter">
+            <option value="">Selecciona</option>
+            <!-- Otras opciones para estadoFilter -->
+          </select>
+        </div>
+        <div class="filter-row">
+          <label for="fechaPartidaFilter">Fecha de Partida:</label>
+          <input type="date" id="fechaPartidaFilter">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <!-- Acciones -->
+    <div class="actions">
+      <button type="button" id="filterButton">Filtrar</button>
+      <button type="button" id="registerButton" onclick="redirectToRegistrarReserva()">Registrar Reserva</button>
+    </div>
+  </section>
+
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre de Cliente</th>
+      <th>DNI</th>
+      <th>Teléfono</th>
+      <th>Nombre Paquete</th>
+      <th>Tipo Viaje</th>
+      <th>Estado</th>
+      <th>Ver</th>
+      <th>Eliminar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Ejemplo de fila, reemplazar con datos dinámicos -->
+    <tr>
+      <td>1</td>
+      <td>Nombre del Cliente</td>
+      <td>12345678</td>
+      <td>+51 987 654 321</td>
+      <td>valle 1</td>
+      <td>privado</td>
+      <td>Activo</td>
+      <td class="view-icon"><ion-icon name="eye-outline"></ion-icon></td>
+      <td class="delete-icon"><ion-icon name="trash-outline"></ion-icon></td>
+    </tr>
+    </tbody>
+  </table>
+</main>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script th:src="@{/js/reservas.js}"></script>
+</body>
+</html>

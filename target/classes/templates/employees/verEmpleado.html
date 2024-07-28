@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Empleado</title>
+    <link rel="stylesheet" th:href="@{/css/verEmpleado.css}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div th:replace="menu"></div>
+
+    <main>
+      <h1>Datos de Empleado:</h1>
+
+      <form class="employee-form">
+        <div class="form-group">
+          <label for="nombres-apellidos">Nombres y Apellidos:</label>
+          <input
+            type="text"
+            id="nombres-apellidos"
+            placeholder="Juan Pérez"
+            required
+          />
+        </div>
+        <div class="form-group second-column">
+          <label for="direccion">Dirección:</label>
+          <input
+            type="text"
+            id="direccion"
+            placeholder="Villa el Salvador"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="tipo-documento">Tipo de Documento de identidad:</label>
+          <select name="idTipoDocumento" id="tipo-documento" required>
+            <option value="1">DNI</option>
+            <option value="2">Pasaporte</option>
+          </select>
+        </div>
+        <div class="form-group second-column">
+          <label for="num-identity">N° de identidad:</label>
+          <input
+            type="text"
+            id="num-identity"
+            placeholder="12345678"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="correo">Correo:</label>
+          <input
+            type="email"
+            id="correo"
+            placeholder="ejemplo@correo.com"
+            required
+          />
+        </div>
+        <div class="form-group second-column">
+          <label for="fecha-nacimiento">Fecha de Nacimiento:</label>
+          <input type="date" id="fecha-nacimiento" required />
+        </div>
+        <div class="form-group">
+          <label for="fecha-contratacion">Fecha de Contratación:</label>
+          <input type="date" id="fecha-contratacion" required />
+        </div>
+        <div class="form-group second-column">
+          <label for="telefono">Teléfono:</label>
+          <input type="text" id="telefono" placeholder="987654321" required />
+        </div>
+        <div class="form-group ">
+          <label for="contacto-emergencia">Contacto de Emergencia:</label>
+          <input type="text" id="contacto-emergencia" placeholder="987654321" required />
+        </div>
+        <div class="form-group second-column">
+          <label for="puesto">Puesto:</label>
+          <select name="puesto" id="puesto">
+            <option value="1">Atención al cliente</option>
+            <option value="2">Administrador</option>
+            <option value="3">Conductor</option>
+          </select>
+        </div>
+        <div class="form-group ">
+          <label for="horario-trabajo">Horario de Trabajo:</label>
+          <textarea id="horario-trabajo" placeholder="Ejm: Lunes a Viernes de 7:00am a 5:00pm" required></textarea>
+        </div>
+        <div class="form-group second-column">
+          <label for="num-cuenta-bancaria">Número de cuenta bancaria:</label>
+          <input type="number" id="num-cuenta-bancaria" placeholder="123-45678901-2-345" required />
+        </div>
+        <div class="form-group">
+          <label for="salario">Salario:</label>
+          <input type="number" id="salario" placeholder="1025.0" required />
+        </div>
+        <div class="form-group second-column">
+          <label for="tipo-contrato">Tipo de Contrato:</label>
+          <select name="tipo-contrato" id="tipo-contrato">
+            <option value="1">Tiempo Completo</option>
+            <option value="2">Medio Tiempo</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="notas-adicionales">Notas Adicionales:</label>
+          <textarea id="notas-adicionales" placeholder="(Opcional)" required></textarea>
+        </div>
+        <div class="form-group second-column">
+          <label for="estado">Estado:</label>
+          <select name="estado" id="estado">
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+          </select>
+        </div>
+        <div class="form-group buttons-employee">
+          <button type="submit" id="btnModificar">Modificar</button>
+        </div>
+      </form>
+    </main>
+  </body>
+<script th:src="@{/js/empleadoscripts/verEmpleado.js}"></script>
+</html>
