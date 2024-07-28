@@ -2,7 +2,7 @@ function redirectToRegistrarReserva() {
     window.location.href = '/admin/reservas/registrarreservas';  // Esta URL debe coincidir con la ruta definida en tu controlador
 }
 
-axios.get('http://localhost:8080/utils/estados')
+axios.get('https://ortegatoursadmin.onrender.com/utils/estados')
     .then(response => {
         const estados = response.data;
         const estadoFilter = document.getElementById('estadoFilter');

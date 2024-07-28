@@ -1,4 +1,4 @@
-const EMPLEADOS_URL = 'http://localhost:8080';
+const EMPLEADOS_URL = 'https://ortegatoursadmin.onrender.com';
 let empleados = [];
 let empleadosFiltrados = [];
 const searchBtn = document.getElementById('searchBtn');

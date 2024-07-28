@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = 'https://ortegatoursadmin.onrender.com';
 let reporte = [];
 let reporteFiltrado = [];
 const tablaReporte = document.getElementById("tablaReporte");
