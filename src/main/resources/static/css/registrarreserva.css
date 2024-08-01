@@ -124,139 +124,227 @@ main.min-main {
 
 
 
+/* APARTIR DE AQUI SON LOS CAMBIOS PARA EL MODAL*/
+/* Botón del modal */
+.botonmodal {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
 
-/* Estilos para el modal */
+.botonmodal button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.botonmodal button:hover {
+  background-color: #218838;
+}
+
+/* Estilos de la tabla de pasajeros */
+table {
+  margin-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 100%; /* Asegura que la tabla ocupe el 100% del contenedor */
+  border-collapse: collapse;
+  table-layout: auto; /* Ajusta el layout de la tabla automáticamente */
+}
+
+th, td {
+  padding: 8px 10px; /* Ajuste de padding para asegurar que el contenido se ajuste */
+  text-align: left;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Muestra puntos suspensivos si el texto es demasiado largo */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+thead th {
+  background-color: #343a40;
+  color: white;
+}
+
+tbody {
+  display: block;
+  overflow-y: auto;
+  width: 100%;
+}
+
+thead, tbody tr {
+  display: table;
+  width: 100%;
+}
+
+td {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+/* Icono de acciones */
+.view-icon {
+  cursor: pointer;
+}
+
+.view-icon ion-icon {
+  width: 1.5rem;
+  height: 1.3rem;
+  margin-left: 20%;
+}
+
+.view-icon ion-icon:hover {
+  color: rgb(130, 130, 130);
+}
+
+/* Modal */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 20px;
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin-left:420px;
-    padding: 20px;
-    border: 1px solid #888;
-    width: auto; /* Reducido el ancho del modal */
-    border-radius: 8px; /* Borde redondeado */
-    max-width: 800px; /* Ancho máximo para asegurar que no sea muy grande en pantallas grandes */
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 600px; /* Ancho máximo para el modal */
+  width: 90%; /* Ancho adaptativo, hasta el máximo definido */
+  height: fit-content; /* Ajusta la altura del modal al contenido */
+  max-height: 90%; /* Altura máxima para evitar que el modal sea demasiado alto */
+  border-radius: 10px;
+  position: relative;
+  overflow-y: auto; /* Permite el desplazamiento si el contenido es demasiado grande */
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-.form-group-modal {
-    display: flex;
-    flex-direction:column ; /* Mostrar los elementos en una columna */
-    margin-bottom: 20px;
-    margin-left:240px;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
+/* Formulario del modal */
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
 
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
 
+.form-group label {
+  margin-bottom: 5px;
+}
 
-/* Estilos para los labels en el modal */
+.form-group input,
+.form-group select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.register-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 15px;
+  margin-top: 10px;
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.register-btn:hover {
+  background-color: #218838;
+}
+
+/* Estilos del contenido dinámico en los modales */
+.form-group-modal, .form-group {
+  margin-bottom: 15px;
+}
+
+.input-modal, .select-modal {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 .label-modal {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    /* Añade más estilos según sea necesario */
+  margin-bottom: 5px;
 }
 
-/* Estilos para los campos de entrada en el modal */
-
-.input-modal,
-.select-modal {
-    width: 50%; /* Ajusta el ancho según sea necesario */
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-
-    box-sizing: border-box; /* Incluye el padding en el ancho total */
+.button-modal, .button-modal-registrar {
+  margin-top: 10px;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-
-.button-modal {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    margin: 10px auto; /* Centra el botón horizontalmente */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    display: block; /* Asegura que el botón se comporte como bloque */
-    text-align: center; /* Centra el texto del botón */
+.button-modal:hover, .button-modal-registrar:hover {
+  background-color: #218838;
 }
 
-.button-modal:hover {
-    background-color: #45a049;
+table#tablaCostos, table#tablaPasajeros {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.button-modal-registrar {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    margin: 10px auto; /* Centra el botón horizontalmente */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    display: block; /* Asegura que el botón se comporte como bloque */
-    text-align: center; /* Centra el texto del botón */
+table#tablaCostos th, table#tablaPasajeros th,
+table#tablaCostos td, table#tablaPasajeros td {
+  border: 1px solid #ccc;
+  padding: 8px;
 }
 
-.button-modal-registrar:hover {
-    background-color: #0056b3;
+table#tablaCostos th, table#tablaPasajeros th {
+  background-color: #343a40;
+  color: white;
 }
 
-
-
-/* tabla modal */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    text-align: center; /* Centrar el contenido de la tabla */
+table#tablaCostos tbody, table#tablaPasajeros tbody {
+  display: block;
+  overflow-y: auto;
 }
 
-table, th, td {
-    border: 1px solid black;
+table#tablaCostos thead, table#tablaPasajeros thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 
-th, td {
-    padding: 10px;
+table#tablaCostos tbody tr, table#tablaPasajeros tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
-
-table th {
-    background-color: #007bff; /* Azul brillante para el encabezado */
-    color: #fff; /* Texto en blanco para el encabezado */
-}
-
-/* Estilo para el ícono de eliminar */
-ion-icon[name="trash-outline"] {
-    color: red; /* Color del ícono */
-    cursor: pointer; /* Cambia el cursor a una mano para indicar que es clickeable */
-}
-
-ion-icon[name="trash-outline"]:hover {
-    color: darkred; /* Color del ícono al pasar el mouse */
-}
-
-

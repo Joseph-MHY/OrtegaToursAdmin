@@ -131,9 +131,9 @@
             <h2>Costos Adicionales</h2>
             <!-- Contenido del modal de costos adicionales -->
             <div class="form-group-modal">
-                <label class="label-modal" for="descripcion" >Descripción:</label>
-                <input class="input-modal" type="text" id="descripcion" name="descripcion" placeholder="Ingrese Descripcion">
-                <label class="label-modal" for="costo"  >Costo:</label>
+                <label class="label-modal" for="descripcion">Descripción:</label>
+                <input class="input-modal" type="text" id="descripcion" name="descripcion" placeholder="Ingrese Descripción">
+                <label class="label-modal" for="costo">Costo:</label>
                 <input class="input-modal" type="text" id="costo" name="costo" placeholder="Ingrese Monto">
             </div>
             <button class="button-modal" type="button" onclick="agregarCosto()">Agregar</button>
@@ -153,14 +153,11 @@
         </div>
     </div>
 
-    <!-- Modal de Costos pasajeros -->
-
     <!-- Modal de Pasajeros -->
     <div id="pasajerosModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModalPasajeros()">&times;</span>
             <h2>Pasajeros</h2>
-
             <div class="form-group-modal">
                 <label class="label-modal" for="nombrePasajero">Nombre:</label>
                 <input class="input-modal" type="text" id="nombrePasajero" name="nombrePasajero" placeholder="Ingrese Nombre">
@@ -173,11 +170,11 @@
                     <!-- Opciones dinámicas de nacionalidades -->
                 </select>
                 <label class="label-modal" for="numeroDocumentoPasajero">Número de Documento:</label>
-                <input class="input-modal" type="text" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingrese Número de Documento" maxlength="20">
+                <input class="input-modal" type="text" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingrese Número de Documento" maxlength="20" onkeypress="return isNumberKey(event)">
                 <label class="label-modal" for="correoPasajero">Correo:</label>
-                <input class="input-modal" type="email" id="correoPasajero" name="correoPasajero" placeholder="Ingrese Correo">
+                <input class="input-modal" type="email" id="correoPasajero" name="correoPasajero" placeholder="Ingrese Correo" onblur="validateEmail(this)">
                 <label class="label-modal" for="celularPasajero">Celular:</label>
-                <input class="input-modal" type="text" id="celularPasajero" name="celularPasajero" placeholder="Ingrese Celular" maxlength="9">
+                <input class="input-modal" type="text" id="celularPasajero" name="celularPasajero" placeholder="Ingrese Celular" maxlength="9" onkeypress="return isNumberKey(event)">
             </div>
             <button class="button-modal" type="button" onclick="agregarPasajero()">Agregar Pasajero</button>
             <table id="tablaPasajeros">
