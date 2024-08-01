@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // URL de la API de nacionalidades
     const apiUrl = BASE_URL + '/actions/nacionalidades';
 
-<<<<<<< HEAD
     // Función para llenar el select con las nacionalidades
     function loadNacionalidades() {
         axios.get(apiUrl)
@@ -26,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Llamar a la función para cargar las nacionalidades cuando se cargue la página
     loadNacionalidades();
 });
-=======
 // Función para agregar un costo adicional a la tabla
 function agregarCosto() {
     const descripcion = document.getElementById("descripcion").value.trim();
@@ -96,4 +94,3 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
->>>>>>> cf30717c704b075029d3974b67f49a1f111fa027
