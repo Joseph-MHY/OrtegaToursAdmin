@@ -12,26 +12,37 @@ function closeModalCostosAdicionales() {
 
 // Función para agregar un costo adicional a la tabla
 function agregarCosto() {
-    const descripcion = document.getElementById("descripcion").value;
-    const costo = document.getElementById("costo").value;
+    const descripcion = document.getElementById("descripcion").value.trim();
+    const costo = document.getElementById("costo").value.trim();
 
-    if (descripcion && costo) {
-        const table = document.getElementById("tablaCostos").getElementsByTagName('tbody')[0];
-        const newRow = table.insertRow();
-
-        const cell1 = newRow.insertCell(0);
-        const cell2 = newRow.insertCell(1);
-        const cell3 = newRow.insertCell(2);
-
-        cell1.innerHTML = descripcion;
-        cell2.innerHTML = costo;
-        cell3.innerHTML = '<ion-icon name="trash-outline" onclick="eliminarCosto(this)" style="cursor: pointer; color: red;"></ion-icon>'; // Usando Ionicons
-
-        document.getElementById("descripcion").value = "";
-        document.getElementById("costo").value = "";
-    } else {
+    // Validar que ambos campos estén llenos
+    if (!descripcion || !costo) {
         alert("Por favor, complete ambos campos antes de agregar un costo.");
+        return;
     }
+
+    // Validar que el costo sea un número decimal válido
+    const costoDecimal = parseFloat(costo);
+    if (isNaN(costoDecimal) || costoDecimal <= 0) {
+        alert("Por favor, ingrese un monto válido.");
+        return;
+    }
+
+    // Agregar el costo a la tabla
+    const table = document.getElementById("tablaCostos").getElementsByTagName('tbody')[0];
+    const newRow = table.insertRow();
+
+    const cell1 = newRow.insertCell(0);
+    const cell2 = newRow.insertCell(1);
+    const cell3 = newRow.insertCell(2);
+
+    cell1.innerHTML = descripcion;
+    cell2.innerHTML = costoDecimal.toFixed(2); // Mostrar el costo con dos decimales
+    cell3.innerHTML = '<ion-icon name="trash-outline" onclick="eliminarCosto(this)" style="cursor: pointer; color: red;"></ion-icon>'; // Usando Ionicons
+
+    // Limpiar los campos
+    document.getElementById("descripcion").value = "";
+    document.getElementById("costo").value = "";
 }
 
 // Función para eliminar un costo adicional de la tabla
