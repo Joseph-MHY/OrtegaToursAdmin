@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Registrar Reservas</title>
     <link rel="stylesheet" th:href="@{/css/registrarreserva.css}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <div th:replace="menu"></div>
@@ -75,11 +79,11 @@
                 Pasajero
             </button>
             <div class="form-group">
-                <label for="costeBase">Costo Base:</label>
+                <label for="costeBase">Costo Base (Para Tours):</label>
                 <input type="text" id="costeBase" name="costeBase" placeholder="S/ 0.00">
             </div>
             <div class="form-group">
-                <label for="costeFijo">Costo Fijo:</label>
+                <label for="costeFijo">Costo Fijo (Para promociones):</label>
                 <input type="text" id="costeFijo" name="costeFijo" placeholder="S/ 0.00">
             </div>
             <button type="button" id="costesAdicionales" onclick="openModalCostosAdicionales()">
@@ -93,10 +97,10 @@
                 <label for="estado">Estado:</label>
                 <select id="estado" name="estado">
                     <option value="">Seleccionar</option>
-                    <option value="1">en progreso</option>
-                    <option value="2">Contactar</option>
-                    <option value="3">reservado</option>
-                    <option value="4">en espera de pago</option>
+                    <option value="Enprogreso">en progreso</option>
+                    <option value="Acontactar">Contactar</option>
+                    <option value="Reservado">reservado</option>
+                    <option value="Enesperapago">en espera de pago</option>
                 </select>
             </div>
             <div class="form-group">
@@ -196,7 +200,8 @@
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script th:src="@{/js/reservascripts/registroreserva.js}"></script>
+<script type="module" th:src="@{/js/reservascripts/modificarReserva.js}"></script>
 <script th:src="@{/js/reservascripts/pasajero.js}"></script>
+<script th:src="@{/js/reservascripts/costos.js}"></script>
 </body>
 </html>

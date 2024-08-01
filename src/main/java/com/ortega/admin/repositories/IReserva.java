@@ -3,6 +3,7 @@ package com.ortega.admin.repositories;
 import com.ortega.admin.models.entity.Reservas;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -40,4 +41,19 @@ public interface IReserva extends JpaRepository<Reservas, Integer> {
             "JOIN estado e ON r.id_estado = e.id_estado " ,
             nativeQuery = true)
     List<Object[]> findReservas();
+
+    @Query(value = "SELECT * FROM get_data_client(:idReserva)", nativeQuery = true)
+    Object[] getClientById(@Param("idReserva") Integer idReserva);
+
+    @Query(value = "SELECT * FROM get_reserva_details(:idReserva)", nativeQuery = true)
+    Object[] getReservaDetails(@Param("idReserva") Integer idReserva);
+
+    @Query(value = "SELECT * FROM get_passengers_by_reservation(:idReserva)", nativeQuery = true)
+    List<Object[]> getPassengersByReservation(@Param("idReserva") Integer idReserva);
+
+    @Query(value = "SELECT co.descripcion, co.monto " +
+            "FROM reservas r " +
+            "JOIN costos_tours co ON r.id_reserva = co.id_reserva " +
+            "WHERE r.id_reserva = :idReserva", nativeQuery = true)
+    List<Object[]> getCostosAdicionales(@Param("idReserva") Integer idReserva);
 }
