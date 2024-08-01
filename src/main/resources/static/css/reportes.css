@@ -43,9 +43,7 @@ h2 {
   width: 19px;
   margin: 4px;
   background-color: #3cdf3c;
-  border: none;
   padding: 5px;
-  border-radius: 5px;
 }
 
 .paginas:hover {
@@ -72,9 +70,6 @@ td {
   text-align: left;
   font-size: small;
 }
-td {
-  font-size: small;
-}
 
 .excel-float {
   position: fixed;
@@ -84,7 +79,7 @@ td {
   height: 70px;
   background-color: #7cd994; /* Color verde */
   border-radius: 50%;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;

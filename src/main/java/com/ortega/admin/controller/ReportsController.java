@@ -1,7 +1,7 @@
 package com.ortega.admin.controller;
 
-import com.ortega.admin.models.DTO.ReporteRequest;
-import com.ortega.admin.models.DTO.ReporteResponse;
+import com.ortega.admin.models.DTO.request.ReporteRequest;
+import com.ortega.admin.models.DTO.response.ReporteResponse;
 import com.ortega.admin.service.IMPL.ReportServiceImpl;
 import com.ortega.admin.service.IMPL.ReservaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

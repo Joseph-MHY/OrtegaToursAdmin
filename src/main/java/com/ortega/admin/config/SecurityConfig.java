@@ -34,8 +34,7 @@ public class SecurityConfig {
     private final String[] ADMIN_URL = {
             "/admin/**",
             "/actions/**",
-            "/report/**",
-            "/utils/estados"
+            "/report/**"
     };
 
     private final String[] ATTENTION_URL = {

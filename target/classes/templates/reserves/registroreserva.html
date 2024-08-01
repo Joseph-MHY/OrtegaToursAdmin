@@ -56,7 +56,8 @@
                 <label for="tipoViaje">Tipo de Viaje:</label>
                 <select id="tipoViaje" name="tipoViaje">
                     <option value="">Seleccionar</option>
-                    <!-- Opciones dinámicas de tipo de viaje -->
+                    <option value="PUBLICO">público</option>
+                    <option value="PRIVADO">privado</option>
                 </select>
             </div>
         </div>
@@ -92,7 +93,10 @@
                 <label for="estado">Estado:</label>
                 <select id="estado" name="estado">
                     <option value="">Seleccionar</option>
-                    <!-- Opciones dinámicas de estados -->
+                    <option value="1">en progreso</option>
+                    <option value="2">Contactar</option>
+                    <option value="3">reservado</option>
+                    <option value="4">en espera de pago</option>
                 </select>
             </div>
             <div class="form-group">
@@ -107,7 +111,8 @@
                 <label for="tipoMoneda">Tipo de Moneda:</label>
                 <select id="tipoMoneda" name="tipoMoneda">
                     <option value="">Seleccionar</option>
-                    <!-- Opciones dinámicas de tipo de moneda -->
+                    <option value="USD">dólares</option>
+                    <option value="PEN">soles</option>
                 </select>
             </div>
             <div class="form-group">
@@ -117,7 +122,6 @@
                     <!-- Opciones dinámicas de métodos de pago -->
                 </select>
             </div>
-            <button type="button" id="modificar">Modificar</button>
             <button type="button" id="guardar">Guardar</button>
         </div>
     </div>
@@ -159,26 +163,26 @@
             <span class="close" onclick="closeModalPasajeros()">&times;</span>
             <h2>Pasajeros</h2>
 
-                <div class="form-group-modal">
-                    <label class="label-modal"  for="nombrePasajero">Nombre:</label>
-                    <input class="input-modal"  type="text" id="nombrePasajero" name="nombrePasajero" placeholder="Ingrese Nombre">
-                    <label class="label-modal"  for="apellidoPasajero">Apellido:</label>
-                    <input class="input-modal"  type="text" id="apellidoPasajero" name="apellidoPasajero" placeholder="Ingrese Apellido">
-                    <label class="label-modal"  for="nacionalidadPasajero">Nacionalidad:</label>
-                    <select  class="select-modal"  id="nacionalidadPasajero" name="nacionalidadPasajero">
-                        <option value="">Seleccionar</option>
-                        <option value="valor1">valor1</option>
-                        <!-- Opciones dinámicas de nacionalidades -->
-                    </select>
-                    <label class="label-modal"  for="tipoDocumentoPasajero">Tipo de Documento:</label>
-                    <select class="select-modal"  id="tipoDocumentoPasajero" name="tipoDocumentoPasajero">
-                        <option value="">Seleccionar</option>
-                        <option value="valor1">valor1</option>
-                        <!-- Opciones dinámicas de tipos de documento -->
-                    </select>
-                    <label class="label-modal"  for="numeroDocumentoPasajero">Número de Documento:</label>
-                    <input class="input-modal"  type="text" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingrese Número de Documento">
-                </div>
+            <div class="form-group-modal">
+                <label class="label-modal"  for="nombrePasajero">Nombre:</label>
+                <input class="input-modal"  type="text" id="nombrePasajero" name="nombrePasajero" placeholder="Ingrese Nombre">
+                <label class="label-modal"  for="apellidoPasajero">Apellido:</label>
+                <input class="input-modal"  type="text" id="apellidoPasajero" name="apellidoPasajero" placeholder="Ingrese Apellido">
+                <label class="label-modal"  for="nacionalidadPasajero">Nacionalidad:</label>
+                <select  class="select-modal"  id="nacionalidadPasajero" name="nacionalidadPasajero">
+                    <option value="">Seleccionar</option>
+                    <option value="valor1">valor1</option>
+                    <!-- Opciones dinámicas de nacionalidades -->
+                </select>
+                <label class="label-modal"  for="tipoDocumentoPasajero">Tipo de Documento:</label>
+                <select class="select-modal"  id="tipoDocumentoPasajero" name="tipoDocumentoPasajero">
+                    <option value="">Seleccionar</option>
+                    <option value="valor1">valor1</option>
+                    <!-- Opciones dinámicas de tipos de documento -->
+                </select>
+                <label class="label-modal"  for="numeroDocumentoPasajero">Número de Documento:</label>
+                <input class="input-modal"  type="text" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingrese Número de Documento">
+            </div>
             <button class="button-modal" type="button" onclick="agregarPasajero()">Agregar Pasajero</button>
             <table id="tablaPasajeros">
                 <thead>
@@ -202,7 +206,7 @@
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script th:src="@{/js/registroreserva.js}"></script>
-<script th:src="@{/js/pasajero.js}"></script>
+<script th:src="@{/js/reservascripts/registroreserva.js}"></script>
+<script th:src="@{/js/reservascripts/pasajero.js}"></script>
 </body>
 </html>

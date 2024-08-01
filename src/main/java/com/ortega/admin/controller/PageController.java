@@ -29,14 +29,6 @@ public class PageController {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
         model.addAttribute("empleado", userDetails);
         model.addAttribute("rol", userDetails.getAuthorities().toString());
-        String role = userDetails.getAuthorities().toString();
-        System.out.println("User details: " + userDetails);
-
-        if (role.contains("ROLE_ATTENTION")) {
-            System.out.println("El usuario es atención al cliente? " + true + " " + role);
-        } else {
-            System.out.println("Este es el rol: " + role);
-        }
         return "reserves/reservas";
     }
 
@@ -49,7 +41,7 @@ public class PageController {
     }
 
     @GetMapping("admin/empleados/viewEmpleado/{id}")
-    public String empleados_register(Model model, Principal principal, @PathVariable(value = "id", required = false) Integer id) {
+    public String empleados_register(Model model, Principal principal, @PathVariable(value = "id") Integer id) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
         model.addAttribute("empleado", userDetails);
         model.addAttribute("rol", userDetails.getAuthorities().toString());
@@ -77,11 +69,11 @@ public class PageController {
         return "reserves/registroreserva.html";
     }
 
-    @GetMapping("/admin/reservas/agregarpasajeros")
-    public String agregarpasajeros(Model model, Principal principal) {
+    @GetMapping("/admin/reservas/modificar/{id}")
+    public String modificacionreserva(Model model, Principal principal, @PathVariable("id") Integer id) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
         model.addAttribute("empleado", userDetails);
         model.addAttribute("rol", userDetails.getAuthorities().toString());
-        return "reserves/pasajeros.html";
+        return "reserves/modificarreserva.html";
     }
 }

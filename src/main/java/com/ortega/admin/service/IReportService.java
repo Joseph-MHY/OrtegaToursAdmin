@@ -1,6 +1,6 @@
 package com.ortega.admin.service;
 
-import com.ortega.admin.models.DTO.ReporteRequest;
+import com.ortega.admin.models.DTO.request.ReporteRequest;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

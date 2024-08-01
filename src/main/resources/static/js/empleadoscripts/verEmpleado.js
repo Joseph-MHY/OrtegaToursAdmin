@@ -1,4 +1,4 @@
-const BASE_URL = "https://ortegatoursadmin.onrender.com";
+import { BASE_URL } from '../BASE_URL.js';
 
 toastr.options = {
     "closeButton": false,

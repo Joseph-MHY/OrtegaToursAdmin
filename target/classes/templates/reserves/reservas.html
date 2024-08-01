@@ -12,48 +12,58 @@
 
 <main>
   <!-- Encabezado de la página -->
-  <h1>Reservas
-  </h1>
+  <h1>Reservas</h1>
   <br/>
   <!-- Sección de búsqueda -->
   <div class="search-section">
     <label for="searchInput">Buscar por:</label>
     <input type="text" id="searchInput" placeholder="Ingrese DNI o Nombre">
     <button type="button" id="searchButton" class="search-button">
-      <ion-icon name="search-circle-outline"></ion-icon>
+      <ion-icon name="search"></ion-icon>
     </button>
   </div>
 
   <section>
     <div class="filters">
-      <div class="filter-column">
-        <div class="filter-row">
-          <label for="nombrePaqueteFilter">Nombre Paquete:</label>
-          <select id="nombrePaqueteFilter">
-            <option value="">Selecciona</option>
-            <!-- Otras opciones para nombrePaqueteFilter -->
-          </select>
-        </div>
-        <div class="filter-row">
-          <label for="tipoViajeFilter">Tipo de Viaje:</label>
-          <select id="tipoViajeFilter">
-            <option value="">Selecciona</option>
-            <!-- Otras opciones para tipoViajeFilter -->
-          </select>
-        </div>
+      <div class="filter-row">
+        <label for="nombrePaqueteFilter">Nombre Paquete:</label>
+        <select id="nombrePaqueteFilter">
+          <option value="">Seleccionar</option>
+          <option value="Tour Urubanba parejas">Tour Urubanba parejas</option>
+          <option value="Valle Sagrado VIP">Valle Sagrado VIP</option>
+        </select>
       </div>
-      <div class="filter-column">
-        <div class="filter-row">
-          <label for="estadoFilter">Estado de Reserva:</label>
-          <select id="estadoFilter">
-            <option value="">Selecciona</option>
-            <!-- Otras opciones para estadoFilter -->
-          </select>
-        </div>
-        <div class="filter-row">
-          <label for="fechaPartidaFilter">Fecha de Partida:</label>
-          <input type="date" id="fechaPartidaFilter">
-        </div>
+      <div class="filter-row">
+        <label for="tipoViajeFilter">Tipo de Viaje:</label>
+        <select id="tipoViajeFilter">
+          <option value="">Seleccionar</option>
+          <option value="PUBLICO">público</option>
+          <option value="PRIVADO">privado</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <label for="select-orden">Ordenar por:</label>
+        <select id="select-orden">
+          <option value="seleccionar">Seleccionar</option>
+          <option value="nombre-az">nombre (A-Z)</option>
+          <option value="nombre-za">nombre (Z-A)</option>
+          <option value="activos">más recientes</option>
+          <option value="inactivos">más antiguos</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <label for="estadoFilter">Estado de Reserva:</label>
+        <select id="estadoFilter">
+          <option value="">Seleccionar</option>
+          <option value="1">en progreso</option>
+          <option value="2">Contactar</option>
+          <option value="3">reservado</option>
+          <option value="4">en espera de pago</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <label for="fechaPartidaFilter">Fecha de registro:</label>
+        <input type="date" id="fechaPartidaFilter">
       </div>
     </div>
   </section>
@@ -61,11 +71,10 @@
   <section>
     <!-- Acciones -->
     <div class="actions">
-      <button type="button" id="filterButton">Filtrar</button>
-      <button type="button" id="registerButton" onclick="redirectToRegistrarReserva()">Registrar Reserva</button>
+      <button type="button" id="registerButton">Registrar Reserva</button>
     </div>
   </section>
-
+  <div id="paginacion"></div>
   <table>
     <thead>
     <tr>
@@ -76,29 +85,19 @@
       <th>Nombre Paquete</th>
       <th>Tipo Viaje</th>
       <th>Estado</th>
+      <th>Fecha de registro</th>
       <th>Ver</th>
       <th>Eliminar</th>
     </tr>
     </thead>
-    <tbody>
-    <!-- Ejemplo de fila, reemplazar con datos dinámicos -->
-    <tr>
-      <td>1</td>
-      <td>Nombre del Cliente</td>
-      <td>12345678</td>
-      <td>+51 987 654 321</td>
-      <td>valle 1</td>
-      <td>privado</td>
-      <td>Activo</td>
-      <td class="view-icon"><ion-icon name="eye-outline"></ion-icon></td>
-      <td class="delete-icon"><ion-icon name="trash-outline"></ion-icon></td>
-    </tr>
+    <tbody id="tablaReservas">
+
     </tbody>
   </table>
 </main>
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script th:src="@{/js/reservas.js}"></script>
+<script type="module" th:src="@{/js/reservascripts/reservas.js}"></script>
 </body>
 </html>

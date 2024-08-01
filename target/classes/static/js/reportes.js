@@ -1,8 +1,11 @@
-const BASE_URL = 'https://ortegatoursadmin.onrender.com';
+import { BASE_URL } from './BASE_URL.js';
+
 let reporte = [];
 let reporteFiltrado = [];
 const tablaReporte = document.getElementById("tablaReporte");
-const itemsPorPagina = 18; // Cambia esto si quieres más o menos ítems por página
+const itemsPorPagina = 38; // Cambia esto si quieres más o menos ítems por página
+// ojo el numero que pongas sera -2 al numero de items que habra en la tabla
+
 let paginaActual = 1;
 
 toastr.options = {

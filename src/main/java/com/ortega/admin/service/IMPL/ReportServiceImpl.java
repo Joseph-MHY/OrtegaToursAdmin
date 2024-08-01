@@ -1,6 +1,6 @@
 package com.ortega.admin.service.IMPL;
 
-import com.ortega.admin.models.DTO.ReporteRequest;
+import com.ortega.admin.models.DTO.request.ReporteRequest;
 import com.ortega.admin.service.IReportService;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -10,11 +10,9 @@ import org.springframework.stereotype.Service;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -118,7 +116,6 @@ public class ReportServiceImpl implements IReportService {
 
             int rowNum = 2;
             int i = 1;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             for (ReporteRequest reporte : dataReporte) {
                 Row row = sheet.createRow(rowNum++);
                 Cell cell0 = row.createCell(0);
@@ -167,15 +164,15 @@ public class ReportServiceImpl implements IReportService {
             }
 
             // Establecer ancho de las columnas
-            sheet.setColumnWidth(0, 6 * 256); // ID
-            sheet.setColumnWidth(1, 14 * 256); // ID de reserva
-            sheet.setColumnWidth(2, 22 * 256); // Fecha de registro
-            sheet.setColumnWidth(3, 25 * 256); // Cliente
+            sheet.setColumnWidth(0, 5 * 256); // ID
+            sheet.setColumnWidth(1, 13 * 256); // ID de reserva
+            sheet.setColumnWidth(2, 17 * 256); // Fecha de registro
+            sheet.setColumnWidth(3, 23 * 256); // Cliente
             sheet.setColumnWidth(4, 27 * 256); // N° de documento
-            sheet.setColumnWidth(5, 14 * 256); // N° de pasajeros
+            sheet.setColumnWidth(5, 15 * 256); // N° de pasajeros
             sheet.setColumnWidth(6, 22 * 256); // Nombre de paquete
-            sheet.setColumnWidth(7, 19 * 256); // Categoría de paquete
-            sheet.setColumnWidth(8, 10 * 256); // Tipo de viaje
+            sheet.setColumnWidth(7, 20 * 256); // Categoría de paquete
+            sheet.setColumnWidth(8, 13 * 256); // Tipo de viaje
             sheet.setColumnWidth(9, 28 * 256); // Conductor
             sheet.setColumnWidth(10, 15 * 256); // Total
 

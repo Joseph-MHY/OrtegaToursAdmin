@@ -1,4 +1,5 @@
-const EMPLEADOS_URL = 'https://ortegatoursadmin.onrender.com';
+import { BASE_URL } from '../BASE_URL.js';
+
 let empleados = [];
 let empleadosFiltrados = [];
 const searchBtn = document.getElementById('searchBtn');
@@ -40,11 +41,12 @@ window.onclick = function (event) {
 
 async function mostrarEmpleados() {
     try {
-        const response = await axios.get(EMPLEADOS_URL + '/actions/empleados');
+        const response = await axios.get(BASE_URL + '/actions/empleados');
         empleados = response.data;
         mostrarTabla(empleados);
     } catch (error) {
         console.error('Error al obtener los empleados:', error);
+        mostrarMensajeNoRegistros();
     }
 }
 
@@ -73,7 +75,7 @@ function mostrarTabla(empleados) {
         linksVerEmpleado.forEach(link => {
             link.addEventListener('click', function (event) {
                 event.preventDefault();
-                window.location.href = `${EMPLEADOS_URL}/admin/empleados/viewEmpleado/${this.getAttribute('data-id')}`
+                window.location.href = `${BASE_URL}/admin/empleados/viewEmpleado/${this.getAttribute('data-id')}`
             });
         });
     }
@@ -174,7 +176,7 @@ document.getElementById('registroEmpleadoForm').addEventListener('submit', async
     console.log("Data en formato JSON:", JSON.stringify(data));
 
     // Enviar los datos al servidor
-    axios.post(`${EMPLEADOS_URL}/actions/empleados/crear`, data, {
+    axios.post(`${BASE_URL}/actions/empleados/crear`, data, {
         headers: {
             'Content-Type': 'application/json'
         }

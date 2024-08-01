@@ -107,43 +107,37 @@ input[type="date"]:focus {
 
 }
 
-/* Estilo para el botón Filtrar */
-#filterButton {
-  background-color: #E4DA06; /* Color de fondo amarillo */
-  color: #000; /* Color del texto */
-  border: 2px solid #000; /* Borde negro */
-  padding: 10px 20px; /* Espaciado interno aumentado */
-  border-radius: 4px; /* Bordes redondeados */
-  cursor: pointer; /* Cursor de puntero */
-  transition: background-color 0.3s, color 0.3s; /* Transición suave */
-  font-size: 15px; /* Tamaño de la fuente aumentado */
-}
-
-#filterButton:hover {
-  background-color: #F7F122; /* Color de fondo al pasar el ratón */
-  color: #fff; /* Color del texto al pasar el ratón */
-}
-
 /* Estilo para el botón Registrar Reserva */
 #registerButton {
-  background-color: #2B9B12; /* Color de fondo verde */
-  color: #000; /* Color del texto */
-  border: 2px solid #000; /* Borde negro */
-  padding: 10px 20px; /* Espaciado interno */
-  border-radius: 4px; /* Bordes redondeados */
-  cursor: pointer; /* Cursor de puntero */
-  transition: background-color 0.3s, color 0.3s; /* Transición suave */
-  font-size: 15px; /* Tamaño de la fuente aumentado */
+  background-color: #28a745;
+  color: white;
+  padding: 10px 15px;
+  margin-top: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-end;
 }
 
 #registerButton:hover {
-  background-color: #48E756; /* Color de fondo al pasar el ratón */
-  color: #fff; /* Color del texto al pasar el ratón */
+  background-color: #218838;
+}
+
+.paginas {
+  width: 19px;
+  margin: 4px;
+  background-color: #3cdf3c;
+  padding: 5px;
+}
+
+.paginas:hover {
+  background-color: #1e9b1e;
 }
 
 /* Estilos para la tabla de reservas */
 table {
-  width: 100%;
+  width: 95%;
   border-collapse: collapse;
   margin-top: 5px; /* Espacio superior */
 }
@@ -157,13 +151,12 @@ td {
 thead th {
   background-color: #343a40;
   color: white;
-  padding: 10px; /* Espaciado interno */
   text-align: left;
 }
 
 th,
 td {
-  padding: 12px; /* Espaciado interno */
+  padding: 3px; /* Espaciado interno */
   text-align: left;
 }
 
