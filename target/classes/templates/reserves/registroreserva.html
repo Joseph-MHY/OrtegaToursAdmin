@@ -115,13 +115,8 @@
                     <option value="PEN">soles</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="metodoPago">Método de Pago:</label>
-                <select id="metodoPago" name="metodoPago">
-                    <option value="">Seleccionar</option>
-                    <!-- Opciones dinámicas de métodos de pago -->
-                </select>
-            </div>
+
+
             <button type="button" id="guardar">Guardar</button>
         </div>
     </div>
@@ -158,30 +153,29 @@
     <!-- Modal de Costos pasajeros -->
 
     <!-- Modal de Pasajeros -->
+
     <div id="pasajerosModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModalPasajeros()">&times;</span>
             <h2>Pasajeros</h2>
 
             <div class="form-group-modal">
-                <label class="label-modal"  for="nombrePasajero">Nombre:</label>
-                <input class="input-modal"  type="text" id="nombrePasajero" name="nombrePasajero" placeholder="Ingrese Nombre">
-                <label class="label-modal"  for="apellidoPasajero">Apellido:</label>
-                <input class="input-modal"  type="text" id="apellidoPasajero" name="apellidoPasajero" placeholder="Ingrese Apellido">
-                <label class="label-modal"  for="nacionalidadPasajero">Nacionalidad:</label>
-                <select  class="select-modal"  id="nacionalidadPasajero" name="nacionalidadPasajero">
+                <label class="label-modal" for="nombrePasajero">Nombre:</label>
+                <input class="input-modal" type="text" id="nombrePasajero" name="nombrePasajero" placeholder="Ingrese Nombre">
+                <label class="label-modal" for="apellidoPasajero">Apellido:</label>
+                <input class="input-modal" type="text" id="apellidoPasajero" name="apellidoPasajero" placeholder="Ingrese Apellido">
+                <label class="label-modal" for="nacionalidadPasajero">Nacionalidad:</label>
+                <select class="select-modal" id="nacionalidadPasajero" name="nacionalidadPasajero">
                     <option value="">Seleccionar</option>
                     <option value="valor1">valor1</option>
                     <!-- Opciones dinámicas de nacionalidades -->
                 </select>
-                <label class="label-modal"  for="tipoDocumentoPasajero">Tipo de Documento:</label>
-                <select class="select-modal"  id="tipoDocumentoPasajero" name="tipoDocumentoPasajero">
-                    <option value="">Seleccionar</option>
-                    <option value="valor1">valor1</option>
-                    <!-- Opciones dinámicas de tipos de documento -->
-                </select>
-                <label class="label-modal"  for="numeroDocumentoPasajero">Número de Documento:</label>
-                <input class="input-modal"  type="text" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingrese Número de Documento">
+                <label class="label-modal" for="numeroDocumentoPasajero">Número de Documento:</label>
+                <input class="input-modal" type="text" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingrese Número de Documento" maxlength="20">
+                <label class="label-modal" for="correoPasajero">Correo:</label>
+                <input class="input-modal" type="email" id="correoPasajero" name="correoPasajero" placeholder="Ingrese Correo">
+                <label class="label-modal" for="celularPasajero">Celular:</label>
+                <input class="input-modal" type="text" id="celularPasajero" name="celularPasajero" placeholder="Ingrese Celular" maxlength="9">
             </div>
             <button class="button-modal" type="button" onclick="agregarPasajero()">Agregar Pasajero</button>
             <table id="tablaPasajeros">
@@ -190,8 +184,9 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Nacionalidad</th>
-                    <th>Tipo de Documento</th>
                     <th>Número de Documento</th>
+                    <th>Correo</th>
+                    <th>Celular</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
