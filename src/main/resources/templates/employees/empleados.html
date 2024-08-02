@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Empleados</title>
     <link rel="stylesheet" th:href="@{/css/empleados.css}">
+    <link rel="icon" type="image/png" href="/images/Logoot2.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -77,11 +78,11 @@
                 </div>
                 <div class="form-group">
                     <label for="dni">N° de Identidad:</label>
-                    <input type="text" id="dni" name="numDocumento" placeholder="Ingresar número de documento" maxlength="20" required>
+                    <input type="number" id="dni" name="numDocumento" placeholder="Ingresar número de documento" oninput="validateNumberLength(this, 8, 20)" required>
                 </div>
                 <div class="form-group">
                     <label for="correo">Correo:</label>
-                    <input type="email" id="correo" name="correo" placeholder="huamanijyalli@gmail.com" required>
+                    <input type="email" id="correo" name="correo" placeholder="Ingresar correo" required>
                 </div>
                 <div class="form-group">
                     <label for="contrasena">Contraseña:</label>
@@ -93,11 +94,11 @@
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono:</label>
-                    <input type="text" id="telefono" name="telefono" placeholder="Ingresar número de teléfono" maxlength="9" required>
+                    <input type="text" id="telefono" name="telefono" placeholder="Ingresar número de teléfono" oninput="validateNumberLength(this, 9, 9)" required>
                 </div>
                 <div class="form-group">
                     <label for="contacto-emergencia">Contacto de Emergencia (Opcional):</label>
-                    <input type="text" id="contacto-emergencia" name="contactoEmergencia" placeholder="Teléfono de emergencia" maxlength="9">
+                    <input type="text" id="contacto-emergencia" name="contactoEmergencia" placeholder="Teléfono de emergencia" oninput="validateNumberLength(this, 9, 9)" >
                 </div>
                 <div class="form-group">
                     <label for="puesto">Puesto:</label>
@@ -141,5 +142,16 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script type="module" th:src="@{/js/empleadoscripts/empleados.js}"></script>
+<script>
+    function validateNumberLength(input, minLength, maxLength) {
+        // Elimina todo lo que no sea un número
+        input.value = input.value.replace(/\D/g, '');
+
+        // Limita la longitud de la entrada
+        if (input.value.length > maxLength) {
+            input.value = input.value.slice(0, maxLength);
+        }
+    }
+</script>
 </body>
 </html>

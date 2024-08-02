@@ -65,18 +65,63 @@ public class EmpServiceImpl implements EmpService {
 
     @Override
     public EmpleadoResponse.EmpleadoUnitResponse obtenerEmpleadoPorId(Integer id) {
-        return modelMapper.map(obtenerEntidadPorId(iEmpleado, id, "Empleados"), EmpleadoResponse.EmpleadoUnitResponse.class);
+        // Obtener la entidad del empleado
+        Empleados empleado = obtenerEntidadPorId(iEmpleado, id, "Empleados");
+
+        // Crear y configurar el objeto EmpleadoUnitResponse
+        EmpleadoResponse.EmpleadoUnitResponse response = new EmpleadoResponse.EmpleadoUnitResponse();
+
+        response.setNombreApellidos(empleado.getNombreApellidos().trim());
+        response.setDireccion(empleado.getDireccion().trim());
+        response.setIdTipoDocumento(empleado.getIdTipoDocumento().getId());
+        response.setNumDocumento(empleado.getNumDocumento().trim());
+        response.setCorreo(empleado.getCorreo().trim());
+        response.setFechaNac(empleado.getFechaNac());
+        response.setFechaContratacion(empleado.getFechaContratacion());
+        response.setTelefono(empleado.getTelefono().trim());
+        response.setContactoEmergencia(empleado.getContactoEmergencia() != null ? empleado.getContactoEmergencia().trim() : null);
+        response.setIdRol(empleado.getIdRol().getId());
+        response.setIdTipoContrato(empleado.getIdTipoContrato().getId());
+        response.setHorarioTrabajo(empleado.getHorarioTrabajo().trim());
+        response.setCuentaBancaria(empleado.getCuentaBancaria() != null ? empleado.getCuentaBancaria().trim() : null);
+        response.setSalario(empleado.getSalario());
+        response.setObservaciones(empleado.getObservaciones().trim());
+        response.setEstadoCuenta(empleado.getEstadoCuenta());
+
+        return response;
     }
+
 
     @Transactional
     @Override
     public String updateEmpleado(Integer id, EmpleadoRequest.EmpleadoUpdateRequest empleadoUpdateDTO) {
+        // Obtener la entidad existente
         Empleados empleado = obtenerEntidadPorId(iEmpleado, id, "Empleados");
-        modelMapper.map(empleadoUpdateDTO, empleado);
+
+        // Actualizar los campos de la entidad manualmente
+        empleado.setNombreApellidos(empleadoUpdateDTO.getNombreApellidos().trim());
+        empleado.setDireccion(empleadoUpdateDTO.getDireccion().trim());
+        empleado.setIdTipoDocumento(obtenerEntidadPorId(iTipoDocumento, empleadoUpdateDTO.getIdTipoDocumento(), "Tipo de documento"));
+        empleado.setNumDocumento(empleadoUpdateDTO.getNumDocumento().trim());
+        empleado.setCorreo(empleadoUpdateDTO.getCorreo().trim());
+        empleado.setFechaNac(java.sql.Date.valueOf(empleadoUpdateDTO.getFechaNac()));
+        empleado.setFechaContratacion(java.sql.Date.valueOf(empleadoUpdateDTO.getFechaContratacion()));
+        empleado.setTelefono(empleadoUpdateDTO.getTelefono().trim());
+        empleado.setContactoEmergencia(empleadoUpdateDTO.getContactoEmergencia() != null ? empleadoUpdateDTO.getContactoEmergencia().trim() : null);
+        empleado.setIdRol(obtenerEntidadPorId(iRol, empleadoUpdateDTO.getIdRol(), "Rol"));
+        empleado.setIdTipoContrato(obtenerEntidadPorId(iTipoContrato, empleadoUpdateDTO.getIdTipoContrato(), "Tipo de contrato"));
+        empleado.setHorarioTrabajo(empleadoUpdateDTO.getHorarioTrabajo().trim());
+        empleado.setCuentaBancaria(empleadoUpdateDTO.getCuentaBancaria() != null ? empleadoUpdateDTO.getCuentaBancaria().trim() : null);
+        empleado.setSalario(empleadoUpdateDTO.getSalario());
+        empleado.setObservaciones(empleadoUpdateDTO.getObservaciones().trim());
+        empleado.setEstadoCuenta(empleadoUpdateDTO.getEstadoCuenta());
+
+        // Guardar la entidad actualizada
         iEmpleado.save(empleado);
 
         return "Usuario actualizado exitosamente";
     }
+
 
     @Override
     public List<ConductoresResponse> obtenerTodosLosConductores() {
