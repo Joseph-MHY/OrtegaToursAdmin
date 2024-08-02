@@ -79,28 +79,29 @@
                 Pasajero
             </button>
             <div class="form-group">
-                <label for="costeBase">Costo Base:</label>
-                <input type="text" id="costeBase" name="costeBase" placeholder="S/ 0.00">
+                <label for="costeBase">Costo Base (Para Tours):</label>
+                <input type="text" id="costeBase" name="costeBase" placeholder="S/ 0.00" readonly>
             </div>
             <div class="form-group">
-                <label for="costeFijo">Costo Fijo:</label>
-                <input type="text" id="costeFijo" name="costeFijo" placeholder="S/ 0.00">
+                <label for="costeFijo">Costo Fijo (Para promociones):</label>
+                <input type="text" id="costeFijo" name="costeFijo" placeholder="S/ 0.00" readonly>
             </div>
             <button type="button" id="costesAdicionales" onclick="openModalCostosAdicionales()">
                 Costos Adicionales
             </button>
             <div class="form-group">
                 <label for="costeTotal">Costo Total:</label>
-                <input type="text" id="costeTotal" name="costeTotal" placeholder="S/ 0.00">
+                <input type="text" id="costeTotal" name="costeTotal" placeholder="S/ 0.00" readonly>
             </div>
             <div class="form-group">
                 <label for="estado">Estado:</label>
                 <select id="estado" name="estado">
                     <option value="">Seleccionar</option>
-                    <option value="1">en progreso</option>
-                    <option value="2">Contactar</option>
-                    <option value="3">reservado</option>
-                    <option value="4">en espera de pago</option>
+                    <option value="Enprogreso">en progreso</option>
+                    <option value="Acontactar">Contactar</option>
+                    <option value="Reservado">reservado</option>
+                    <option value="Enesperapago">en espera de pago</option>
+                    <option value="Cancelado">Cancelado</option>
                 </select>
             </div>
             <div class="form-group">
@@ -119,7 +120,6 @@
                     <option value="PEN">soles</option>
                 </select>
             </div>
-
 
             <button type="button" id="guardar">Guardar</button>
         </div>
@@ -146,11 +146,9 @@
                     <th>Acciones</th>
                 </tr>
                 </thead>
-                <tbody>
-                <!-- Aquí se añadirán las filas de costos adicionales dinámicamente -->
+                <tbody id="tabla-costos">
                 </tbody>
             </table>
-            <button class="button-modal-registrar" type="button" onclick="registrarCostos()">Guardar Costos</button>
         </div>
     </div>
 
@@ -161,20 +159,22 @@
             <h2>Pasajeros</h2>
             <div class="form-group-modal">
                 <label class="label-modal" for="nombrePasajero">Nombre:</label>
-                <input class="input-modal" type="text" id="nombrePasajero" name="nombrePasajero" placeholder="Ingrese Nombre">
+                <input class="input-modal" type="text" id="nombrePasajero" name="nombrePasajero" placeholder="Ingrese Nombre" maxlength="80">
                 <label class="label-modal" for="apellidoPasajero">Apellido:</label>
-                <input class="input-modal" type="text" id="apellidoPasajero" name="apellidoPasajero" placeholder="Ingrese Apellido">
+                <input class="input-modal" type="text" id="apellidoPasajero" name="apellidoPasajero" placeholder="Ingrese Apellido" maxlength="80">
                 <label class="label-modal" for="nacionalidadPasajero">Nacionalidad:</label>
                 <select class="select-modal" id="nacionalidadPasajero" name="nacionalidadPasajero">
                     <option value="">Seleccionar</option>
-                    <!-- Opciones dinámicas de nacionalidades -->
                 </select>
                 <label class="label-modal" for="numeroDocumentoPasajero">Número de Documento:</label>
-                <input class="input-modal" type="text" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingrese Número de Documento" maxlength="20" onkeypress="return isNumberKey(event)">
+                <input class="input-modal" type="number" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingrese Número de Documento" maxlength="20" oninput="validateNumberLength(this, 8, 20)" />
+
                 <label class="label-modal" for="correoPasajero">Correo:</label>
-                <input class="input-modal" type="email" id="correoPasajero" name="correoPasajero" placeholder="Ingrese Correo" onblur="validateEmail(this)">
+                <input class="input-modal" type="email" id="correoPasajero" name="correoPasajero" placeholder="Ingrese Correo" maxlength="80" />
+
                 <label class="label-modal" for="celularPasajero">Celular:</label>
-                <input class="input-modal" type="text" id="celularPasajero" name="celularPasajero" placeholder="Ingrese Celular" maxlength="9" onkeypress="return isNumberKey(event)">
+                <input class="input-modal" type="number" id="celularPasajero" name="celularPasajero" placeholder="Ingrese Celular" maxlength="9" oninput="validateNumberLength(this, 9, 9)" />
+
             </div>
             <button class="button-modal" type="button" onclick="agregarPasajero()">Agregar Pasajero</button>
             <table id="tablaPasajeros">
@@ -189,8 +189,7 @@
                     <th>Acciones</th>
                 </tr>
                 </thead>
-                <tbody>
-                <!-- Aquí se añadirán las filas de pasajeros dinámicamente -->
+                <tbody id="tabla-pasajeros">
                 </tbody>
             </table>
             <button class="button-modal-registrar" type="button" onclick="registrarPasajeros()">Guardar Pasajeros</button>
@@ -200,8 +199,18 @@
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script type="module" th:src="@{/js/reservascripts/pasajero.js}"></script>
 <script type="module" th:src="@{/js/reservascripts/registroreserva.js}"></script>
-<script th:src="@{/js/reservascripts/pasajero.js}"></script>
-<script th:src="@{/js/reservascripts/costos.js}"></script>
+<script>
+    function validateNumberLength(input, minLength, maxLength) {
+        // Elimina todo lo que no sea un número
+        input.value = input.value.replace(/\D/g, '');
+
+        // Limita la longitud de la entrada
+        if (input.value.length > maxLength) {
+            input.value = input.value.slice(0, maxLength);
+        }
+    }
+</script>
 </body>
 </html>

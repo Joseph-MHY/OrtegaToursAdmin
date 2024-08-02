@@ -23,7 +23,7 @@ public class Transacciones {
     private Reservas idReserva;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "fecha_transaccion", nullable = false)
+    @Column(name = "fecha_transaccion")
     private Date fechaTransaccion;
 
     @Column(name = "monto_pagado", nullable = false)

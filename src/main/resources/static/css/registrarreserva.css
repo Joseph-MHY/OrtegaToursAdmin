@@ -220,13 +220,30 @@ td {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  max-width: 600px; /* Ancho máximo para el modal */
   width: 90%; /* Ancho adaptativo, hasta el máximo definido */
   height: fit-content; /* Ajusta la altura del modal al contenido */
   max-height: 90%; /* Altura máxima para evitar que el modal sea demasiado alto */
   border-radius: 10px;
   position: relative;
   overflow-y: auto; /* Permite el desplazamiento si el contenido es demasiado grande */
+}
+
+@media (min-width: 1080px) {
+    .modal-content {
+        max-width: 750px; /* Ancho máximo para el modal */
+    }
+}
+
+@media (max-width: 1000px) and (min-width: 893px) {
+    .modal-content {
+        margin-left: 22rem;
+    }
+}
+
+@media (max-width: 1080px) {
+    .modal-content {
+        max-width: 500px;
+    }
 }
 
 .close {

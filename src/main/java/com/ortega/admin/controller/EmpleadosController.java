@@ -1,6 +1,7 @@
 package com.ortega.admin.controller;
 
 import com.ortega.admin.models.DTO.request.EmpleadoRequest;
+import com.ortega.admin.models.DTO.response.ConductoresResponse;
 import com.ortega.admin.models.DTO.response.EmpleadoResponse;
 import com.ortega.admin.models.entity.Empleados;
 import com.ortega.admin.service.IMPL.EmpServiceImpl;
@@ -43,5 +44,10 @@ public class EmpleadosController {
         } catch (Exception e) {
             return new ResponseEntity<>("Error al crear usuario Exception: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/empleados/conductores")
+    public List<ConductoresResponse> getConductores(){
+        return empService.obtenerTodosLosConductores();
     }
 }
