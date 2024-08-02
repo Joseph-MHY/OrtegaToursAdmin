@@ -19,7 +19,7 @@ public class Paquetes {
     @Column(name = "id_paquete", nullable = false)
     private Integer id;
 
-    @Column(name = "nombre_paquete", nullable = false, length = 60)
+    @Column(name = "nombre_paquete", nullable = false)
     private String nombrePaquete;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

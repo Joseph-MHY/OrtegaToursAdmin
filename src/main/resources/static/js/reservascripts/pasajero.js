@@ -1,11 +1,11 @@
 // Función para abrir la ventana modal de pasajeros
-function openModalPasajeros() {
+window.openModalPasajeros = function () {
     const modal = document.getElementById("pasajerosModal");
     modal.style.display = "block";
 }
 
 // Función para cerrar la ventana modal de pasajeros
-function closeModalPasajeros() {
+window.closeModalPasajeros = function () {
     const modal = document.getElementById("pasajerosModal");
     modal.style.display = "none";
 }
@@ -22,7 +22,7 @@ function isValidEmail(email) {
 }
 
 // Función para agregar un pasajero a la tabla
-function agregarPasajero() {
+window.agregarPasajero = function () {
     const nombre = document.getElementById("nombrePasajero").value;
     const apellido = document.getElementById("apellidoPasajero").value;
     const nacionalidad = document.getElementById("nacionalidadPasajero").value;
@@ -76,13 +76,13 @@ function agregarPasajero() {
 }
 
 // Función para eliminar un pasajero de la tabla
-function eliminarPasajero(icon) {
+window.eliminarPasajero = function (icon) {
     const row = icon.parentNode.parentNode;
     row.parentNode.removeChild(row);
 }
 
 // Función para registrar todos los pasajeros
-function registrarPasajeros() {
+window.registrarPasajeros = function () {
     const table = document.getElementById("tablaPasajeros").getElementsByTagName('tbody')[0];
     const rows = table.getElementsByTagName('tr');
     const pasajeros = [];

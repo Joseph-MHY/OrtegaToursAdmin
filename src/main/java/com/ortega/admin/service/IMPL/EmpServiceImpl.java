@@ -2,6 +2,7 @@ package com.ortega.admin.service.IMPL;
 
 import com.ortega.admin.Utils.RolEnum;
 import com.ortega.admin.models.DTO.request.EmpleadoRequest;
+import com.ortega.admin.models.DTO.response.ConductoresResponse;
 import com.ortega.admin.models.DTO.response.EmpleadoResponse;
 import com.ortega.admin.models.entity.Empleados;
 import com.ortega.admin.models.entity.Rol;
@@ -20,6 +21,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -74,6 +76,20 @@ public class EmpServiceImpl implements EmpService {
         iEmpleado.save(empleado);
 
         return "Usuario actualizado exitosamente";
+    }
+
+    @Override
+    public List<ConductoresResponse> obtenerTodosLosConductores() {
+        List<Object[]> results = iEmpleado.getEmpleadosConductores();
+        List<ConductoresResponse> conductores = new ArrayList<>();
+
+        for (Object[] result : results) {
+            ConductoresResponse conductor = new ConductoresResponse();
+            conductor.setId((Integer) result[0]);
+            conductor.setNombre_apellidos((String) result[1]);
+            conductores.add(conductor);
+        }
+        return conductores;
     }
 
     private EmpleadoResponse convertirAEmpleadoResponse(Empleados empleado) {

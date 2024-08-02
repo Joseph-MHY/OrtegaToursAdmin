@@ -1,6 +1,7 @@
 package com.ortega.admin.controller;
 
 import com.ortega.admin.models.DTO.response.NacionalidadResponse;
+import com.ortega.admin.models.DTO.response.PaqueteResponse;
 import com.ortega.admin.models.DTO.response.ReservaListResponse;
 import com.ortega.admin.models.DTO.response.ReservaResponse;
 import com.ortega.admin.models.entity.Nacionalidades;
@@ -33,5 +34,10 @@ public class ReservasController {
     @GetMapping("/nacionalidades")
     public List<NacionalidadResponse> getNacionalidades(){
         return reservaServiceImpl.obtenerNacionalidades();
+    }
+
+    @GetMapping("/paquetes")
+    public PaqueteResponse getPaquetes(){
+        return reservaServiceImpl.obtenerPaquetes();
     }
 }

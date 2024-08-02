@@ -1,8 +1,12 @@
 package com.ortega.admin.service.IMPL;
 
+import com.ortega.admin.models.DTO.PaqueteDTO;
 import com.ortega.admin.models.DTO.response.*;
+import com.ortega.admin.models.entity.CategoriaPaquete;
 import com.ortega.admin.models.entity.Nacionalidades;
+import com.ortega.admin.repositories.ICategoriaPaquete;
 import com.ortega.admin.repositories.INacionalidad;
+import com.ortega.admin.repositories.IPaquete;
 import com.ortega.admin.repositories.IReserva;
 import com.ortega.admin.service.IReservaService;
 import org.modelmapper.ModelMapper;
@@ -24,6 +28,12 @@ public class ReservaServiceImpl implements IReservaService {
 
     @Autowired
     private INacionalidad iNacionalidad;
+
+    @Autowired
+    private IPaquete iPaquete;
+
+    @Autowired
+    private ICategoriaPaquete iCategoriaPaquete;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -78,14 +88,13 @@ public class ReservaServiceImpl implements IReservaService {
         Object[] clientDataArray = iReserva.getClientById(idReserva);
         if (clientDataArray != null && clientDataArray.length > 0) {
             Object[] clientData = (Object[]) clientDataArray[0]; // Acceder al array interno
-            System.out.println("Client Data: " + Arrays.toString(clientData));
-
             ReservaResponse.Cliente cliente = new ReservaResponse.Cliente();
-            cliente.setNombre((String) clientData[0]);
-            cliente.setApellido((String) clientData[1]);
-            cliente.setDocumento((String) clientData[2]);
+
+            cliente.setNombres((String) clientData[0]);
+            cliente.setApellidos((String) clientData[1]);
+            cliente.setNumdocumento((String) clientData[2]);
             cliente.setCorreo((String) clientData[3]);
-            cliente.setTelefono((String) clientData[4]);
+            cliente.setCelular((String) clientData[4]);
             response.setCliente(cliente);
         }
 
@@ -93,35 +102,39 @@ public class ReservaServiceImpl implements IReservaService {
         Object[] reservaDetailsArray = iReserva.getReservaDetails(idReserva);
         if (reservaDetailsArray != null && reservaDetailsArray.length > 0) {
             Object[] reservaDetails = (Object[]) reservaDetailsArray[0]; // Acceder al array interno
-            System.out.println("Reserva Details: " + Arrays.toString(reservaDetails));
 
-            response.setFechaRegistro(reservaDetails[0] != null ? (Date) reservaDetails[0] : null);
-            response.setFechaPartida(reservaDetails[1] != null ? (Date) reservaDetails[1] : null);
-            response.setNombrePaquete(reservaDetails[2] != null ? reservaDetails[2].toString() : null);
-            response.setTipoViaje(reservaDetails[3] != null ? reservaDetails[3].toString() : null);
-            response.setConductor(reservaDetails[4] != null ? reservaDetails[4].toString() : null);
-            response.setCostoBase(reservaDetails[5] != null ? (BigDecimal) reservaDetails[5] : null);
-            response.setCostoFijo(reservaDetails[6] != null ? (BigDecimal) reservaDetails[6] : null);
-            response.setCostoTotal(reservaDetails[7] != null ? (BigDecimal) reservaDetails[7] : null);
-            response.setEstado(reservaDetails[8] != null ? reservaDetails[8].toString() : null);
-            response.setNotas(reservaDetails[9] != null ? reservaDetails[9].toString() : null);
-            response.setTipoMoneda(reservaDetails[10] != null ? reservaDetails[10].toString() : null);
+            response.setFecha_registro(reservaDetails[0] != null ? (Date) reservaDetails[0] : null);
+            response.setFecha_partida(reservaDetails[1] != null ? (Date) reservaDetails[1] : null);
+            response.setId_paquete(reservaDetails[2] != null ? (Integer) reservaDetails[2] : null);
+            response.setTipo_viaje(reservaDetails[3] != null ? reservaDetails[3].toString() : null);
+            response.setId_conductor(reservaDetails[4] != null ? (Integer) reservaDetails[4] : null);
+            response.setCosto_base(reservaDetails[5] != null ? (BigDecimal) reservaDetails[5] : null);
+            response.setCosto_fijo(reservaDetails[6] != null ? (BigDecimal) reservaDetails[6] : null);
+            response.setCosto_total(reservaDetails[7] != null ? (BigDecimal) reservaDetails[7] : null);
+            response.setId_estado(reservaDetails[8] != null ? (Integer) reservaDetails[8] : null);
+            response.setNombre_estado(reservaDetails[9] != null ? reservaDetails[9].toString() : null);
+            response.setNotas_adicionales(reservaDetails[10] != null ? reservaDetails[10].toString() : null);
+            response.setTipo_moneda(reservaDetails[11] != null ? reservaDetails[11].toString() : null);
         }
 
         // Obtener pasajeros
         List<Object[]> pasajerosDataArray = iReserva.getPassengersByReservation(idReserva);
         List<ReservaResponse.Pasajero> pasajeros = new ArrayList<>();
         for (Object[] data : pasajerosDataArray) {
-            Object[] pasajeroData = data; // Asegurarse de acceder al array interno
+            Object[] pasajeroData = data;
             System.out.println("Pasajero Data: " + Arrays.toString(pasajeroData));
 
+            ReservaResponse.Pasajero.Nacionalidad nacionalidad = new ReservaResponse.Pasajero.Nacionalidad();
             ReservaResponse.Pasajero pasajero = new ReservaResponse.Pasajero();
-            pasajero.setNombre(pasajeroData[0] != null ? pasajeroData[0].toString() : null);
-            pasajero.setApellido(pasajeroData[1] != null ? pasajeroData[1].toString() : null);
+
+            pasajero.setNombres(pasajeroData[0] != null ? pasajeroData[0].toString() : null);
+            pasajero.setApellidos(pasajeroData[1] != null ? pasajeroData[1].toString() : null);
             pasajero.setCorreo(pasajeroData[2] != null ? pasajeroData[2].toString() : null);
             pasajero.setCelular(pasajeroData[3] != null ? pasajeroData[3].toString() : null);
-            pasajero.setNacionalidad(pasajeroData[4] != null ? pasajeroData[4].toString() : null);
-            pasajero.setDocumento(pasajeroData[5] != null ? pasajeroData[5].toString() : null);
+            nacionalidad.setId_nacionalidad(pasajeroData[4] != null ? (Integer) pasajeroData[4] : null);
+            nacionalidad.setNombre_nacionalidad(pasajeroData[5] != null ? pasajeroData[5].toString() : null);
+            pasajero.setNacionalidad(nacionalidad);
+            pasajero.setNum_documento(pasajeroData[6] != null ? pasajeroData[6].toString() : null);
             pasajeros.add(pasajero);
         }
         response.setPasajeros(pasajeros);
@@ -135,7 +148,7 @@ public class ReservaServiceImpl implements IReservaService {
 
             ReservaResponse.CostoAdicional costo = new ReservaResponse.CostoAdicional();
             costo.setDescripcion(costoData[0] != null ? costoData[0].toString() : null);
-            costo.setCosto(costoData[1] != null ? (BigDecimal) costoData[1] : null);
+            costo.setMonto(costoData[1] != null ? (BigDecimal) costoData[1] : null);
             costosAdicionales.add(costo);
         }
         response.setCostosAdicionales(costosAdicionales);
@@ -149,5 +162,31 @@ public class ReservaServiceImpl implements IReservaService {
         return nacionalidades.stream()
                 .map(nacionalidad -> modelMapper.map(nacionalidad, NacionalidadResponse.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public PaqueteResponse obtenerPaquetes() {
+        CategoriaPaquete tourCategoria = iCategoriaPaquete.findById(1).orElse(null);
+        CategoriaPaquete promoCategoria = iCategoriaPaquete.findById(2).orElse(null);
+
+        List<PaqueteDTO> tours = iPaquete.findByIdCategoriaPaquete(tourCategoria).stream()
+                .map(paquete -> new PaqueteDTO(
+                        paquete.getId(),
+                        paquete.getNombrePaquete(),
+                        paquete.getCostoBase(),
+                        paquete.getCostoFijo()
+                ))
+                .collect(Collectors.toList());
+
+        List<PaqueteDTO> promociones = iPaquete.findByIdCategoriaPaquete(promoCategoria).stream()
+                .map(paquete -> new PaqueteDTO(
+                        paquete.getId(),
+                        paquete.getNombrePaquete(),
+                        paquete.getCostoBase(),
+                        paquete.getCostoFijo()
+                ))
+                .collect(Collectors.toList());
+
+        return new PaqueteResponse(tours, promociones);
     }
 }
