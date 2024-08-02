@@ -39,8 +39,12 @@ public class SecurityConfig {
 
     private final String[] ATTENTION_URL = {
             "/admin/reservas",
-            "/admin/reservas/registrarreservas",
-            "/admin/reservas/agregarpasajeros"
+            "/admin/reservas/**",
+            "/actions/reservas",
+            "/actions/reserva/obtener/**",
+            "/actions/nacionalidades",
+            "/actions/paquetes",
+            "/actions/empleados/conductores"
     };
 
     @Bean

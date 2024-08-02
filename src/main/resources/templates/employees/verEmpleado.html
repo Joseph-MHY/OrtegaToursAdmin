@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Empleado</title>
     <link rel="stylesheet" th:href="@{/css/verEmpleado.css}" />
+    <link rel="icon" type="image/png" href="/images/Logoot2.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -58,6 +59,7 @@
             id="correo"
             placeholder="ejemplo@correo.com"
             required
+            readonly
           />
         </div>
         <div class="form-group second-column">
@@ -90,7 +92,7 @@
         </div>
         <div class="form-group second-column">
           <label for="num-cuenta-bancaria">Número de cuenta bancaria:</label>
-          <input type="number" id="num-cuenta-bancaria" placeholder="123-45678901-2-345" required />
+          <input type="text" id="num-cuenta-bancaria" placeholder="###-#######-#-###" required />
         </div>
         <div class="form-group">
           <label for="salario">Salario:</label>
@@ -115,7 +117,7 @@
           </select>
         </div>
         <div class="form-group buttons-employee">
-          <button type="submit" id="btnModificar">Modificar</button>
+          <button type="submit" id="btnModificar">Actualizar</button>
         </div>
       </form>
     </main>
