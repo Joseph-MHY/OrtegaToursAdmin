@@ -1,5 +1,6 @@
 package com.ortega.admin.service;
 
+import com.ortega.admin.models.DTO.request.ReservaRequest;
 import com.ortega.admin.models.DTO.response.*;
 import com.ortega.admin.models.entity.Nacionalidades;
 
@@ -12,4 +13,5 @@ public interface IReservaService {
     ReservaResponse obtenerReserva(int id);
     List<NacionalidadResponse> obtenerNacionalidades();
     PaqueteResponse obtenerPaquetes();
+    String registrarReserva(ReservaRequest reservaRequest);
 }

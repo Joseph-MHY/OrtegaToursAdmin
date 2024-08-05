@@ -151,7 +151,7 @@ document.getElementById('registroEmpleadoForm').addEventListener('submit', async
     const cuentaBancaria = document.getElementById('cuenta-bancaria').value.trim();
     const idTipoContrato = document.getElementById('tipo-contrato').value.trim();
     const salario = parseFloat(document.getElementById('salario').value.trim());
-    const observaciones = document.getElementById('notas-adicionales').value.trim();
+    const observaciones = document.getElementById('notas-adicionales').value.trim();``
 
     // Crear el objeto de datos para enviar
     const data = {

@@ -1,42 +1,56 @@
 package com.ortega.admin.service.IMPL;
 
 import com.ortega.admin.models.DTO.PaqueteDTO;
+import com.ortega.admin.models.DTO.request.ReservaRequest;
 import com.ortega.admin.models.DTO.response.*;
-import com.ortega.admin.models.entity.CategoriaPaquete;
-import com.ortega.admin.models.entity.Nacionalidades;
-import com.ortega.admin.repositories.ICategoriaPaquete;
-import com.ortega.admin.repositories.INacionalidad;
-import com.ortega.admin.repositories.IPaquete;
-import com.ortega.admin.repositories.IReserva;
+import com.ortega.admin.models.entity.*;
+import com.ortega.admin.repositories.*;
 import com.ortega.admin.service.IReservaService;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class ReservaServiceImpl implements IReservaService {
 
-    @Autowired
     private IReserva iReserva;
-
-    @Autowired
     private INacionalidad iNacionalidad;
-
-    @Autowired
     private IPaquete iPaquete;
-
-    @Autowired
     private ICategoriaPaquete iCategoriaPaquete;
+    private ICliente iCliente;
+    private IPasajero iPasajero;
+    private ICostos iCostos;
+    private ITransaccion iTransaccion;
+    private IEstado iEstado;
+    private IEmpleado iEmpleado;
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    public ReservaServiceImpl(ITransaccion iTransaccion, ICostos iCostos, IPasajero iPasajero, ICliente iCliente,
+                              ICategoriaPaquete iCategoriaPaquete, IPaquete iPaquete, INacionalidad iNacionalidad,
+                              IReserva iReserva, IEstado iEstado, IEmpleado iEmpleado) {
+        this.iTransaccion = iTransaccion;
+        this.iCostos = iCostos;
+        this.iPasajero = iPasajero;
+        this.iCliente = iCliente;
+        this.iCategoriaPaquete = iCategoriaPaquete;
+        this.iPaquete = iPaquete;
+        this.iNacionalidad = iNacionalidad;
+        this.iReserva = iReserva;
+        this.iEstado = iEstado;
+        this.iEmpleado = iEmpleado;
+    }
 
     @Override
     public List<ReporteResponse> listarReservasParaReporte() {
@@ -188,5 +202,93 @@ public class ReservaServiceImpl implements IReservaService {
                 .collect(Collectors.toList());
 
         return new PaqueteResponse(tours, promociones);
+    }
+
+    @Transactional
+    @Override
+    public String registrarReserva(ReservaRequest reservaRequest) {
+
+        // Buscar el cliente por número de documento
+        Optional<Clientes> optionalClienteDocument = Optional.ofNullable(iCliente.findByNumdocumento(
+                reservaRequest.getCliente().getDocument())
+        );
+        Optional<Clientes> optionalClienteCorreo = Optional.ofNullable(iCliente.findByCorreo(
+                reservaRequest.getCliente().getCorreo())
+        );
+
+        Clientes cliente;
+
+        if (optionalClienteDocument.isPresent()) {
+            cliente = optionalClienteDocument.get();
+        } else if (optionalClienteCorreo.isPresent()) {
+            cliente = optionalClienteCorreo.get();
+        } else {
+            // Cliente no encontrado, se crea uno nuevo
+            cliente = new Clientes();
+            cliente.setNombres(reservaRequest.getCliente().getNombre());
+            cliente.setApellidos(reservaRequest.getCliente().getApellido());
+            cliente.setCorreo(reservaRequest.getCliente().getCorreo());
+            cliente.setCelular(reservaRequest.getCliente().getTelefono());
+            cliente.setNumdocumento(reservaRequest.getCliente().getDocument());
+            cliente = iCliente.save(cliente);
+        }
+
+        Reservas reserva = new Reservas();
+        reserva.setIdCliente(cliente);
+        reserva.setFechaRegistro(new Date());
+        reserva.setFechaPartida(localDateToDate(reservaRequest.getFecha_partida()));
+        reserva.setTipoViaje(reservaRequest.getTipo_viaje().name());
+        reserva.setIdEstado(obtenerEntidadPorId(iEstado, reservaRequest.getIdEstado(), "Estado"));
+        reserva.setNumPasajeros(reservaRequest.getNum_pasajeros());
+        reserva.setIdPaquete(obtenerEntidadPorId(iPaquete, reservaRequest.getIdPaquete(), "Paquete"));
+        reserva.setIdEmpleado(obtenerEntidadPorId(iEmpleado, reservaRequest.getIdEmpleado(), "Empleado"));
+        reserva.setCostoTotal(reservaRequest.getCosto_total());
+        reserva.setNotasAdicionales(reservaRequest.getNotas_adicionales());
+
+        reserva = iReserva.save(reserva);
+
+        for (ReservaRequest.Pasajeros pasajeroRequest : reservaRequest.getPasajeros()) {
+            Pasajeros pasajero = new Pasajeros();
+            pasajero.setIdReserva(reserva);
+            pasajero.setNombres(pasajeroRequest.getNombres());
+            pasajero.setApellidos(pasajeroRequest.getApellidos());
+            pasajero.setCorreo(pasajeroRequest.getCorreo());
+            pasajero.setCelular(pasajeroRequest.getCelular());
+            pasajero.setNumDocumento(pasajeroRequest.getNum_documento());
+            pasajero.setIdNacionalidad(obtenerEntidadPorId(iNacionalidad, pasajeroRequest.getId_nacionalidad(), "Nacionalidad"));
+            iPasajero.save(pasajero);
+        }
+
+        if (reservaRequest.getCostos() != null && !reservaRequest.getCostos().isEmpty()) {
+            for (ReservaRequest.Costos costoRequest : reservaRequest.getCostos()) {
+                CostosTours costo = new CostosTours();
+                costo.setIdReserva(reserva);
+                costo.setDescripcion(costoRequest.getDescripcion());
+                costo.setMonto(costoRequest.getMonto());
+                iCostos.save(costo);
+            }
+        }
+        Transacciones transaccion = new Transacciones();
+        transaccion.setIdReserva(reserva);
+        transaccion.setFechaTransaccion(new Date());
+        transaccion.setMontoPagado(reservaRequest.getCosto_total());
+        transaccion.setEstadoPago(reservaRequest.getTransaccion().getEstado_pago());
+        transaccion.setTipoMoneda(reservaRequest.getTransaccion().getTipo_moneda());
+        System.out.println(reservaRequest.getTransaccion());
+        iTransaccion.save(transaccion);
+
+        return "Reserva registrada exitosamente";
+    }
+
+    private <T> T obtenerEntidadPorId(JpaRepository<T, Integer> repository, Integer id, String nombreEntidad) {
+        return repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(nombreEntidad + " no encontrado"));
+    }
+
+    public Date localDateToDate(LocalDate localDate) {
+        if (localDate != null) {
+            return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        }
+        return null;
     }
 }
