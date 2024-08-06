@@ -4,20 +4,6 @@ const palanca = document.querySelector(".switch");
 const circulo = document.querySelector(".circulo");
 const menu = document.querySelector(".menu");
 
-// Función para actualizar el estado del modo oscuro basado en sessionStorage
-function actualizarModoOscuro() {
-    let body = document.body;
-    let modoOscuro = sessionStorage.getItem("modoOscuro") === "true";
-
-    if (modoOscuro) {
-        body.classList.add("dark-mode");
-        circulo.classList.add("prendido");
-    } else {
-        body.classList.remove("dark-mode");
-        circulo.classList.remove("prendido");
-    }
-}
-
 // Función para actualizar el estado de la barra lateral basado en sessionStorage
 function actualizarEstadoBarraLateral() {
     let barraMinimizada = sessionStorage.getItem("barraMinimizada") === "true";
@@ -61,21 +47,7 @@ function actualizarSombreadoMenu() {
 // Llamar a las funciones para establecer el estado inicial cuando la página se carga
 document.addEventListener("DOMContentLoaded", () => {
     actualizarSombreadoMenu();
-    actualizarModoOscuro();
     actualizarEstadoBarraLateral();
-});
-
-palanca.addEventListener("click", () => {
-    let body = document.body;
-    body.classList.toggle("dark-mode");
-    circulo.classList.toggle("prendido");
-
-    // Verificar el estado y almacenar en sessionStorage
-    let modoOscuro = body.classList.contains("dark-mode");
-    sessionStorage.setItem("modoOscuro", modoOscuro);
-
-    // Imprimir el estado
-    console.log(!modoOscuro);  // false si está en modo oscuro, true si no está en modo oscuro
 });
 
 menu.addEventListener("click", () => {
