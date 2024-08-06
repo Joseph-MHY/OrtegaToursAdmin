@@ -50,4 +50,14 @@ public class ReservasController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al registrar la reserva: " + e.getMessage());
         }
     }
+
+    @PutMapping("/reserva/actualizar/{idReserva}")
+    public ResponseEntity<String> actualizarReserva(@PathVariable int idReserva, @RequestBody ReservaRequest reservaRequest) {
+        try {
+            String mensaje = reservaServiceImpl.actualizarReserva(idReserva,reservaRequest);
+            return ResponseEntity.status(HttpStatus.CREATED).body(mensaje);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar la reserva: " + e.getMessage());
+        }
+    }
 }

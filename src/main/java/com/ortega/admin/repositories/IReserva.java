@@ -56,4 +56,7 @@ public interface IReserva extends JpaRepository<Reservas, Integer> {
             "JOIN costos_tours co ON r.id_reserva = co.id_reserva " +
             "WHERE r.id_reserva = :idReserva", nativeQuery = true)
     List<Object[]> getCostosAdicionales(@Param("idReserva") Integer idReserva);
+
+    @Query(value = "SELECT t.id_transaccion, t.fecha_transaccion,t.monto_pagado, t.estado_pago, t.tipo_moneda FROM transacciones t WHERE id_reserva = :idReserva", nativeQuery = true)
+    Object[] getTransaccion(@Param("idReserva") Integer idReserva);
 }

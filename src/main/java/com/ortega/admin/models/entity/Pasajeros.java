@@ -3,11 +3,13 @@ package com.ortega.admin.models.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "pasajeros")
 public class Pasajeros {
     @Id
