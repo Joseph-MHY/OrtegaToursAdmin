@@ -39,12 +39,22 @@ public class ReservaResponse {
         private BigDecimal monto;
     }
 
+    @Data
+    public static class Transaccion {
+        private Integer id_transaccion;
+        private Date fecha_transaccion;
+        private BigDecimal monto_pagado;
+        private String estado_pago;
+        private String tipo_moneda;
+    }
+
     private Cliente cliente;
     private Date fecha_registro;
     private Date fecha_partida;
     private Integer id_paquete;
     private String tipo_viaje;
     private Integer id_conductor;
+    private List<Pasajero> pasajeros;
     private BigDecimal costo_base;
     private BigDecimal costo_fijo;
     private List<CostoAdicional> costosAdicionales;
@@ -53,6 +63,6 @@ public class ReservaResponse {
     private String nombre_estado;
     private String notas_adicionales;
     private String tipo_moneda;
-    private List<Pasajero> pasajeros;
+    private Transaccion transaccion;
 }
 

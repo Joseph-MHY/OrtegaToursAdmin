@@ -137,7 +137,7 @@ input[type="date"]:focus {
 
 /* Estilos para la tabla de reservas */
 table {
-  width: 95%;
+  width: 100%;
   border-collapse: collapse;
   margin-top: 5px; /* Espacio superior */
 }
