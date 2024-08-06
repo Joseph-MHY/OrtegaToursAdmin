@@ -3,7 +3,7 @@ import { BASE_URL } from './BASE_URL.js';
 let reporte = [];
 let reporteFiltrado = [];
 const tablaReporte = document.getElementById("tablaReporte");
-const itemsPorPagina = 38; // Cambia esto si quieres más o menos ítems por página
+const itemsPorPagina = 10;
 // ojo el numero que pongas sera -2 al numero de items que habra en la tabla
 
 let paginaActual = 1;
@@ -38,7 +38,10 @@ async function mostrarDatos() {
         console.error('Error al obtener los datos: ', error);
     }
 }
-
+function capitalizeFirstLetter(text) {
+    if (!text) return text;
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+}
 function mostrarTabla(datos, pagina) {
     tablaReporte.innerHTML = '';
     if (datos.length === 0) {
@@ -51,14 +54,14 @@ function mostrarTabla(datos, pagina) {
         datosPaginados.forEach((dato) => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${dato.id_reserva}</td>
+                <td style="text-align: center">${dato.id_reserva}</td>
                 <td>${dato.fecha_registro}</td>
                 <td>${dato.cliente}</td>
                 <td>${dato.numdocumento}</td>
                 <td style="text-align: center">${dato.num_pasajeros}</td>
-                <td>${dato.nombre_paquete}</td>
-                <td>${dato.categoria_paquete}</td>
-                <td>${dato.tipo_viaje}</td>
+                <td>${capitalizeFirstLetter(dato.nombre_paquete)}</td>
+                <td style="text-align: center">${dato.categoria_paquete}</td>
+                <td style="text-align: center">${capitalizeFirstLetter(dato.tipo_viaje)}</td>
                 <td>${dato.conductor}</td>
                 <td>${dato.costo_total}</td>
             `;
@@ -69,7 +72,7 @@ function mostrarTabla(datos, pagina) {
 
 function crearBotonesPaginacion(datos) {
     const paginacionContainer = document.getElementById('paginacion');
-    paginacionContainer.innerHTML = '';
+    paginacionContainer.innerHTML = ''; // Limpiar el contenido anterior
     const totalPaginas = Math.ceil(datos.length / itemsPorPagina);
 
     for (let i = 1; i <= totalPaginas; i++) {

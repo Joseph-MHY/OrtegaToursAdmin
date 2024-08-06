@@ -1,17 +1,28 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
 main {
   margin-left: 250px;
   padding: 20px;
   transition: margin-left 0.5s ease;
 }
+
 main.min-main {
   margin-left: 80px;
 }
 
 h2 {
   margin-top: 23px;
+  font-size: 30px;
+}
+h1 {
+  font-size: 35px;
 }
 
 .filters-report {
+  margin-top:10px;
+  margin-bottom:40px;
   display: flex;
   flex-direction: row;
 }
@@ -25,8 +36,7 @@ h2 {
 }
 
 .form-group h3 {
-  font-size: small;
-  font-style: normal;
+  font-size: 15px;
   margin-right: 2%;
 }
 
@@ -39,36 +49,80 @@ h2 {
   border-radius: 5px;
 }
 
+#paginacion {
+  display: flex; /* Asegura que los elementos hijos se alineen en una fila */
+  flex-wrap: wrap; /* Permite que los botones pasen a la siguiente línea si no caben en una fila */
+  justify-content: center; /* Centra los botones horizontalmente en el contenedor */
+  margin-right:10px;
+}
+
 .paginas {
-  width: 19px;
-  margin: 4px;
-  background-color: #3cdf3c;
-  padding: 5px;
+  margin: 4px; /* Espacio alrededor de cada botón */
+  width: 30px; /* Ancho del botón */
+  height: 30px; /* Alto del botón */
+  background-color: #3a6f84; /* Color de fondo del botón */
+  color: white; /* Color del texto */
+  padding: 5px; /* Espacio interior del botón */
+  border: none; /* Sin borde */
+  border-radius: 50%; /* Hace que el botón sea circular */
+  cursor: pointer; /* Muestra un cursor de puntero al pasar sobre el botón */
+  display: flex; /* Usa flexbox para alinear el texto en el centro */
+  align-items: center; /* Alinea el contenido verticalmente */
+  justify-content: center; /* Alinea el contenido horizontalmente */
 }
 
 .paginas:hover {
-  background-color: #1e9b1e;
+  background-color: #285165; /* Color de fondo al pasar el ratón */
 }
 
 table {
-  margin-top: 10px;
+  margin-top: 25px;
   border-collapse: collapse;
-  width: 90%;
+  width: 94%;
+  margin-bottom:20px;
 }
+
 table,
 th,
 td {
   border: 1px solid #ccc;
 }
+
 thead th {
-  background-color: #343a40;
+  background-color: rgb(44,45,49);
   color: white;
 }
+
 th,
 td {
   padding: 3px;
-  text-align: left;
+  text-align: center;
   font-size: small;
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+  width: 30px; /* Ajusta el ancho según tus necesidades */
+}
+th:nth-child(2),
+td:nth-child(2) {
+  width: 120px; /* Ajusta el ancho según tus necesidades */
+
+}
+th:nth-child(3),
+td:nth-child(3) {
+  width: 120px; /* Ajusta el ancho según tus necesidades */
+
+}
+th:nth-child(9),
+td:nth-child(9) {
+  width: 120px; /* Ajusta el ancho según tus necesidades */
+
+}
+th:nth-child(10),
+td:nth-child(10) {
+  width: 90px; /* Ajusta el ancho según tus necesidades */
+
 }
 
 .excel-float {
