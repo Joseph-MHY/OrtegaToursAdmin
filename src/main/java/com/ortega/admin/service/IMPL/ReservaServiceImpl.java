@@ -112,6 +112,20 @@ public class ReservaServiceImpl implements IReservaService {
             response.setCliente(cliente);
         }
 
+        // Obtener transaccion
+        Object[] transactionDataArray = iReserva.getTransaccion(idReserva);
+        if (transactionDataArray != null && transactionDataArray.length > 0) {
+            Object[] transactionData = (Object[]) transactionDataArray[0];
+            ReservaResponse.Transaccion transaccion = new ReservaResponse.Transaccion();
+
+            transaccion.setId_transaccion((Integer) transactionData[0]);
+            transaccion.setFecha_transaccion((Date) transactionData[1]);
+            transaccion.setMonto_pagado((BigDecimal) transactionData[2]);
+            transaccion.setEstado_pago((String) transactionData[3]);
+            transaccion.setTipo_moneda((String) transactionData[4]);
+            response.setTransaccion(transaccion);
+        }
+
         // Obtener detalles de la reserva
         Object[] reservaDetailsArray = iReserva.getReservaDetails(idReserva);
         if (reservaDetailsArray != null && reservaDetailsArray.length > 0) {
@@ -136,7 +150,6 @@ public class ReservaServiceImpl implements IReservaService {
         List<ReservaResponse.Pasajero> pasajeros = new ArrayList<>();
         for (Object[] data : pasajerosDataArray) {
             Object[] pasajeroData = data;
-            System.out.println("Pasajero Data: " + Arrays.toString(pasajeroData));
 
             ReservaResponse.Pasajero.Nacionalidad nacionalidad = new ReservaResponse.Pasajero.Nacionalidad();
             ReservaResponse.Pasajero pasajero = new ReservaResponse.Pasajero();
@@ -158,7 +171,6 @@ public class ReservaServiceImpl implements IReservaService {
         List<ReservaResponse.CostoAdicional> costosAdicionales = new ArrayList<>();
         for (Object[] data : costosAdicionalesDataArray) {
             Object[] costoData = data; // Asegurarse de acceder al array interno
-            System.out.println("Costo Adicional Data: " + Arrays.toString(costoData));
 
             ReservaResponse.CostoAdicional costo = new ReservaResponse.CostoAdicional();
             costo.setDescripcion(costoData[0] != null ? costoData[0].toString() : null);
@@ -278,6 +290,90 @@ public class ReservaServiceImpl implements IReservaService {
         iTransaccion.save(transaccion);
 
         return "Reserva registrada exitosamente";
+    }
+
+    @Transactional
+    @Override
+    public String actualizarReserva(Integer idReserva, ReservaRequest reservaRequest) {
+        // Buscar la reserva existente por ID
+        Reservas reservaExistente = iReserva.findById(idReserva)
+                .orElseThrow(() -> new EntityNotFoundException("Reserva no encontrada"));
+
+        // Buscar o actualizar el cliente
+        Clientes clienteExistente = reservaExistente.getIdCliente();
+        Optional<Clientes> optionalClienteDocument = Optional.ofNullable(iCliente.findByNumdocumento(reservaRequest.getCliente().getDocument()));
+        Optional<Clientes> optionalClienteCorreo = Optional.ofNullable(iCliente.findByCorreo(reservaRequest.getCliente().getCorreo()));
+
+        if (optionalClienteDocument.isPresent()) {
+            clienteExistente = optionalClienteDocument.get();
+        } else if (optionalClienteCorreo.isPresent()) {
+            clienteExistente = optionalClienteCorreo.get();
+        } else {
+            clienteExistente.setNombres(reservaRequest.getCliente().getNombre());
+            clienteExistente.setApellidos(reservaRequest.getCliente().getApellido());
+            clienteExistente.setCorreo(reservaRequest.getCliente().getCorreo());
+            clienteExistente.setCelular(reservaRequest.getCliente().getTelefono());
+            clienteExistente.setNumdocumento(reservaRequest.getCliente().getDocument());
+            clienteExistente = iCliente.save(clienteExistente);
+        }
+
+        // Actualizar la reserva
+        reservaExistente.setFechaPartida(localDateToDate(reservaRequest.getFecha_partida()));
+        reservaExistente.setTipoViaje(reservaRequest.getTipo_viaje().name());
+        reservaExistente.setIdEstado(obtenerEntidadPorId(iEstado, reservaRequest.getIdEstado(), "Estado"));
+        reservaExistente.setNumPasajeros(reservaRequest.getNum_pasajeros());
+        reservaExistente.setIdPaquete(obtenerEntidadPorId(iPaquete, reservaRequest.getIdPaquete(), "Paquete"));
+        reservaExistente.setIdEmpleado(obtenerEntidadPorId(iEmpleado, reservaRequest.getIdEmpleado(), "Empleado"));
+        reservaExistente.setCostoTotal(reservaRequest.getCosto_total());
+        reservaExistente.setNotasAdicionales(reservaRequest.getNotas_adicionales());
+
+        iReserva.save(reservaExistente);
+
+        // Eliminar y volver a agregar los pasajeros
+        iPasajero.deleteAllByIdReserva(reservaExistente);
+        for (ReservaRequest.Pasajeros pasajeroRequest : reservaRequest.getPasajeros()) {
+            Pasajeros pasajero = new Pasajeros();
+            pasajero.setIdReserva(reservaExistente);
+            pasajero.setNombres(pasajeroRequest.getNombres());
+            pasajero.setApellidos(pasajeroRequest.getApellidos());
+            pasajero.setCorreo(pasajeroRequest.getCorreo());
+            pasajero.setCelular(pasajeroRequest.getCelular());
+            pasajero.setNumDocumento(pasajeroRequest.getNum_documento());
+            pasajero.setIdNacionalidad(obtenerEntidadPorId(iNacionalidad, pasajeroRequest.getId_nacionalidad(), "Nacionalidad"));
+            iPasajero.save(pasajero);
+        }
+
+        // Eliminar y volver a agregar los costos
+        iCostos.deleteAllByIdReserva(reservaExistente);
+        if (reservaRequest.getCostos() != null && !reservaRequest.getCostos().isEmpty()) {
+            for (ReservaRequest.Costos costoRequest : reservaRequest.getCostos()) {
+                CostosTours costo = new CostosTours();
+                costo.setIdReserva(reservaExistente);
+                costo.setDescripcion(costoRequest.getDescripcion());
+                costo.setMonto(costoRequest.getMonto());
+                iCostos.save(costo);
+            }
+        }
+
+        // Actualizar la transacción
+        Transacciones transaccionExistente = iTransaccion.findByIdReserva(reservaExistente);
+        if (transaccionExistente != null) {
+            transaccionExistente.setMontoPagado(reservaRequest.getCosto_total());
+            transaccionExistente.setEstadoPago(reservaRequest.getTransaccion().getEstado_pago());
+            transaccionExistente.setTipoMoneda(reservaRequest.getTransaccion().getTipo_moneda());
+            iTransaccion.save(transaccionExistente);
+        } else {
+            // Si no hay transacción existente, crear una nueva
+            Transacciones transaccion = new Transacciones();
+            transaccion.setIdReserva(reservaExistente);
+            transaccion.setFechaTransaccion(new Date());
+            transaccion.setMontoPagado(reservaRequest.getCosto_total());
+            transaccion.setEstadoPago(reservaRequest.getTransaccion().getEstado_pago());
+            transaccion.setTipoMoneda(reservaRequest.getTransaccion().getTipo_moneda());
+            iTransaccion.save(transaccion);
+        }
+
+        return "Reserva actualizada exitosamente";
     }
 
     private <T> T obtenerEntidadPorId(JpaRepository<T, Integer> repository, Integer id, String nombreEntidad) {
