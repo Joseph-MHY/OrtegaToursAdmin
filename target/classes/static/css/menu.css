@@ -1,26 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap');
 :root{
-    --color-barra-lateral:rgb(180,180,180);
-
-    --color-texto:rgb(0,0,0);
-    --color-texto-menu: rgb(92, 93, 96);
-
-    --color-menu-hover:rgb(238,238,238);
-    --color-menu-hover-texto:rgb(0,0,0);
-
-    --color-boton:rgb(0,0,0);
-    --color-boton-texto:rgb(255,255,255);
-
-    --color-linea:rgb(0,0,0);
-
-    --color-switch-base :rgb(201,202,206);
-    --color-switch-circulo:rgb(241,241,241);
-
-    --color-scroll:rgb(192,192,192);
-    --color-scroll-hover:rgb(134,134,134);
-}
-
-.dark-mode{
     --color-barra-lateral:rgb(44,45,49);
 
     --color-texto:rgb(255,255,255);
