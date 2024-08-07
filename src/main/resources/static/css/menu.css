@@ -94,7 +94,7 @@ body{
     align-items: center;
 }
 .barra-lateral .nombre-pagina #logoOrtega {
-    width: 215px; /* Cambia a un tamaño más pequeño */
+    width: 210px; /* Cambia a un tamaño más pequeño */
     height: 160px; /* Ajusta la altura también */
     margin-top: auto;
     padding-left:5px

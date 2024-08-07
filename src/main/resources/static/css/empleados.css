@@ -13,6 +13,8 @@ main {
   transition: margin-left 0.5s ease;
 }
 
+
+
 main.min-main {
   margin-left: 80px;
 }
@@ -39,7 +41,7 @@ main.min-main {
 .search-bar button {
   padding: 10px 15px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: #3a6f84;
   color: white;
   border: none;
   border-radius: 5px;
@@ -47,7 +49,7 @@ main.min-main {
 }
 
 .search-bar button:hover {
-  background-color: #0069d9;
+  background-color:  #285165;
 }
 
 .filters {
@@ -67,7 +69,7 @@ main.min-main {
 .filters button {
   padding: 10px 15px;
   font-size: 16px;
-  background-color: #28a745;
+  background-color:  #3a6f84;
   color: white;
   border: none;
   border-radius: 5px;
@@ -75,12 +77,39 @@ main.min-main {
 }
 
 .filters button:hover {
-  background-color: #218838;
+  background-color: #285165;
+}
+
+#paginacion {
+  display: flex; /* Asegura que los elementos hijos se alineen en una fila */
+  flex-wrap: wrap; /* Permite que los botones pasen a la siguiente línea si no caben en una fila */
+  justify-content: center; /* Centra los botones horizontalmente en el contenedor */
+  margin-right:10px;
+}
+
+.paginas {
+  margin: 4px; /* Espacio alrededor de cada botón */
+  width: 30px; /* Ancho del botón */
+  height: 30px; /* Alto del botón */
+  background-color: #3a6f84; /* Color de fondo del botón */
+  color: white; /* Color del texto */
+  padding: 5px; /* Espacio interior del botón */
+  border: none; /* Sin borde */
+  border-radius: 50%; /* Hace que el botón sea circular */
+  cursor: pointer; /* Muestra un cursor de puntero al pasar sobre el botón */
+  display: flex; /* Usa flexbox para alinear el texto en el centro */
+  align-items: center; /* Alinea el contenido verticalmente */
+  justify-content: center; /* Alinea el contenido horizontalmente */
+}
+
+.paginas:hover {
+  background-color: #285165; /* Color de fondo al pasar el ratón */
 }
 
 table {
-  margin-top: 10px;
+  margin-top: 20px;
   border-collapse: collapse;
+  margin-bottom: 20px;
 }
 table,
 th,
@@ -95,10 +124,9 @@ th,
 td {
   padding: 10px;
   text-align: left;
-}
-td {
   font-size: small;
 }
+
 .view-icon {
   cursor: pointer;
 }
@@ -173,7 +201,7 @@ td {
 }
 
 .register-btn {
-  background-color: #28a745;
+  background-color: #3a6f84;
   color: white;
   padding: 10px 15px;
   margin-top: 10px;
@@ -186,7 +214,7 @@ td {
 }
 
 .register-btn:hover {
-  background-color: #218838;
+  background-color: #285165;
 }
 
 @media (max-width: 962px) {

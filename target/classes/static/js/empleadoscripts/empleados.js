@@ -6,6 +6,9 @@ const searchBtn = document.getElementById('searchBtn');
 const tablaEmpleados = document.getElementById('tablaEmpleados');
 const modal = document.getElementById("modal");
 const selectOrden = document.getElementById('select-orden');
+const itemsPorPagina = 5; // Número de empleados por página, ajusta según tus necesidades
+let paginaActual = 1;
+
 
 toastr.options = {
     "closeButton": false,
@@ -44,29 +47,34 @@ async function mostrarEmpleados() {
         const response = await axios.get(BASE_URL + '/actions/empleados');
         empleados = response.data;
         mostrarTabla(empleados);
+        crearBotonesPaginacion(empleados); // Añadir esta línea
     } catch (error) {
         console.error('Error al obtener los empleados:', error);
         mostrarMensajeNoRegistros();
     }
 }
 
-function mostrarTabla(empleados) {
+function mostrarTabla(empleados, pagina = 1) {
     tablaEmpleados.innerHTML = '';
-    if (empleados.length === 0) {
+    const start = (pagina - 1) * itemsPorPagina;
+    const end = start + itemsPorPagina;
+    const empleadosPagina = empleados.slice(start, end);
+
+    if (empleadosPagina.length === 0) {
         mostrarMensajeNoRegistros();
     } else {
-        empleados.forEach((empleado) => {
+        empleadosPagina.forEach((empleado) => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                    <td style="text-align: center; width: 1px">${empleado.id}</td>
-                    <td style="width: 17rem">${empleado.nombreApellidos}</td>
-                    <td style="text-align: center; width: 3px">${empleado.numDocumento}</td>
-                    <td style="text-align: center; width: 12rem">${empleado.puesto}</td>
-                    <td style="text-align: center; width: 6rem">${empleado.telefono}</td>
-                    <td style="text-align: center;">S/.${empleado.salario}</td>
-                    <td style="text-align: center;">${empleado.estado}</td>
-                    <td class="view-icon" style="width: 1px; text-align: center"><a href="#" class="ver-empleado" data-id="${empleado.id}"><ion-icon name="eye"></ion-icon></a></td>
-                `;
+                <td style="text-align: center; width: 1px">${empleado.id}</td>
+                <td style="width: 17rem">${empleado.nombreApellidos}</td>
+                <td style="text-align: center; width: 3px">${empleado.numDocumento}</td>
+                <td style="text-align: center; width: 12rem">${empleado.puesto}</td>
+                <td style="text-align: center; width: 6rem">${empleado.telefono}</td>
+                <td style="text-align: center;">S/.${empleado.salario}</td>
+                <td style="text-align: center;">${empleado.estado}</td>
+                <td class="view-icon" style="width: 1px; text-align: center"><a href="#" class="ver-empleado" data-id="${empleado.id}"><ion-icon name="eye"></ion-icon></a></td>
+            `;
             tablaEmpleados.appendChild(row);
         });
 
@@ -75,9 +83,28 @@ function mostrarTabla(empleados) {
         linksVerEmpleado.forEach(link => {
             link.addEventListener('click', function (event) {
                 event.preventDefault();
-                window.location.href = `${BASE_URL}/admin/empleados/viewEmpleado/${this.getAttribute('data-id')}`
+                window.location.href = `${BASE_URL}/admin/empleados/viewEmpleado/${this.getAttribute('data-id')}`;
             });
         });
+    }
+}
+
+
+// Función para crear botones de paginación
+function crearBotonesPaginacion(datos) {
+    const paginacionContainer = document.getElementById('paginacion');
+    paginacionContainer.innerHTML = ''; // Limpiar el contenido anterior
+    const totalPaginas = Math.ceil(datos.length / itemsPorPagina);
+
+    for (let i = 1; i <= totalPaginas; i++) {
+        const boton = document.createElement('button');
+        boton.classList.add('paginas');
+        boton.textContent = i;
+        boton.addEventListener('click', () => {
+            paginaActual = i;
+            mostrarTabla(datos, paginaActual);
+        });
+        paginacionContainer.appendChild(boton);
     }
 }
 
@@ -94,7 +121,8 @@ async function buscarEmpleado() {
         );
     }
 
-    mostrarTabla(empleadosFiltrados);
+    mostrarTabla(empleadosFiltrados, paginaActual);
+    crearBotonesPaginacion(empleadosFiltrados); // Actualizar los botones de paginación
 }
 
 searchBtn.addEventListener('click', async () => {
@@ -128,7 +156,9 @@ function aplicarOrden() {
             mostrarMensajeNoRegistros();
     }
 
-    mostrarTabla(empleadosOrdenados);
+    empleadosFiltrados = empleadosOrdenados;
+    mostrarTabla(empleadosFiltrados, paginaActual);
+    crearBotonesPaginacion(empleadosFiltrados); // Actualizar los botones de paginación
 }
 
 selectOrden.addEventListener('change', aplicarOrden);
