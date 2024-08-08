@@ -3,7 +3,7 @@ import { BASE_URL } from './BASE_URL.js';
 let reporte = [];
 let reporteFiltrado = [];
 const tablaReporte = document.getElementById("tablaReporte");
-const itemsPorPagina = 10;
+const itemsPorPagina = 12;
 // ojo el numero que pongas sera -2 al numero de items que habra en la tabla
 
 let paginaActual = 1;
@@ -38,6 +38,8 @@ async function mostrarDatos() {
         console.error('Error al obtener los datos: ', error);
     }
 }
+
+
 function capitalizeFirstLetter(text) {
     if (!text) return text;
     return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
@@ -58,7 +60,7 @@ function mostrarTabla(datos, pagina) {
                 <td>${dato.fecha_registro}</td>
                 <td>${dato.cliente}</td>
                 <td>${dato.numdocumento}</td>
-                <td style="text-align: center">${dato.num_pasajeros}</td>
+                <td>${dato.num_pasajeros}</td>
                 <td>${capitalizeFirstLetter(dato.nombre_paquete)}</td>
                 <td style="text-align: center">${dato.categoria_paquete}</td>
                 <td style="text-align: center">${capitalizeFirstLetter(dato.tipo_viaje)}</td>

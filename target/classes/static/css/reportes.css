@@ -14,10 +14,10 @@ main.min-main {
 
 h2 {
   margin-top: 23px;
-  font-size: 30px;
+  font-size: 25px;
 }
 h1 {
-  font-size: 35px;
+  font-size: 30px;
 }
 
 .filters-report {
@@ -87,9 +87,8 @@ th,
 td {
   border: 1px solid #ccc;
 }
-
 thead th {
-  background-color: rgb(44,45,49);
+  background-color: #343a40;
   color: white;
 }
 
@@ -100,10 +99,22 @@ td {
   font-size: small;
 }
 
+
+td:nth-child(6) {
+  max-width: 150px; /* Ajusta el ancho máximo según sea necesario */
+  max-height: 60px; /* Ajusta la altura máxima según sea necesario */
+  white-space: nowrap; /* Evita que el texto se rompa en múltiples líneas */
+  overflow: hidden; /* Oculta cualquier texto que exceda el ancho del contenedor */
+  text-overflow: ellipsis; /* Añade puntos suspensivos al texto truncado */
+  display: inline-block; /* Hace que el contenedor respete la altura máxima */
+}
+
 th:nth-child(1),
 td:nth-child(1) {
   width: 30px; /* Ajusta el ancho según tus necesidades */
 }
+
+
 th:nth-child(2),
 td:nth-child(2) {
   width: 120px; /* Ajusta el ancho según tus necesidades */
@@ -119,6 +130,9 @@ td:nth-child(9) {
   width: 120px; /* Ajusta el ancho según tus necesidades */
 
 }
+
+
+
 th:nth-child(10),
 td:nth-child(10) {
   width: 90px; /* Ajusta el ancho según tus necesidades */

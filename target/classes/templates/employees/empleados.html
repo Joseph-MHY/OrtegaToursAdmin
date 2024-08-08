@@ -15,7 +15,7 @@
 <div th:replace="menu"></div>
 
 <main>
-    <h1>Empleados</h1>
+    <h1 style="margin-top: 10px;  font-size: 30px;">Empleados</h1>
     <div class="container">
         <div class="search-bar">
             <input id="searchInput" type="text" placeholder="Ingrese DNI o Nombre...">
@@ -23,7 +23,7 @@
                 <ion-icon name="search"></ion-icon>
             </button>
         </div>
-        <h3 style="margin-top: 20px;">Visualizar por:</h3>
+        <h3 style="margin-top: 10px;  font-size: 25px;">Visualizar por:</h3>
         <div class="filters">
             <select id="select-orden">
                 <option value="seleccionar">Seleccionar</option>
@@ -34,23 +34,25 @@
             </select>
             <button class="new-employee" onclick="openModal()">Nuevo Empleado</button>
         </div>
+
         <table>
             <thead>
-                <tr>
-                    <th style="text-align: center;">ID</th>
-                    <th>Nombres y Apellidos</th>
-                    <th style="text-align: center;">DNI</th>
-                    <th style="text-align: center;">Puesto</th>
-                    <th style="text-align: center;">Teléfono</th>
-                    <th style="text-align: center;">Salario</th>
-                    <th style="text-align: center;">Estado</th>
-                    <th style="text-align: center;">Ver</th>
-                </tr>
+            <tr>
+                <th style="text-align: center;">ID</th>
+                <th>Nombres y Apellidos</th>
+                <th style="text-align: center;">DNI</th>
+                <th style="text-align: center;">Puesto</th>
+                <th style="text-align: center;">Teléfono</th>
+                <th style="text-align: center;">Salario</th>
+                <th style="text-align: center;">Estado</th>
+                <th style="text-align: center;">Ver</th>
+            </tr>
             </thead>
             <tbody id="tablaEmpleados">
 
             </tbody>
         </table>
+        <div id="paginacion"></div>
     </div>
 </main>
 

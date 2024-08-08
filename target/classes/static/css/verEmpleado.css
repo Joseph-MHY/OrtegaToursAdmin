@@ -50,7 +50,8 @@ main.min-main {
 
 #btnModificar {
   border-radius: 5px;
-  background-color: #25c9df;
+  background-color: #3a6f84;
+  color: white;
   border: none;
   width: 100%;
   flex: 1;
@@ -59,6 +60,10 @@ main.min-main {
   cursor: pointer;
   margin-right: 5px;
   margin-top: 20px;
+}
+
+#btnModificar:hover {
+  background-color: #285165;
 }
 
 @media (max-width: 870px) {
