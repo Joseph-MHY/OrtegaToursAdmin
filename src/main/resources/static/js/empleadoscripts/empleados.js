@@ -133,7 +133,7 @@ function aplicarOrden() {
     const opcion = selectOrden.value;
     let empleadosOrdenados;
 
-    // Si no hay empleados filtrados, usar la lista completa
+    // Usar empleadosFiltrados si tiene datos, sino usar la lista completa
     const listaEmpleados = empleadosFiltrados.length > 0 ? empleadosFiltrados : empleados;
 
     switch (opcion) {
@@ -144,13 +144,13 @@ function aplicarOrden() {
             empleadosOrdenados = listaEmpleados.sort((a, b) => b.nombreApellidos.localeCompare(a.nombreApellidos));
             break;
         case 'activos':
-            empleadosOrdenados = listaEmpleados.filter(e => e.estado === 'Activo');
+            empleadosOrdenados = empleados.filter(e => e.estado === 'Activo');
             break;
         case 'inactivos':
-            empleadosOrdenados = listaEmpleados.filter(e => e.estado === 'Inactivo');
+            empleadosOrdenados = empleados.filter(e => e.estado === 'Inactivo');
             break;
         case 'seleccionar':
-            empleadosOrdenados = listaEmpleados;
+            empleadosOrdenados = empleados;
             break;
         default:
             mostrarMensajeNoRegistros();
