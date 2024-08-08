@@ -122,7 +122,7 @@ thead th {
 }
 th,
 td {
-  padding: 10px;
+  padding: 3px;
   text-align: left;
   font-size: small;
 }
@@ -133,9 +133,10 @@ td {
 .view-icon ion-icon {
   width: 1.5rem;
   height: 1.3rem;
+  color: #3a6f84;
 }
 .view-icon ion-icon:hover {
-  color: rgb(130, 130, 130);
+  color: #285165;
 }
 
 .modal {
@@ -225,6 +226,7 @@ td {
     cursor: pointer;
     margin-left: 20%;
     padding-left: revert-layer;
+
   }
   .view-icon {
     cursor: pointer;
