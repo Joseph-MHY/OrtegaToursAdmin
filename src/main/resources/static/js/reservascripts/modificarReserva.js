@@ -498,7 +498,6 @@ function updateReservation() {
         transaccion.estado_pago = 'Fallido';
     }
 
-    // Asegúrate de que cada pasajero tenga id_nacionalidad
     const pasajeros_actualizados = pasajeros_local.map(pasajero => {
         return {
             nombres: pasajero.nombres,
