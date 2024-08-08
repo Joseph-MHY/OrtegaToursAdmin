@@ -97,7 +97,6 @@ function mostrarTabla(reservas, pagina) {
                 <td>${estadoTexto}</td> <!-- Mostrar el texto del estado -->
                 <td>${reserva.fechaRegistro}</td>
                 <td class="view-icon" style="width: 1px; text-align: center"><a class="ver-reserva" data-id="${reserva.idReserva}"><ion-icon name="eye"></ion-icon></a></td>
-                <td class="delete-icon"><ion-icon name="trash-outline"></ion-icon></td>
             `;
             tablaReservas.appendChild(row);
         });
