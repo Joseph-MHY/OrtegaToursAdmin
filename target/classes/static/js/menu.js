@@ -4,7 +4,6 @@ const palanca = document.querySelector(".switch");
 const circulo = document.querySelector(".circulo");
 const menu = document.querySelector(".menu");
 
-// Función para actualizar el estado de la barra lateral basado en sessionStorage
 function actualizarEstadoBarraLateral() {
     let barraMinimizada = sessionStorage.getItem("barraMinimizada") === "true";
 
@@ -24,12 +23,10 @@ function actualizarEstadoBarraLateral() {
 function actualizarSombreadoMenu() {
     let urlActual = window.location.href;
 
-    // Selecciona los botones del menú
     let reservasBtn = document.getElementById("reservas");
     let empleadosBtn= document.getElementById("empleados");
     let reportesBtn = document.getElementById("reportes")
 
-    // Quitar la clase sombreada de todos
     reservasBtn.classList.remove("sombreado");
     empleadosBtn.classList.remove("sombreado");
     reportesBtn.classList.remove("sombreado")
@@ -44,7 +41,6 @@ function actualizarSombreadoMenu() {
     }
 }
 
-// Llamar a las funciones para establecer el estado inicial cuando la página se carga
 document.addEventListener("DOMContentLoaded", () => {
     actualizarSombreadoMenu();
     actualizarEstadoBarraLateral();

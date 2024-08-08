@@ -152,7 +152,7 @@ input[type="date"]:focus {
   border-radius: 50%; /* Hace que el botón sea circular */
   cursor: pointer; /* Muestra un cursor de puntero al pasar sobre el botón */
   display: flex; /* Usa flexbox para alinear el texto en el centro */
-  align-items: center; /* Alinea el contenido verticalmente */
+  align-items: left; /* Alinea el contenido verticalmente */
   justify-content: center; /* Alinea el contenido horizontalmente */
 }
 
@@ -212,7 +212,10 @@ td:nth-child(5) {
 .view-icon ion-icon {
   font-size: 20px; /* Tamaño del ícono */
   margin: 0 8px; /* Margen alrededor del ícono */
-  color: #007bff; /* Color del ícono */
+  color: #3a6f84; /* Color del ícono */
+}
+.view-icon ion-icon:hover {
+  color: #285165;
 }
 
 .delete-icon ion-icon {

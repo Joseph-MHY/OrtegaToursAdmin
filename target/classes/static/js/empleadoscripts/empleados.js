@@ -54,6 +54,11 @@ async function mostrarEmpleados() {
     }
 }
 
+function capitalizeFirstLetter(text) {
+    if (!text) return text;
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+}
+
 function mostrarTabla(empleados, pagina = 1) {
     tablaEmpleados.innerHTML = '';
     const start = (pagina - 1) * itemsPorPagina;
@@ -67,7 +72,7 @@ function mostrarTabla(empleados, pagina = 1) {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td style="text-align: center; width: 1px">${empleado.id}</td>
-                <td style="width: 17rem">${empleado.nombreApellidos}</td>
+                <td style="width: 17rem">${capitalizeFirstLetter(empleado.nombreApellidos)}</td>
                 <td style="text-align: center; width: 3px">${empleado.numDocumento}</td>
                 <td style="text-align: center; width: 12rem">${empleado.puesto}</td>
                 <td style="text-align: center; width: 6rem">${empleado.telefono}</td>

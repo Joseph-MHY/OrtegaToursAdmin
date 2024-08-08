@@ -48,11 +48,11 @@ main.min-main {
 
 /* Botón Pasajero */
 #Pasajero {
-    background-color: #006400; /* Verde oscuro */
+    background-color: #3a6f84; /* Verde oscuro */
     color: #fff;
     padding: 10px 20px;
     font-size: 14px;
-    border: 2px solid #004d00; /* Bordes más oscuros */
+    border: 2px solid #D3D3D3; /* Bordes más oscuros */
     border-radius: 8px;
     text-transform: uppercase; /* Mayúsculas */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
@@ -61,17 +61,17 @@ main.min-main {
 }
 
 #Pasajero:hover {
-    background-color: #008000; /* Verde más brillante */
-    border-color: #005700; /* Bordes más brillantes */
+    background-color: #285165; /* Verde más brillante */
+    border-color: #D3D3D3; /* Bordes más brillantes */
 }
 
 /* Botón Costes Adicionales */
 #costesAdicionales {
-    background-color: #007bff; /* Azul brillante */
+    background-color: #3a6f84; /* Azul brillante */
     color: #fff;
     padding: 10px 20px;
     font-size: 14px;
-    border: 2px solid #0056b3; /* Bordes más oscuros */
+    border: 2px solid #D3D3D3; /* Bordes más oscuros */
     border-radius: 8px;
     text-transform: uppercase; /* Mayúsculas */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
@@ -80,8 +80,8 @@ main.min-main {
 }
 
 #costesAdicionales:hover {
-    background-color: #0056b3; /* Azul más oscuro */
-    border-color: #004494; /* Bordes más oscuros */
+    background-color: #285165; /* Azul más oscuro */
+    border-color: #D3D3D3; /* Bordes más oscuros */
 }
 
 /* Botón Modificar */
@@ -104,11 +104,11 @@ main.min-main {
 
 /* Botón Guardar */
 #guardar {
-    background-color: #28a745; /* Verde */
+    background-color: #148f77;  /* Verde */
     color: #fff;
     padding: 10px 20px;
     font-size: 14px;
-    border: 2px solid #1e7e34; /* Bordes más oscuros */
+    border: 2px solid #D3D3D3; /* Bordes más oscuros */
     border-radius: 8px;
     text-transform: uppercase; /* Mayúsculas */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
@@ -118,8 +118,8 @@ main.min-main {
 
 
 #guardar:hover {
-    background-color: #218838; /* Verde más oscuro */
-    border-color: #1c7430; /* Bordes más oscuros */
+    background-color: #117864; /* Verde más oscuro */
+    border-color: #D3D3D3; /* Bordes más oscuros */
 }
 
 
