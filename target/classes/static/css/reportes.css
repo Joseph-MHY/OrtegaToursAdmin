@@ -180,3 +180,7 @@ td:nth-child(10) {
   text-decoration: none;
   color: white;
 }
+/* Estilo alternativo para filas impares */
+tbody tr:nth-child(odd) {
+  background-color: #f2f2f2; /* Color de fondo para filas impares */
+}

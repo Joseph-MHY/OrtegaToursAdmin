@@ -86,11 +86,11 @@ main.min-main {
 
 /* Botón Modificar */
 #modificar {
-    background-color: #ffc107; /* Amarillo */
-    color: #000;
+    background-color: #148f77; /* Amarillo */
+    color: #fff;
     padding: 10px 20px;
     font-size: 14px;
-    border: 2px solid #e0a800; /* Bordes más oscuros */
+    border: 2px solid #D3D3D3; /* Bordes más oscuros */
     border-radius: 8px;
     text-transform: uppercase; /* Mayúsculas */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
@@ -98,8 +98,8 @@ main.min-main {
     margin: 10px auto; /* Centra el botón horizontalmente */
 }
 #modificar:hover {
-    background-color: #ffca28; /* Amarillo más claro */
-    border-color: #d39e00; /* Bordes más oscuros */
+    background-color: #117864; /* Amarillo más claro */
+    border-color: #D3D3D3; /* Bordes más oscuros */
 }
 
 /* Botón Guardar */
