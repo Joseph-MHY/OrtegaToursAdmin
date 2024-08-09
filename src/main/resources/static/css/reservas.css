@@ -11,13 +11,13 @@ main {
 
 /* Estilo alternativo para el contenido principal con margen reducido */
 main.min-main {
-    margin-left: 80px; /* Margen izquierdo reducido */
+    margin-left: 80px;
 }
 
 /* Estilos para la sección de búsqueda */
 .search-section {
-  margin-bottom: 20px; /* Espacio inferior */
-  display: flex; /* Utiliza flexbox */
+  margin-bottom: 20px;
+  display: flex;
   align-items: center; /* Alinea verticalmente los elementos */
 }
 
