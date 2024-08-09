@@ -41,7 +41,10 @@ public class SecurityConfig {
             "/admin/reservas",
             "/admin/reservas/**",
             "/actions/reservas",
+            "/actions/reservas",
             "/actions/reserva/obtener/**",
+            "/actions/reserva/registrar",
+            "/actions/reserva/actualizar/**",
             "/actions/nacionalidades",
             "/actions/paquetes",
             "/actions/empleados/conductores"

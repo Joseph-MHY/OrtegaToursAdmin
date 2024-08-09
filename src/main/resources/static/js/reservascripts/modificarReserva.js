@@ -40,8 +40,6 @@ function updateCosts() {
         costeFijoInput.value = precioFijo.toFixed(2);
 
         let totalCost = (precioBase * (pasajeros_local.length || 1)) + (precioFijo * (pasajeros_local.length || 1)) + montoTotal;
-        console.log(totalCost)
-        console.log(pasajeros_local.length)
         if (isNaN(totalCost)) {
             console.error('totalCost no es un número');
             costeTotalInput.value = '0.00';
@@ -149,19 +147,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             // Inicializar los arrays locales con los datos de la reserva
             pasajeros_local = reserva.pasajeros || [];
             costos_local = reserva.costosAdicionales || [];
-
-            const pasajeros_actualizados = pasajeros_local.map(pasajero => ({
-                nombres: pasajero.nombres,
-                apellidos: pasajero.apellidos,
-                num_documento: pasajero.num_documento,
-                correo: pasajero.correo,
-                celular: pasajero.celular,
-                id_nacionalidad: pasajero.nacionalidad ? pasajero.nacionalidad.id_nacionalidad : null
-            }));
-
-            console.log('Pasajeros Actualizados:', JSON.stringify(pasajeros_actualizados, null, 2));
-
-
+            
             // Llenar la tabla con los datos de los pasajeros
             const tablaPasajeros = document.getElementById('tabla-pasajeros');
             tablaPasajeros.innerHTML = ''; // Limpiar la tabla antes de llenarla
@@ -490,7 +476,7 @@ function updateReservation() {
         estado_pago: ''
     };
 
-    if (idEstado === 1 || idEstado === 2 || idEstado === 4) {
+    if (idEstado === 1) {
         transaccion.estado_pago = 'Pendiente';
     } else if (idEstado === 3) {
         transaccion.estado_pago = 'Completado';

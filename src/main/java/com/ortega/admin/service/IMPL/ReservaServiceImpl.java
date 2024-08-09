@@ -358,20 +358,26 @@ public class ReservaServiceImpl implements IReservaService {
         // Actualizar la transacción
         Transacciones transaccionExistente = iTransaccion.findByIdReserva(reservaExistente);
         if (transaccionExistente != null) {
-            transaccionExistente.setFechaTransaccion(new Date());
-            transaccionExistente.setMontoPagado(reservaRequest.getCosto_total());
-            transaccionExistente.setEstadoPago(reservaRequest.getTransaccion().getEstado_pago());
-            transaccionExistente.setTipoMoneda(reservaRequest.getTransaccion().getTipo_moneda());
-            iTransaccion.save(transaccionExistente);
-        } else {
-            // Si no hay transacción existente, crear una nueva
-            Transacciones transaccion = new Transacciones();
-            transaccion.setIdReserva(reservaExistente);
-            transaccion.setFechaTransaccion(new Date());
-            transaccion.setMontoPagado(reservaRequest.getCosto_total());
-            transaccion.setEstadoPago(reservaRequest.getTransaccion().getEstado_pago());
-            transaccion.setTipoMoneda(reservaRequest.getTransaccion().getTipo_moneda());
-            iTransaccion.save(transaccion);
+            //ya estoy mandando el estado y el tipo moneda
+            if (reservaRequest.getIdEstado() == 1) {
+                transaccionExistente.setFechaTransaccion(null);
+                transaccionExistente.setMontoPagado(0.0);
+                transaccionExistente.setEstadoPago(reservaRequest.getTransaccion().getEstado_pago());
+                transaccionExistente.setTipoMoneda(reservaRequest.getTransaccion().getTipo_moneda());
+                iTransaccion.save(transaccionExistente);
+            } else if (reservaRequest.getIdEstado() == 3) {
+                transaccionExistente.setFechaTransaccion(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                transaccionExistente.setMontoPagado(reservaRequest.getCosto_total());
+                transaccionExistente.setEstadoPago(reservaRequest.getTransaccion().getEstado_pago());
+                transaccionExistente.setTipoMoneda(reservaRequest.getTransaccion().getTipo_moneda());
+                iTransaccion.save(transaccionExistente);
+            }else if (reservaRequest.getIdEstado() == 5) {
+                transaccionExistente.setFechaTransaccion(null);
+                transaccionExistente.setMontoPagado(null);
+                transaccionExistente.setEstadoPago(reservaRequest.getTransaccion().getEstado_pago());
+                transaccionExistente.setTipoMoneda(reservaRequest.getTransaccion().getTipo_moneda());
+                iTransaccion.save(transaccionExistente);
+            }
         }
 
         return "Reserva actualizada exitosamente";

@@ -23,15 +23,15 @@
       <ion-icon name="search"></ion-icon>
     </button>
   </div>
-
+  <div class="filter-row">
+    <label for="nombrePaqueteFilter">Nombre Paquete:</label>
+    <select id="nombrePaqueteFilter">
+      <option value="">Seleccionar</option>
+    </select>
+  </div>
   <section>
     <div class="filters">
-      <div class="filter-row">
-        <label for="nombrePaqueteFilter">Nombre Paquete:</label>
-        <select id="nombrePaqueteFilter">
-          <option value="">Seleccionar</option>
-        </select>
-      </div>
+
       <div class="filter-row">
         <label for="tipoViajeFilter">Tipo de Viaje:</label>
         <select id="tipoViajeFilter">
@@ -54,10 +54,10 @@
         <label for="estadoFilter">Estado de Reserva:</label>
         <select id="estadoFilter">
           <option value="">Seleccionar</option>
-          <option value="Enprogreso">en progreso</option>
+          <option value="Enprogreso">En progreso</option>
           <option value="Acontactar">Contactar</option>
-          <option value="Reservado">reservado</option>
-          <option value="Enesperapago">en espera de pago</option>
+          <option value="Reservado">Reservado</option>
+          <option value="Enesperapago">En espera de pago</option>
           <option value="Cancelado">Cancelado</option>
         </select>
       </div>
@@ -74,11 +74,11 @@
       <button type="button" id="registerButton">Registrar Reserva</button>
     </div>
   </section>
-  <div id="paginacion"></div>
+
   <table>
     <thead>
     <tr>
-      <th>ID</th>
+      <th>#</th>
       <th>Cliente</th>
       <th>DNI</th>
       <th>Teléfono</th>
@@ -87,13 +87,13 @@
       <th>Estado</th>
       <th>Fecha de registro</th>
       <th>Ver</th>
-      <th>Eliminar</th>
     </tr>
     </thead>
     <tbody id="tablaReservas">
 
     </tbody>
   </table>
+  <div id="paginacion"></div>
 </main>
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

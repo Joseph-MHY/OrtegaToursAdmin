@@ -13,7 +13,6 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@ToString
 @Table(name = "rol")
 public class Rol {
     @Id

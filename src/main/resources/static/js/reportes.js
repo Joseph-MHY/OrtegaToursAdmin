@@ -58,7 +58,7 @@ function mostrarTabla(datos, pagina) {
             row.innerHTML = `
                 <td style="text-align: center">${dato.id_reserva}</td>
                 <td>${dato.fecha_registro}</td>
-                <td>${dato.cliente}</td>
+                <td>${capitalizeFirstLetter(dato.cliente)}</td>
                 <td>${dato.numdocumento}</td>
                 <td>${dato.num_pasajeros}</td>
                 <td>${capitalizeFirstLetter(dato.nombre_paquete)}</td>

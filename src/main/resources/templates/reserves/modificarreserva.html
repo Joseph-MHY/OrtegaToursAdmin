@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Registrar Reservas</title>
+    <title>Página Actualizar Reservas</title>
     <link rel="stylesheet" th:href="@{/css/registrarreserva.css}">
     <link rel="icon" type="image/png" href="/images/Logoot2.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -15,7 +15,7 @@
 <div th:replace="menu"></div>
 
 <main>
-    <h1>Datos de Reservas</h1>
+    <h1>Actualizar de Reserva</h1>
     <br/>
 
     <div class="container">
@@ -23,11 +23,11 @@
         <div class="section left-section">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Ingrese Nombre" readonly>
+                <input type="text" id="nombre" name="nombre" placeholder="Ingresar Nombres" readonly>
             </div>
             <div class="form-group">
                 <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="apellido" placeholder="Ingrese su Apellido"readonly>
+                <input type="text" id="apellido" name="apellido" placeholder="Ingresar su Apellidos"readonly>
             </div>
             <div class="form-group">
                 <label for="dni">DNI o Pasaporte:</label>
@@ -133,9 +133,9 @@
             <!-- Contenido del modal de costos adicionales -->
             <div class="form-group-modal">
                 <label class="label-modal" for="descripcion">Descripción:</label>
-                <input class="input-modal" type="text" id="descripcion" name="descripcion" placeholder="Ingrese Descripción" maxlength="40">
+                <input class="input-modal" type="text" id="descripcion" name="descripcion" placeholder="Ingresar Descripción" maxlength="40">
                 <label class="label-modal" for="costo">Costo:</label>
-                <input class="input-modal" type="number" id="costo" name="costo" placeholder="Ingrese Monto">
+                <input class="input-modal" type="number" id="costo" name="costo" placeholder="Ingresar Monto">
             </div>
             <button class="button-modal" type="button" onclick="agregarCosto()">Agregar</button>
             <table id="tablaCostos">
@@ -159,21 +159,21 @@
             <h2>Pasajeros</h2>
             <div class="form-group-modal">
                 <label class="label-modal" for="nombrePasajero">Nombre:</label>
-                <input class="input-modal" type="text" id="nombrePasajero" name="nombrePasajero" placeholder="Ingrese Nombre" maxlength="80">
+                <input class="input-modal" type="text" id="nombrePasajero" name="nombrePasajero" placeholder="Ingresar Nombres" maxlength="80">
                 <label class="label-modal" for="apellidoPasajero">Apellido:</label>
-                <input class="input-modal" type="text" id="apellidoPasajero" name="apellidoPasajero" placeholder="Ingrese Apellido" maxlength="80">
+                <input class="input-modal" type="text" id="apellidoPasajero" name="apellidoPasajero" placeholder="Ingresar Apellidos" maxlength="80">
                 <label class="label-modal" for="nacionalidadPasajero">Nacionalidad:</label>
                 <select class="select-modal" id="nacionalidadPasajero" name="nacionalidadPasajero">
                     <option value="">Seleccionar</option>
                 </select>
                 <label class="label-modal" for="numeroDocumentoPasajero">Número de Documento:</label>
-                <input class="input-modal" type="number" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingrese Número de Documento" maxlength="20" oninput="validateNumberLength(this, 8, 20)"/>
+                <input class="input-modal" type="number" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingresar Número de Documento" maxlength="20" oninput="validateNumberLength(this, 8, 20)"/>
 
                 <label class="label-modal" for="correoPasajero">Correo (Opcional):</label>
-                <input class="input-modal" type="email" id="correoPasajero" name="correoPasajero" placeholder="Ingrese Correo" maxlength="80" />
+                <input class="input-modal" type="email" id="correoPasajero" name="correoPasajero" placeholder="Ingresar Correo" maxlength="80" />
 
                 <label class="label-modal" for="celularPasajero">Celular (Opcional):</label>
-                <input class="input-modal" type="number" id="celularPasajero" name="celularPasajero" placeholder="Ingrese Celular" maxlength="9" oninput="validateNumberLength(this, 9, 9)" />
+                <input class="input-modal" type="number" id="celularPasajero" name="celularPasajero" placeholder="Ingresar Celular" maxlength="9" oninput="validateNumberLength(this, 9, 9)" />
 
             </div>
             <button class="button-modal" type="button" onclick="agregarPasajero()">Agregar Pasajero</button>

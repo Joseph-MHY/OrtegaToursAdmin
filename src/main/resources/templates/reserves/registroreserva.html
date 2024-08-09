@@ -16,7 +16,7 @@
 
 <main>
     <!-- Encabezado de la página -->
-    <h1>Datos de Reservas</h1>
+    <h1>Registrar de Reserva</h1>
     <br/>
 
     <div class="container">
@@ -24,23 +24,23 @@
         <div class="section left-section">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Ingrese Nombre">
+                <input type="text" id="nombre" name="nombre" placeholder="Ingresar Nombre" minlength="2" maxlength="80">
             </div>
             <div class="form-group">
                 <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="apellido" placeholder="Ingrese su Apellido">
+                <input type="text" id="apellido" name="apellido" placeholder="Ingresar su Apellido" minlength="2" maxlength="80">
             </div>
             <div class="form-group">
                 <label for="dni">DNI o Pasaporte:</label>
-                <input type="text" id="dni" name="dni" placeholder="Ingrese su DNI">
+                <input type="text" id="dni" name="dni" placeholder="Ingresar su DNI" oninput="validateNumberLength(this, 8, 20)">
             </div>
             <div class="form-group">
                 <label for="correo">Correo:</label>
-                <input type="email" id="correo" name="correo" placeholder="Ingrese su Correo">
+                <input type="email" id="correo" name="correo" placeholder="Ingresar su Correo" minlength="8" maxlength="80">
             </div>
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
-                <input type="text" id="telefono" name="telefono" placeholder="Ingrese su Teléfono">
+                <input type="text" id="telefono" name="telefono" placeholder="Ingresar su Teléfono" oninput="validateNumberLength(this, 9, 9)">
             </div>
             <div class="form-group">
                 <label for="fechaPartida">Fecha de Partida:</label>
@@ -156,21 +156,21 @@
             <h2>Pasajeros</h2>
             <div class="form-group-modal">
                 <label class="label-modal" for="nombrePasajero">Nombre:</label>
-                <input class="input-modal" type="text" id="nombrePasajero" name="nombrePasajero" placeholder="Ingrese Nombre" maxlength="80">
+                <input class="input-modal" type="text" id="nombrePasajero" name="nombrePasajero" placeholder="Ingresar Nombres" maxlength="80">
                 <label class="label-modal" for="apellidoPasajero">Apellido:</label>
-                <input class="input-modal" type="text" id="apellidoPasajero" name="apellidoPasajero" placeholder="Ingrese Apellido" maxlength="80">
+                <input class="input-modal" type="text" id="apellidoPasajero" name="apellidoPasajero" placeholder="Ingresar Apellidos" maxlength="80">
                 <label class="label-modal" for="nacionalidadPasajero">Nacionalidad:</label>
                 <select class="select-modal" id="nacionalidadPasajero" name="nacionalidadPasajero">
                     <option value="">Seleccionar</option>
                 </select>
                 <label class="label-modal" for="numeroDocumentoPasajero">Número de Documento:</label>
-                <input class="input-modal" type="number" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingrese Número de Documento" maxlength="20" oninput="validateNumberLength(this, 8, 20)"/>
+                <input class="input-modal" type="number" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingresar Número de Documento" maxlength="20" oninput="validateNumberLength(this, 8, 20)"/>
 
                 <label class="label-modal" for="correoPasajero">Correo (Opcional):</label>
-                <input class="input-modal" type="email" id="correoPasajero" name="correoPasajero" placeholder="Ingrese Correo" maxlength="80" />
+                <input class="input-modal" type="email" id="correoPasajero" name="correoPasajero" placeholder="Ingresar Correo" maxlength="80" />
 
                 <label class="label-modal" for="celularPasajero">Celular (Opcional):</label>
-                <input class="input-modal" type="number" id="celularPasajero" name="celularPasajero" placeholder="Ingrese Celular" maxlength="9" oninput="validateNumberLength(this, 9, 9)" />
+                <input class="input-modal" type="number" id="celularPasajero" name="celularPasajero" placeholder="Ingresar Celular" maxlength="9" oninput="validateNumberLength(this, 9, 9)" />
 
             </div>
             <button class="button-modal" type="button" onclick="agregarPasajero()">Agregar Pasajero</button>
@@ -195,7 +195,6 @@
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script type="module" th:src="@{/js/reservascripts/pasajero.js}"></script>
 <script type="module" th:src="@{/js/reservascripts/registroreserva.js}"></script>
 <script>
     function validateNumberLength(input, minLength, maxLength) {
@@ -218,6 +217,8 @@
     // Agregar eventos a los campos
     document.getElementById("nombrePasajero").addEventListener("input", permitirSoloLetras);
     document.getElementById("apellidoPasajero").addEventListener("input", permitirSoloLetras);
+    document.getElementById("nombre").addEventListener("input", permitirSoloLetras);
+    document.getElementById("apellido").addEventListener("input", permitirSoloLetras);
 </script>
 </body>
 </html>

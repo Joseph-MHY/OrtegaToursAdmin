@@ -91,7 +91,7 @@ public class EmpServiceImpl implements EmpService {
         response.setHorarioTrabajo(empleado.getHorarioTrabajo().trim());
         response.setCuentaBancaria(empleado.getCuentaBancaria() != null ? empleado.getCuentaBancaria().trim() : null);
         response.setSalario(empleado.getSalario());
-        response.setObservaciones(empleado.getObservaciones().trim());
+        response.setObservaciones(empleado.getObservaciones() != null ? empleado.getObservaciones().trim() : null);
         response.setEstadoCuenta(empleado.getEstadoCuenta());
 
         return response;
@@ -119,7 +119,7 @@ public class EmpServiceImpl implements EmpService {
         empleado.setHorarioTrabajo(empleadoUpdateDTO.getHorarioTrabajo().trim());
         empleado.setCuentaBancaria(empleadoUpdateDTO.getCuentaBancaria() != null ? empleadoUpdateDTO.getCuentaBancaria().trim() : null);
         empleado.setSalario(empleadoUpdateDTO.getSalario());
-        empleado.setObservaciones(empleadoUpdateDTO.getObservaciones().trim());
+        empleado.setObservaciones(empleadoUpdateDTO.getObservaciones() != null ? empleado.getObservaciones().trim() : null);
         empleado.setEstadoCuenta(empleadoUpdateDTO.getEstadoCuenta());
 
         // Guardar la entidad actualizada

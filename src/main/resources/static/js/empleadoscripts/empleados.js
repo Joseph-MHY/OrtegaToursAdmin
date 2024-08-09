@@ -54,6 +54,11 @@ async function mostrarEmpleados() {
     }
 }
 
+function capitalizeFirstLetter(text) {
+    if (!text) return text;
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+}
+
 function mostrarTabla(empleados, pagina = 1) {
     tablaEmpleados.innerHTML = '';
     const start = (pagina - 1) * itemsPorPagina;
@@ -67,7 +72,7 @@ function mostrarTabla(empleados, pagina = 1) {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td style="text-align: center; width: 1px">${empleado.id}</td>
-                <td style="width: 17rem">${empleado.nombreApellidos}</td>
+                <td style="width: 17rem">${capitalizeFirstLetter(empleado.nombreApellidos)}</td>
                 <td style="text-align: center; width: 3px">${empleado.numDocumento}</td>
                 <td style="text-align: center; width: 12rem">${empleado.puesto}</td>
                 <td style="text-align: center; width: 6rem">${empleado.telefono}</td>
@@ -133,7 +138,7 @@ function aplicarOrden() {
     const opcion = selectOrden.value;
     let empleadosOrdenados;
 
-    // Si no hay empleados filtrados, usar la lista completa
+    // Usar empleadosFiltrados si tiene datos, sino usar la lista completa
     const listaEmpleados = empleadosFiltrados.length > 0 ? empleadosFiltrados : empleados;
 
     switch (opcion) {
@@ -144,13 +149,13 @@ function aplicarOrden() {
             empleadosOrdenados = listaEmpleados.sort((a, b) => b.nombreApellidos.localeCompare(a.nombreApellidos));
             break;
         case 'activos':
-            empleadosOrdenados = listaEmpleados.filter(e => e.estado === 'Activo');
+            empleadosOrdenados = empleados.filter(e => e.estado === 'Activo');
             break;
         case 'inactivos':
-            empleadosOrdenados = listaEmpleados.filter(e => e.estado === 'Inactivo');
+            empleadosOrdenados = empleados.filter(e => e.estado === 'Inactivo');
             break;
         case 'seleccionar':
-            empleadosOrdenados = listaEmpleados;
+            empleadosOrdenados = empleados;
             break;
         default:
             mostrarMensajeNoRegistros();
@@ -212,10 +217,14 @@ document.getElementById('registroEmpleadoForm').addEventListener('submit', async
         }
     })
         .then(res => {
-            toastr["success"]("Empleado registrado exitosamente");
-            setTimeout(function() {
-                location.reload();
-            }, 3500);
+            if(res.data == 'Empleado registrado exitosamente'){
+                toastr["success"](res.data);
+                setTimeout(function() {
+                    location.reload();
+                }, 3500);
+            } else if (res.data == 'Empleado ya existente'){
+                toastr["warning"](res.data);
+            }
         })
         .catch(error => {
             console.error('Error al registrar el empleado:', error);

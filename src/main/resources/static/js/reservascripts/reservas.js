@@ -4,7 +4,7 @@ let reservas = [];
 let reservasFiltradas = [];
 const tablaReservas = document.getElementById('tablaReservas');
 const nombrePaqueteFilter = document.getElementById('nombrePaqueteFilter');
-const itemsPorPagina = 30;
+const itemsPorPagina = 16;
 let paginaActual = 1;
 const searchBtn = document.getElementById('searchButton');
 const estadosTexto = {
@@ -62,6 +62,8 @@ async function mostrarReservas() {
         reservas = response.data;
         reservasFiltradas = reservas; // Inicialmente, no hay filtro
         aplicarFiltrosYOrdenar(); // Aplicar filtros y ordenaciones iniciales
+        ordenarReservas(reservas, 'inactivos')
+
     } catch (error) {
         console.error('Error al obtener las reservas:', error);
         mostrarMensajeNoRegistros();
@@ -89,15 +91,14 @@ function mostrarTabla(reservas, pagina) {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${reserva.idReserva}</td>
-                <td>${reserva.cliente}</td>
+                <td>${capitalizeFirstLetter(reserva.cliente)}</td>
                 <td>${reserva.numdocumento}</td>
                 <td>${reserva.celular}</td>
                 <td>${capitalizeFirstLetter(reserva.nombrePaquete)}</td>
                 <td>${capitalizeFirstLetter(reserva.tipoViaje)}</td>
-                <td>${estadoTexto}</td> <!-- Mostrar el texto del estado -->
+                <td>${capitalizeFirstLetter(estadoTexto)}</td> <!-- Mostrar el texto del estado -->
                 <td>${reserva.fechaRegistro}</td>
                 <td class="view-icon" style="width: 1px; text-align: center"><a class="ver-reserva" data-id="${reserva.idReserva}"><ion-icon name="eye"></ion-icon></a></td>
-                <td class="delete-icon"><ion-icon name="trash-outline"></ion-icon></td>
             `;
             tablaReservas.appendChild(row);
         });
