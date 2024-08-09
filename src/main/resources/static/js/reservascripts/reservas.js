@@ -4,7 +4,7 @@ let reservas = [];
 let reservasFiltradas = [];
 const tablaReservas = document.getElementById('tablaReservas');
 const nombrePaqueteFilter = document.getElementById('nombrePaqueteFilter');
-const itemsPorPagina = 30;
+const itemsPorPagina = 12;
 let paginaActual = 1;
 const searchBtn = document.getElementById('searchButton');
 const estadosTexto = {
@@ -62,6 +62,8 @@ async function mostrarReservas() {
         reservas = response.data;
         reservasFiltradas = reservas; // Inicialmente, no hay filtro
         aplicarFiltrosYOrdenar(); // Aplicar filtros y ordenaciones iniciales
+        ordenarReservas(reservas, 'inactivos')
+
     } catch (error) {
         console.error('Error al obtener las reservas:', error);
         mostrarMensajeNoRegistros();
