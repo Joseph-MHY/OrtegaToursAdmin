@@ -19,7 +19,7 @@ import java.util.List;
 public class ReportServiceImpl implements IReportService {
 
     private final String[] headers = {
-            "ID",
+            "#",
             "ID de reserva",
             "Fecha de registro",
             "Cliente",
