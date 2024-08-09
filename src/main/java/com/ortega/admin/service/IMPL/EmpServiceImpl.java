@@ -49,18 +49,30 @@ public class EmpServiceImpl implements EmpService {
     @Transactional
     @Override
     public String save(EmpleadoRequest empleadoRequest) {
-        Empleados emp = iEmpleado.findByCorreo(empleadoRequest.getCorreo());
+        Empleados empCorreo = iEmpleado.findByCorreo(empleadoRequest.getCorreo());
+        Empleados empDocumento = iEmpleado.findByNumDocumento(empleadoRequest.getNumDocumento());
 
-        if(emp == null) {
-            Tipodocumento tipoDocumento = obtenerEntidadPorId(iTipoDocumento, empleadoRequest.getIdTipoDocumento(), "Tipo de documento");
-            Rol rol = obtenerEntidadPorId(iRol, empleadoRequest.getIdRol(), "Rol");
-            Tipocontrato tipoContrato = obtenerEntidadPorId(iTipoContrato, empleadoRequest.getIdTipoContrato(), "Tipo de contrato");
-            Empleados empleado = empleadoRequest.toEntity(tipoDocumento, rol, tipoContrato, passwordEncoder.encode(empleadoRequest.getPassword()));
-            iEmpleado.save(empleado);
-            return "Empleado registrado exitosamente";
-        } else {
-            return "Empleado ya existente";
+        if (empCorreo != null) {
+            return "Correo ya existente";
         }
+
+        if (empDocumento != null) {
+            return "Documento ya existente";
+        }
+
+        Tipodocumento tipoDocumento = obtenerEntidadPorId(iTipoDocumento, empleadoRequest.getIdTipoDocumento(), "Tipo de documento");
+        Rol rol = obtenerEntidadPorId(iRol, empleadoRequest.getIdRol(), "Rol");
+        Tipocontrato tipoContrato = obtenerEntidadPorId(iTipoContrato, empleadoRequest.getIdTipoContrato(), "Tipo de contrato");
+
+        Empleados empleado = empleadoRequest.toEntity(
+                tipoDocumento,
+                rol,
+                tipoContrato,
+                passwordEncoder.encode(empleadoRequest.getPassword())
+        );
+
+        iEmpleado.save(empleado);
+        return "Empleado registrado exitosamente";
     }
 
     @Override
