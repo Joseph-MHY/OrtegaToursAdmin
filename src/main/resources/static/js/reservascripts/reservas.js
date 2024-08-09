@@ -16,27 +16,23 @@ const estadosTexto = {
 };
 
 
-// Cargar opciones de paquetes en el select
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         const response = await axios.get(BASE_URL + '/actions/paquetes');
         const paquetes = response.data;
 
-        // Limpiar opciones existentes
         nombrePaqueteFilter.innerHTML = '<option value="">Seleccionar</option>';
 
-        // Agregar opciones de tours
         paquetes.tours.forEach(tour => {
             const option = document.createElement('option');
-            option.value = tour.nombre_paquete; // Usar nombre del paquete como valor
+            option.value = tour.nombre_paquete;
             option.textContent = `${tour.nombre_paquete} (Tour)`;
             nombrePaqueteFilter.appendChild(option);
         });
 
-        // Agregar opciones de promociones
         paquetes.promociones.forEach(promo => {
             const option = document.createElement('option');
-            option.value = promo.nombre_paquete; // Usar nombre del paquete como valor
+            option.value = promo.nombre_paquete;
             option.textContent = `${promo.nombre_paquete} (Promoción)`;
             nombrePaqueteFilter.appendChild(option);
         });
@@ -46,7 +42,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 });
 
-// Función para redirigir a la página de registro de reservas
 function redirectToRegistrarReserva() {
     window.location.href = '/admin/reservas/registrarreservas';
 }
