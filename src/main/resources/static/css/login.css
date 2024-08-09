@@ -12,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #3c3c3c;
+    background-color: #fff;
 }
 
 /* Contenedor del login */
@@ -21,12 +21,12 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    color: #fff;
+    color: #3c3c3c;
 }
 
 /* Caja del login */
 .login-box {
-    background-color: #f0f0f0;
+    background-color: #3c3c3c;
     padding: 20px;
     width: 30rem;
     border-radius: 10px;
@@ -36,7 +36,7 @@ body {
 
 /* Estilo del logo */
 .logo {
-    width: 220px;
+    width: 210px;
     height: 10rem;
     margin-bottom: 10px;
 }
@@ -71,21 +71,24 @@ input[type="password"] {
 button {
     width: 90%;
     padding: 10px;
-    background-color: #4BB609;
+    background-color:  #148f77;
     color: white;
     margin-bottom: 30px;
-    border: none;
+    border:none;
     border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #45a049;
+   background-color: #117864; /* Verde más oscuro */
 }
 
 /* Estilo del pie de página */
 footer {
     margin-top: 20px;
     font-size: 14px;
+    font-weight: bold; /* Aplica negrita al texto */
 }
+
+

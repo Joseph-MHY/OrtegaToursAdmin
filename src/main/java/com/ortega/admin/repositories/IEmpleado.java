@@ -12,6 +12,6 @@ public interface IEmpleado extends JpaRepository<Empleados, Integer> {
 
     Empleados findByCorreo(String correo);
 
-    @Query(value = "SELECT id_empleado, nombre_apellidos FROM empleados WHERE id_rol = 3;", nativeQuery = true)
+    @Query(value = "SELECT id_empleado, nombre_apellidos FROM empleados WHERE id_rol = 3 AND estado_cuenta = true;", nativeQuery = true)
     List<Object[]> getEmpleadosConductores();
 }
