@@ -15,7 +15,6 @@
 <div th:replace="menu"></div>
 
 <main>
-    <!-- Encabezado de la página -->
     <h1>Datos de Reservas</h1>
     <br/>
 
@@ -24,27 +23,27 @@
         <div class="section left-section">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Ingrese Nombre">
+                <input type="text" id="nombre" name="nombre" placeholder="Ingrese Nombre" readonly>
             </div>
             <div class="form-group">
                 <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="apellido" placeholder="Ingrese su Apellido">
+                <input type="text" id="apellido" name="apellido" placeholder="Ingrese su Apellido"readonly>
             </div>
             <div class="form-group">
                 <label for="dni">DNI o Pasaporte:</label>
-                <input type="text" id="dni" name="dni" placeholder="Ingrese su DNI">
+                <input type="text" id="dni" name="dni" placeholder="Ingrese su DNI" readonly>
             </div>
             <div class="form-group">
                 <label for="correo">Correo:</label>
-                <input type="email" id="correo" name="correo" placeholder="Ingrese su Correo">
+                <input type="email" id="correo" name="correo" placeholder="Ingrese su Correo" readonly>
             </div>
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
-                <input type="text" id="telefono" name="telefono" placeholder="Ingrese su Teléfono">
+                <input type="text" id="telefono" name="telefono" placeholder="Ingrese su Teléfono" readonly>
             </div>
             <div class="form-group">
                 <label for="fechaRegistro">Fecha de Registro:</label>
-                <input type="date" id="fechaRegistro" name="fechaRegistro">
+                <input type="date" id="fechaRegistro" name="fechaRegistro" readonly>
             </div>
             <div class="form-group">
                 <label for="fechaPartida">Fecha de Partida:</label>
@@ -80,29 +79,29 @@
                 Pasajero
             </button>
             <div class="form-group">
-                <label for="costeBase">Costo Base (Para Tours):</label>
-                <input type="text" id="costeBase" name="costeBase" placeholder="S/ 0.00">
+                <label for="costeBase">Costo Base x Pasajero (Para Tours):</label>
+                <input type="text" id="costeBase" name="costeBase" placeholder="S/ 0.00" readonly>
             </div>
             <div class="form-group">
-                <label for="costeFijo">Costo Fijo (Para promociones):</label>
-                <input type="text" id="costeFijo" name="costeFijo" placeholder="S/ 0.00">
+                <label for="costeFijo">Costo Fijo x Pasajero (Para promociones):</label>
+                <input type="text" id="costeFijo" name="costeFijo" placeholder="S/ 0.00" readonly>
             </div>
             <button type="button" id="costesAdicionales" onclick="openModalCostosAdicionales()">
                 Costos Adicionales
             </button>
             <div class="form-group">
-                <label for="costeTotal">Costo Total:</label>
-                <input type="text" id="costeTotal" name="costeTotal" placeholder="S/ 0.00">
+                <label for="costeTotal" id="tituloCosto"></label>
+                <input type="text" id="costeTotal" name="costeTotal" placeholder="S/ 0.00" readonly>
             </div>
             <div class="form-group">
                 <label for="estado">Estado:</label>
                 <select id="estado" name="estado">
                     <option value="">Seleccionar</option>
-                    <option value="Enprogreso">en progreso</option>
-                    <option value="Acontactar">Contactar</option>
-                    <option value="Reservado">reservado</option>
-                    <option value="Enesperapago">en espera de pago</option>
-                    <option value="Cancelado">Cancelado</option>
+                    <option value="1">en progreso</option>
+                    <option value="2">Contactar</option>
+                    <option value="3">reservado</option>
+                    <option value="4">en espera de pago</option>
+                    <option value="5">Cancelado</option>
                 </select>
             </div>
             <div class="form-group">
@@ -134,9 +133,9 @@
             <!-- Contenido del modal de costos adicionales -->
             <div class="form-group-modal">
                 <label class="label-modal" for="descripcion">Descripción:</label>
-                <input class="input-modal" type="text" id="descripcion" name="descripcion" placeholder="Ingrese Descripción">
+                <input class="input-modal" type="text" id="descripcion" name="descripcion" placeholder="Ingrese Descripción" maxlength="40">
                 <label class="label-modal" for="costo">Costo:</label>
-                <input class="input-modal" type="text" id="costo" name="costo" placeholder="Ingrese Monto">
+                <input class="input-modal" type="number" id="costo" name="costo" placeholder="Ingrese Monto">
             </div>
             <button class="button-modal" type="button" onclick="agregarCosto()">Agregar</button>
             <table id="tablaCostos">
@@ -168,12 +167,12 @@
                     <option value="">Seleccionar</option>
                 </select>
                 <label class="label-modal" for="numeroDocumentoPasajero">Número de Documento:</label>
-                <input class="input-modal" type="number" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingrese Número de Documento" maxlength="20" oninput="validateNumberLength(this, 8, 20)" />
+                <input class="input-modal" type="number" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingrese Número de Documento" maxlength="20" oninput="validateNumberLength(this, 8, 20)"/>
 
-                <label class="label-modal" for="correoPasajero">Correo:</label>
+                <label class="label-modal" for="correoPasajero">Correo (Opcional):</label>
                 <input class="input-modal" type="email" id="correoPasajero" name="correoPasajero" placeholder="Ingrese Correo" maxlength="80" />
 
-                <label class="label-modal" for="celularPasajero">Celular:</label>
+                <label class="label-modal" for="celularPasajero">Celular (Opcional):</label>
                 <input class="input-modal" type="number" id="celularPasajero" name="celularPasajero" placeholder="Ingrese Celular" maxlength="9" oninput="validateNumberLength(this, 9, 9)" />
 
             </div>
@@ -193,14 +192,12 @@
                 <tbody id="tabla-pasajeros">
                 </tbody>
             </table>
-            <button class="button-modal-registrar" type="button" onclick="registrarPasajeros()">Guardar Pasajeros</button>
         </div>
     </div>
 </main>
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script type="module" th:src="@{/js/reservascripts/pasajero.js}"></script>
 <script type="module" th:src="@{/js/reservascripts/modificarReserva.js}"></script>
 <script>
     function validateNumberLength(input, minLength, maxLength) {
@@ -212,6 +209,16 @@
             input.value = input.value.slice(0, maxLength);
         }
     }
+
+    function permitirSoloLetras(event) {
+        const input = event.target;
+        const valor = input.value;
+        const valorFiltrado = valor.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/g, ''); // Solo letras y espacios
+        input.value = valorFiltrado;
+    }
+
+    document.getElementById("nombrePasajero").addEventListener("input", permitirSoloLetras);
+    document.getElementById("apellidoPasajero").addEventListener("input", permitirSoloLetras);
 </script>
 </body>
 </html>

@@ -358,6 +358,7 @@ public class ReservaServiceImpl implements IReservaService {
         // Actualizar la transacción
         Transacciones transaccionExistente = iTransaccion.findByIdReserva(reservaExistente);
         if (transaccionExistente != null) {
+            transaccionExistente.setFechaTransaccion(new Date());
             transaccionExistente.setMontoPagado(reservaRequest.getCosto_total());
             transaccionExistente.setEstadoPago(reservaRequest.getTransaccion().getEstado_pago());
             transaccionExistente.setTipoMoneda(reservaRequest.getTransaccion().getTipo_moneda());
