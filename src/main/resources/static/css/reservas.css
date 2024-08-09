@@ -18,7 +18,7 @@ main.min-main {
 .search-section {
   margin-bottom: 20px;
   display: flex;
-  align-items: center; /* Alinea verticalmente los elementos */
+  align-items: center;
 }
 
 label {
@@ -26,7 +26,7 @@ label {
 }
 
 input[type="text"] {
-  padding: 8px; /* Espaciado interno */
+  padding: 8px;
   font-size: 14px; /* Tamaño de fuente */
   border: 1px solid #ccc; /* Borde del campo de entrada */
   border-radius: 4px; /* Bordes redondeados */

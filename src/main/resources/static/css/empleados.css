@@ -125,7 +125,7 @@ td {
 
 th:nth-child(1),
 td:nth-child(1) {
-  width: 30px; /* Ajusta el ancho según tus necesidades */
+  width: 30px;
 }
 
 .view-icon {
