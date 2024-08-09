@@ -135,15 +135,16 @@ main.min-main {
 .botonmodal button {
   padding: 10px 15px;
   font-size: 16px;
-  background-color: #28a745;
+  background-color: #148f77;
   color: white;
-  border: none;
+  border: 2px solid #D3D3D3;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .botonmodal button:hover {
-  background-color: #218838;
+    background-color: #117864; /* Verde más oscuro */
+    border-color: #D3D3D3; /* Bordes más oscuros */
 }
 
 /* Estilos de la tabla de pasajeros */
@@ -285,20 +286,21 @@ td {
 }
 
 .register-btn {
-  background-color: #28a745;
+  background-color: #148f77;
   color: white;
+  border: 2px solid #D3D3D3;
   padding: 10px 15px;
   margin-top: 10px;
   width: 100%;
   font-size: 16px;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
   align-self: flex-end;
 }
 
 .register-btn:hover {
-  background-color: #218838;
+   background-color: #117864; /* Verde más oscuro */
+   border-color: #D3D3D3; /* Bordes más oscuros */
 }
 
 /* Estilos del contenido dinámico en los modales */
@@ -322,15 +324,16 @@ td {
   margin-top: 10px;
   padding: 10px 15px;
   font-size: 16px;
-  background-color: #28a745;
+  background-color:  #148f77;
+  border: 2px solid #D3D3D3;
   color: white;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .button-modal:hover, .button-modal-registrar:hover {
-  background-color: #218838;
+   background-color: #117864; /* Verde más oscuro */
+   border-color: #D3D3D3; /* Bordes más oscuros */
 }
 
 table#tablaCostos, table#tablaPasajeros {
