@@ -36,8 +36,10 @@ h1 {
 }
 
 .form-group h3 {
-  font-size: 15px;
   margin-right: 2%;
+  font-size: 14px; /* Tamaño de fuente ajustado para coincidir */
+  font-weight: normal; /* Peso de fuente igual al del label */
+  color: #000; /* Asegúrate de que el color del texto coincida con el del label */
 }
 
 .form-group input,

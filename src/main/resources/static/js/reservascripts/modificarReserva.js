@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             // Inicializar los arrays locales con los datos de la reserva
             pasajeros_local = reserva.pasajeros || [];
             costos_local = reserva.costosAdicionales || [];
-            
+
             // Llenar la tabla con los datos de los pasajeros
             const tablaPasajeros = document.getElementById('tabla-pasajeros');
             tablaPasajeros.innerHTML = ''; // Limpiar la tabla antes de llenarla
