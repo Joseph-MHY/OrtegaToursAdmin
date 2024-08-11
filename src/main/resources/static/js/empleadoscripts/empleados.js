@@ -6,7 +6,7 @@ const searchBtn = document.getElementById('searchBtn');
 const tablaEmpleados = document.getElementById('tablaEmpleados');
 const modal = document.getElementById("modal");
 const selectOrden = document.getElementById('select-orden');
-const itemsPorPagina = 5; // Número de empleados por página, ajusta según tus necesidades
+const itemsPorPagina = 8; // Número de empleados por página, ajusta según tus necesidades
 let paginaActual = 1;
 
 
@@ -222,7 +222,7 @@ document.getElementById('registroEmpleadoForm').addEventListener('submit', async
                 setTimeout(function() {
                     location.reload();
                 }, 3500);
-            } else if (res.data == 'Empleado ya existente'){
+            } else {
                 toastr["warning"](res.data);
             }
         })

@@ -21,7 +21,6 @@ toastr.options = {
 function getIdFromUrl() {
     const path = window.location.pathname;
     const id = path.split('/').pop(); // Obtiene el último segmento de la URL
-    console.log(id);
     return id;
 }
 
@@ -47,7 +46,7 @@ function fetchEmployeeDetails(id) {
             document.getElementById('salario').value = data.salario || '';
             document.getElementById('tipo-contrato').value = data.idTipoContrato;
             document.getElementById('notas-adicionales').value = data.observaciones || '';
-            document.getElementById('estado').value = data.estadoCuenta ? 'true' : 'false';
+            document.getElementById('estado').value = data.estadoCuenta ? true : false;
         })
         .catch(error => {
             console.error('Error al obtener los detalles del empleado:', error);
@@ -56,6 +55,10 @@ function fetchEmployeeDetails(id) {
 
 function updateEmployee(id) {
     const url = `${BASE_URL}/actions/empleados/${id}`;
+    const Observaciones = document.getElementById('notas-adicionales').value.trim();
+    const CuentaBancaria = document.getElementById('num-cuenta-bancaria').value.trim();
+    const ContactoEmergencia = document.getElementById('contacto-emergencia').value.trim();
+    const EstadoCuenta = document.getElementById('estado').value;
     const empleado = {
         nombreApellidos: document.getElementById('nombres-apellidos').value,
         direccion: document.getElementById('direccion').value,
@@ -65,14 +68,14 @@ function updateEmployee(id) {
         fechaNac: document.getElementById('fecha-nacimiento').value,
         fechaContratacion: document.getElementById('fecha-contratacion').value,
         telefono: document.getElementById('telefono').value,
-        contactoEmergencia: document.getElementById('contacto-emergencia').value,
+        contactoEmergencia: ContactoEmergencia == "" ? null : ContactoEmergencia,
         idRol: parseInt(document.getElementById('puesto').value),
         idTipoContrato: parseInt(document.getElementById('tipo-contrato').value),
         horarioTrabajo: document.getElementById('horario-trabajo').value,
-        cuentaBancaria: document.getElementById('num-cuenta-bancaria').value,
+        cuentaBancaria: CuentaBancaria == "" ? null : CuentaBancaria,
         salario: parseFloat(document.getElementById('salario').value),
-        observaciones: document.getElementById('notas-adicionales').value,
-        estadoCuenta: document.getElementById('estado').value === 'true'
+        observaciones: Observaciones == "" ? null : Observaciones,
+        estadoCuenta: EstadoCuenta == "true" ? true : false
     };
 
     axios.put(url, empleado)
@@ -82,9 +85,11 @@ function updateEmployee(id) {
             setTimeout(function() {
                 window.location.href = `${BASE_URL}/admin/empleados`;
             }, 3500);
+            console.log("Empleado enviado", JSON.stringify(empleado, null, 2));
         })
         .catch(error => {
             console.error('Error al actualizar el empleado:', error);
+            console.log("Empleado enviado", JSON.stringify(empleado, null, 2));
             alert('Error al actualizar el empleado');
         });
 }

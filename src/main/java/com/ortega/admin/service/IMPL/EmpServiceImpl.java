@@ -125,14 +125,15 @@ public class EmpServiceImpl implements EmpService {
         empleado.setFechaNac(java.sql.Date.valueOf(empleadoUpdateDTO.getFechaNac()));
         empleado.setFechaContratacion(java.sql.Date.valueOf(empleadoUpdateDTO.getFechaContratacion()));
         empleado.setTelefono(empleadoUpdateDTO.getTelefono().trim());
-        empleado.setContactoEmergencia(empleadoUpdateDTO.getContactoEmergencia() != null ? empleadoUpdateDTO.getContactoEmergencia().trim() : null);
+        empleado.setContactoEmergencia(empleadoUpdateDTO.getContactoEmergencia());
         empleado.setIdRol(obtenerEntidadPorId(iRol, empleadoUpdateDTO.getIdRol(), "Rol"));
         empleado.setIdTipoContrato(obtenerEntidadPorId(iTipoContrato, empleadoUpdateDTO.getIdTipoContrato(), "Tipo de contrato"));
-        empleado.setHorarioTrabajo(empleadoUpdateDTO.getHorarioTrabajo().trim());
-        empleado.setCuentaBancaria(empleadoUpdateDTO.getCuentaBancaria() != null ? empleadoUpdateDTO.getCuentaBancaria().trim() : null);
+        empleado.setHorarioTrabajo(empleadoUpdateDTO.getHorarioTrabajo());
+        empleado.setCuentaBancaria(empleadoUpdateDTO.getCuentaBancaria());
         empleado.setSalario(empleadoUpdateDTO.getSalario());
-        empleado.setObservaciones(empleadoUpdateDTO.getObservaciones() != null ? empleado.getObservaciones().trim() : null);
+        empleado.setObservaciones(empleadoUpdateDTO.getObservaciones());
         empleado.setEstadoCuenta(empleadoUpdateDTO.getEstadoCuenta());
+        System.out.println(empleado);
 
         // Guardar la entidad actualizada
         iEmpleado.save(empleado);
