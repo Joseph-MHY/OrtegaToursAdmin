@@ -24,6 +24,18 @@ toastr.options = {
     "hideMethod": "fadeOut"
 };
 
+function actualizarEtiquetaDni() {
+    const dniInput = document.getElementById('dni').value;
+    const dniLabel = document.querySelector('label[for="dni"]');
+
+    if (dniInput.length === 8) {
+        dniLabel.textContent = 'Nro DNI:';
+    } else if (dniInput.length > 8) {
+        dniLabel.textContent = 'Nro Pasaporte:';
+    } else {
+        dniLabel.textContent = 'Nro Documento:'; // Valor por defecto
+    }
+}
 function updateCosts() {
     const select = document.getElementById('nombrePaquete');
     const costeBaseInput = document.getElementById('costeBase');
@@ -225,6 +237,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             });
 
             // Actualizar los costos del paquete
+            actualizarEtiquetaDni();
             updateCosts();
         } catch (error) {
             console.error('Error al cargar la reserva:', error);
