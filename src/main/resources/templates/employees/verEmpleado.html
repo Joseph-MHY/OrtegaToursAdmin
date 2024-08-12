@@ -44,13 +44,17 @@
       </select>
     </div>
     <div class="form-group second-column">
-      <label for="num-identity">N° de identidad:</label>
+      <label for="num-identity">N° de Documento:</label>
       <input
               type="text"
               id="num-identity"
-              placeholder="Ingresar Numero de Documento"
+              placeholder="Ingresar Número"
+              maxlength="20"
               required
+              oninput="permitirSoloNumeros(event)"
       />
+
+
     </div>
     <div class="form-group">
       <label for="correo">Correo:</label>
@@ -72,11 +76,11 @@
     </div>
     <div class="form-group second-column">
       <label for="telefono">Teléfono:</label>
-      <input type="text" id="telefono" placeholder="987654321" required />
+      <input type="text" id="telefono" placeholder="Ingrese Contacto" required  maxlength="9" oninput="permitirSoloNumeros(event)"/>
     </div>
     <div class="form-group ">
       <label for="contacto-emergencia">Contacto de Emergencia:</label>
-      <input type="text" id="contacto-emergencia" placeholder="987654321" required />
+      <input type="text" id="contacto-emergencia" placeholder="Ingrese contacto" required  maxlength="9"  oninput="permitirSoloNumeros(event)"/>
     </div>
     <div class="form-group second-column">
       <label for="puesto">Puesto:</label>
@@ -92,7 +96,7 @@
     </div>
     <div class="form-group second-column">
       <label for="num-cuenta-bancaria">Número de cuenta bancaria:</label>
-      <input type="text" id="num-cuenta-bancaria" placeholder="000-0000000-0-000" required />
+      <input type="text" id="num-cuenta-bancaria" placeholder="000-0000000-0-000" maxlength="40" oninput="permitirSoloNumerosyguion(event)" required />
     </div>
     <div class="form-group">
       <label for="salario">Salario:</label>
@@ -123,4 +127,20 @@
 </main>
 </body>
 <script type="module" th:src="@{/js/empleadoscripts/verEmpleado.js}"></script>
+<script>
+  function permitirSoloNumeros(event) {
+      const input = event.target;
+      const valor = input.value;
+      // Permitir solo números y guiones
+      const valorFiltrado = valor.replace(/[^0-9]/g, '');
+      input.value = valorFiltrado;
+  }
+    function permitirSoloNumerosyguion(event) {
+      const input = event.target;
+      const valor = input.value;
+      // Permitir solo números y guiones
+      const valorFiltrado = valor.replace(/[^0-9-]/g, '');
+      input.value = valorFiltrado;
+  }
+</script>
 </html>

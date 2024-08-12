@@ -18,6 +18,7 @@ toastr.options = {
     "hideMethod": "fadeOut"
 };
 
+
 function getIdFromUrl() {
     const path = window.location.pathname;
     const id = path.split('/').pop(); // Obtiene el último segmento de la URL
@@ -47,6 +48,8 @@ function fetchEmployeeDetails(id) {
             document.getElementById('tipo-contrato').value = data.idTipoContrato;
             document.getElementById('notas-adicionales').value = data.observaciones || '';
             document.getElementById('estado').value = data.estadoCuenta ? true : false;
+
+
         })
         .catch(error => {
             console.error('Error al obtener los detalles del empleado:', error);

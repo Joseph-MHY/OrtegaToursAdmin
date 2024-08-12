@@ -30,8 +30,16 @@
                 <input type="text" id="apellido" name="apellido" placeholder="Ingresar su Apellidos"readonly>
             </div>
             <div class="form-group">
-                <label for="dni">DNI o Pasaporte:</label>
-                <input type="text" id="dni" name="dni" placeholder="Ingrese su DNI" readonly>
+                <label for="tipDoc">Tipo Documento:</label>
+                <select id="tipDoc" name="tipDoc" readonly>
+                    <option value="DNI">DNI</option>
+                    <option value="Pasaporte">Pasaporte</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="dni">Nro Documento:</label>
+                <input type="text" id="dni" name="dni" placeholder="Ingresar su DNI" readonly>
             </div>
             <div class="form-group">
                 <label for="correo">Correo:</label>
@@ -49,6 +57,11 @@
                 <label for="fechaPartida">Fecha de Partida:</label>
                 <input type="date" id="fechaPartida" name="fechaPartida">
             </div>
+
+        </div>
+        <hr>
+        <!-- Sección media -->
+        <div class="section middle-section">
             <div class="form-group">
                 <label for="nombrePaquete">Nombre de Paquete:</label>
                 <select id="nombrePaquete" name="nombrePaquete">
@@ -64,10 +77,6 @@
                     <option value="PRIVADO">privado</option>
                 </select>
             </div>
-        </div>
-
-        <!-- Sección media -->
-        <div class="section middle-section">
             <div class="form-group">
                 <label for="conductor">Conductor Asignado:</label>
                 <select id="conductor" name="conductor">
@@ -102,12 +111,9 @@
                     <option value="5">Cancelado</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="notas">Notas Adicionales:</label>
-                <textarea id="notas" name="notas" placeholder="Opcional"></textarea>
-            </div>
-        </div>
 
+        </div>
+        <hr>
         <!-- Sección derecha final -->
         <div class="section right-section">
             <div class="form-group">
@@ -117,6 +123,10 @@
                     <option value="USD">dólares</option>
                     <option value="PEN">soles</option>
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="notas">Notas Adicionales:</label>
+                <textarea id="notas" name="notas" placeholder="Opcional"></textarea>
             </div>
 
             <button type="button" id="modificar">Actualizar</button>
@@ -198,22 +208,14 @@
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script type="module" th:src="@{/js/reservascripts/modificarReserva.js}"></script>
 <script>
-    function validateNumberLength(input, minLength, maxLength) {
-        // Elimina todo lo que no sea un número
-        input.value = input.value.replace(/\D/g, '');
 
-        // Limita la longitud de la entrada
-        if (input.value.length > maxLength) {
-            input.value = input.value.slice(0, maxLength);
-        }
-    }
 
     function permitirSoloLetras(event) {
-        const input = event.target;
-        const valor = input.value;
-        const valorFiltrado = valor.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/g, ''); // Solo letras y espacios
-        input.value = valorFiltrado;
-    }
+       const input = event.target;
+       const valor = input.value;
+       const valorFiltrado = valor.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/g, ''); // Solo letras y espacios
+       input.value = valorFiltrado;
+  }
 
     document.getElementById("nombrePasajero").addEventListener("input", permitirSoloLetras);
     document.getElementById("apellidoPasajero").addEventListener("input", permitirSoloLetras);
