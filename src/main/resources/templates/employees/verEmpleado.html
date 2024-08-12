@@ -1,146 +1,149 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Empleado</title>
-  <link rel="stylesheet" th:href="@{/css/verEmpleado.css}" />
-  <link rel="icon" type="image/png" href="/images/Logoot2.png">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Empleado</title>
+    <link rel="stylesheet" th:href="@{/css/verEmpleado.css}"/>
+    <link rel="icon" type="image/png" href="/images/Logoot2.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <div th:replace="~{menu}"></div>
 
 <main>
-  <h1 style="margin-button: 10px;">Datos de Empleado:</h1>
+    <h1>Datos de Empleado:</h1>
 
-  <form class="employee-form">
-    <div class="form-group">
-      <label for="nombres-apellidos">Nombres y Apellidos:</label>
-      <input
-              type="text"
-              id="nombres-apellidos"
-              placeholder="Ingresar Nombres y Apellidos"
-              required
-      />
-    </div>
-    <div class="form-group second-column">
-      <label for="direccion">Dirección:</label>
-      <input
-              type="text"
-              id="direccion"
-              placeholder="Ingresar Direccion"
-              required
-      />
-    </div>
-    <div class="form-group">
-      <label for="tipo-documento">Tipo de Documento de identidad:</label>
-      <select name="idTipoDocumento" id="tipo-documento" required>
-        <option value="1">DNI</option>
-        <option value="2">Pasaporte</option>
-      </select>
-    </div>
-    <div class="form-group second-column">
-      <label for="num-identity">N° de Documento:</label>
-      <input
-              type="text"
-              id="num-identity"
-              placeholder="Ingresar Número"
-              maxlength="20"
-              required
-              oninput="permitirSoloNumeros(event)"
-      />
+    <form class="employee-form">
+        <!-- Datos Personales -->
+        <fieldset>
+            <legend>Datos Personales</legend>
+            <div class="form-group">
+                <label for="nombres-apellidos">Nombres y Apellidos:</label>
+                <input type="text" id="nombres-apellidos" placeholder="Ingresar Nombres y Apellidos" required/>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" placeholder="Ingresar Dirección" required/>
+            </div>
+            <div class="form-group">
+                <label for="tipo-documento">Tipo de Documento de Identidad:</label>
+                <select name="idTipoDocumento" id="tipo-documento" required>
+                    <option value="1">DNI</option>
+                    <option value="2">Pasaporte</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="num-identity">N° de Documento:</label>
+                <input type="text" id="num-identity" placeholder="Ingresar Número" maxlength="20" required
+                       oninput="permitirSoloNumeros(event)"/>
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" placeholder="ejemplo@correo.com" required readonly/>
+            </div>
+            <div class="form-group">
+                <label for="fecha-nacimiento">Fecha de Nacimiento:</label>
+                <input type="date" id="fecha-nacimiento" required/>
+            </div>
+        </fieldset>
 
+        <!-- Información Laboral -->
+        <fieldset>
+            <legend>Información Laboral</legend>
+            <div class="form-group">
+                <label for="fecha-contratacion">Fecha de Contratación:</label>
+                <input type="date" id="fecha-contratacion" required/>
+            </div>
+            <div class="form-group">
+                <label for="puesto">Puesto:</label>
+                <select name="puesto" id="puesto">
+                    <option value="1">Atención al cliente</option>
+                    <option value="2">Administrador</option>
+                    <option value="3">Conductor</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="horario-trabajo">Horario de Trabajo:</label>
+                <textarea id="horario-trabajo" placeholder="Ingresar su Horario Laboral" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="num-cuenta-bancaria">Número de Cuenta Bancaria:</label>
+                <input type="text" id="num-cuenta-bancaria" placeholder="000-0000000-0-000" maxlength="40"
+                       oninput="permitirSoloNumerosyguion(event)" required/>
+            </div>
+            <div class="form-group">
+                <label for="salario">Salario:</label>
+                <input type="number" id="salario" placeholder="000.00" required/>
+            </div>
+            <div class="form-group">
+                <label for="tipo-contrato">Tipo de Contrato:</label>
+                <select name="tipo-contrato" id="tipo-contrato">
+                    <option value="1">Tiempo Completo</option>
+                    <option value="2">Medio Tiempo</option>
+                </select>
+            </div>
+        </fieldset>
 
-    </div>
-    <div class="form-group">
-      <label for="correo">Correo:</label>
-      <input
-              type="email"
-              id="correo"
-              placeholder="ejemplo@correo.com"
-              required
-              readonly
-      />
-    </div>
-    <div class="form-group second-column">
-      <label for="fecha-nacimiento">Fecha de Nacimiento:</label>
-      <input type="date" id="fecha-nacimiento" required />
-    </div>
-    <div class="form-group">
-      <label for="fecha-contratacion">Fecha de Contratación:</label>
-      <input type="date" id="fecha-contratacion" required />
-    </div>
-    <div class="form-group second-column">
-      <label for="telefono">Teléfono:</label>
-      <input type="text" id="telefono" placeholder="Ingrese Contacto" required  maxlength="9" oninput="permitirSoloNumeros(event)"/>
-    </div>
-    <div class="form-group ">
-      <label for="contacto-emergencia">Contacto de Emergencia:</label>
-      <input type="text" id="contacto-emergencia" placeholder="Ingrese contacto" required  maxlength="9"  oninput="permitirSoloNumeros(event)"/>
-    </div>
-    <div class="form-group second-column">
-      <label for="puesto">Puesto:</label>
-      <select name="puesto" id="puesto">
-        <option value="1">Atención al cliente</option>
-        <option value="2">Administrador</option>
-        <option value="3">Conductor</option>
-      </select>
-    </div>
-    <div class="form-group ">
-      <label for="horario-trabajo">Horario de Trabajo:</label>
-      <textarea id="horario-trabajo" placeholder="Ingresar su Horario Laboral" required></textarea>
-    </div>
-    <div class="form-group second-column">
-      <label for="num-cuenta-bancaria">Número de cuenta bancaria:</label>
-      <input type="text" id="num-cuenta-bancaria" placeholder="000-0000000-0-000" maxlength="40" oninput="permitirSoloNumerosyguion(event)" required />
-    </div>
-    <div class="form-group">
-      <label for="salario">Salario:</label>
-      <input type="number" id="salario" placeholder="000.00" required />
-    </div>
-    <div class="form-group second-column">
-      <label for="tipo-contrato">Tipo de Contrato:</label>
-      <select name="tipo-contrato" id="tipo-contrato">
-        <option value="1">Tiempo Completo</option>
-        <option value="2">Medio Tiempo</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="notas-adicionales">Notas Adicionales:</label>
-      <textarea id="notas-adicionales" placeholder="(Opcional)" required></textarea>
-    </div>
-    <div class="form-group second-column">
-      <label for="estado">Estado:</label>
-      <select name="estado" id="estado">
-        <option value="true">Activo</option>
-        <option value="false">Inactivo</option>
-      </select>
-    </div>
-    <div class="form-group buttons-employee">
-      <button type="submit" id="btnModificar">Actualizar</button>
-    </div>
-  </form>
+        <!-- Información de Contacto -->
+        <fieldset>
+            <legend>Información de Contacto</legend>
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" placeholder="Ingrese Contacto" required maxlength="9"
+                       oninput="permitirSoloNumeros(event)"/>
+            </div>
+            <div class="form-group">
+                <label for="contacto-emergencia">Contacto de Emergencia:</label>
+                <input type="text" id="contacto-emergencia" placeholder="Ingrese contacto" required maxlength="9"
+                       oninput="permitirSoloNumeros(event)"/>
+            </div>
+        </fieldset>
+
+        <!-- Notas Adicionales -->
+        <fieldset>
+            <legend>Extras</legend>
+            <div class="form-group">
+                <label for="notas-adicionales">Notas Adicionales:</label>
+                <textarea id="notas-adicionales" placeholder="(Opcional)" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                <select name="estado" id="estado">
+                    <option value="true">Activo</option>
+                    <option value="false">Inactivo</option>
+                </select>
+            </div>
+        </fieldset>
+
+        <!-- Botones de Acción -->
+        <div class="form-group buttons-employee">
+            <button type="submit" id="btnModificar">Actualizar</button>
+        </div>
+    </form>
 </main>
 </body>
 <script type="module" th:src="@{/js/empleadoscripts/verEmpleado.js}"></script>
 <script>
-  function permitirSoloNumeros(event) {
-      const input = event.target;
-      const valor = input.value;
-      // Permitir solo números y guiones
-      const valorFiltrado = valor.replace(/[^0-9]/g, '');
-      input.value = valorFiltrado;
-  }
+    function permitirSoloNumeros(event) {
+        const input = event.target;
+        const valor = input.value;
+        // Permitir solo números
+        const valorFiltrado = valor.replace(/[^0-9]/g, '');
+        input.value = valorFiltrado;
+    }
+
     function permitirSoloNumerosyguion(event) {
-      const input = event.target;
-      const valor = input.value;
-      // Permitir solo números y guiones
-      const valorFiltrado = valor.replace(/[^0-9-]/g, '');
-      input.value = valorFiltrado;
-  }
+        const input = event.target;
+        const valor = input.value;
+        // Permitir solo números y guiones
+        const valorFiltrado = valor.replace(/[^0-9-]/g, '');
+        input.value = valorFiltrado;
+    }
 </script>
 </html>

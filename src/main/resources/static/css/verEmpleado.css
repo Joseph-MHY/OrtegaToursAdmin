@@ -20,7 +20,7 @@ main.min-main {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
   gap: 5px; /* Espacio entre los elementos */
-  width: 70%;
+  width: 100%;
 }
 
 .second-column {
@@ -54,21 +54,61 @@ main.min-main {
   color: white;
   border: none;
   width: 100%;
-  flex: 1;
   font-size: 16px;
   padding: 10px 15px;
   cursor: pointer;
-  margin-right: 5px;
-  margin-top: 20px;
 }
 
 #btnModificar:hover {
   background-color: #285165;
 }
 
-@media (max-width: 870px) {
-  .employee-form {
-    width: 100%;
-  }
+fieldset {
+  border: 2px solid #7c7c7c;
+  padding: 20px 0 20px 20px;
+  margin-bottom: 10px;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.second-column {
+  margin-left: 0px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input, select, textarea {
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.buttons-employee {
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
