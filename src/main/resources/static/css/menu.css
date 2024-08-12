@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap');
 :root{
-    --color-barra-lateral:rgb(44,45,49);
+    --color-barra-lateral: rgb(31, 31, 31);
 
     --color-texto:rgb(255,255,255);
     --color-texto-menu: rgb(220, 220, 220);
@@ -95,7 +95,7 @@ body{
 }
 .barra-lateral .nombre-pagina #logoOrtega {
     width: 210px; /* Cambia a un tamaño más pequeño */
-    height: 160px; /* Ajusta la altura también */
+    height: 150px; /* Ajusta la altura también */
     margin-top: auto;
     padding-left:5px
 
