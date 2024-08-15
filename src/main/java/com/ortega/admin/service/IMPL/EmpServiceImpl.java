@@ -156,7 +156,7 @@ public class EmpServiceImpl implements EmpService {
         return conductores;
     }
 
-    private EmpleadoResponse convertirAEmpleadoResponse(Empleados empleado) {
+    public EmpleadoResponse convertirAEmpleadoResponse(Empleados empleado) {
         EmpleadoResponse response = modelMapper.map(empleado, EmpleadoResponse.class);
         RolEnum rolEnum = RolEnum.fromNombreRol(empleado.getIdRol().getNombreRol());
         response.setPuesto(rolEnum.getDescripcion());
@@ -164,7 +164,7 @@ public class EmpServiceImpl implements EmpService {
         return response;
     }
 
-    private <T> T obtenerEntidadPorId(JpaRepository<T, Integer> repository, Integer id, String nombreEntidad) {
+    public <T> T obtenerEntidadPorId(JpaRepository<T, Integer> repository, Integer id, String nombreEntidad) {
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(nombreEntidad + " no encontrado"));
     }
