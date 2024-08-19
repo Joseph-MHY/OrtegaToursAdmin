@@ -31,4 +31,8 @@ public class Nacionalidades {
         this.id = id;
         this.nombreNacionalidad = nombreNacionalidad;
     }
+
+    public Nacionalidades() {
+
+    }
 }
