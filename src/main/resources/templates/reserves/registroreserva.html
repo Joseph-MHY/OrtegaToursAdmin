@@ -6,7 +6,9 @@
     <title>Página Registrar Reservas</title>
     <link rel="stylesheet" th:href="@{/css/registrarreserva.css}">
     <link rel="icon" type="image/png" href="/images/colibriv3.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -28,7 +30,8 @@
             </div>
             <div class="form-group">
                 <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="apellido" placeholder="Ingresar su Apellido" minlength="2" maxlength="80">
+                <input type="text" id="apellido" name="apellido" placeholder="Ingresar su Apellido" minlength="2"
+                       maxlength="80">
             </div>
             <div class="form-group">
                 <label for="tipDoc">Tipo Documento:</label>
@@ -40,15 +43,17 @@
 
             <div class="form-group">
                 <label for="dni">Nro Documento:</label>
-                <input type="text" id="dni" name="dni" placeholder="Ingresar su DNI" >
+                <input type="text" id="dni" name="dni" placeholder="Ingresar su DNI">
             </div>
             <div class="form-group">
                 <label for="correo">Correo:</label>
-                <input type="email" id="correo" name="correo" placeholder="Ingresar su Correo" minlength="8" maxlength="80">
+                <input type="email" id="correo" name="correo" placeholder="Ingresar su Correo" minlength="8"
+                       maxlength="80">
             </div>
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
-                <input type="text" id="telefono" name="telefono" placeholder="Ingresar su Teléfono" oninput="validateNumberLength(this, 9, 9)">
+                <input type="text" id="telefono" name="telefono" placeholder="Ingresar su Teléfono"
+                       oninput="validateNumberLength(this, 9, 9)">
             </div>
             <div class="form-group">
                 <label for="fechaPartida">Fecha de Partida:</label>
@@ -104,8 +109,8 @@
                 <select id="estado" name="estado">
                     <option value="">Seleccionar</option>
                     <option value="1">en progreso</option>
-                    <option value="3">reservado</option>
-                    <option value="5">Cancelado</option>
+                    <option value="2">reservado</option>
+                    <option value="3">Cancelado</option>
                 </select>
             </div>
 
@@ -138,7 +143,8 @@
             <!-- Contenido del modal de costos adicionales -->
             <div class="form-group-modal">
                 <label class="label-modal" for="descripcion">Descripción:</label>
-                <input class="input-modal" type="text" id="descripcion" name="descripcion" placeholder="Ingrese Descripción" maxlength="40">
+                <input class="input-modal" type="text" id="descripcion" name="descripcion"
+                       placeholder="Ingrese Descripción" maxlength="40">
                 <label class="label-modal" for="costo">Costo:</label>
                 <input class="input-modal" type="number" id="costo" name="costo" placeholder="Ingrese Monto">
             </div>
@@ -164,21 +170,27 @@
             <h2>Pasajeros</h2>
             <div class="form-group-modal">
                 <label class="label-modal" for="nombrePasajero">Nombre:</label>
-                <input class="input-modal" type="text" id="nombrePasajero" name="nombrePasajero" placeholder="Ingresar Nombres" maxlength="80">
+                <input class="input-modal" type="text" id="nombrePasajero" name="nombrePasajero"
+                       placeholder="Ingresar Nombres" maxlength="80">
                 <label class="label-modal" for="apellidoPasajero">Apellido:</label>
-                <input class="input-modal" type="text" id="apellidoPasajero" name="apellidoPasajero" placeholder="Ingresar Apellidos" maxlength="80">
+                <input class="input-modal" type="text" id="apellidoPasajero" name="apellidoPasajero"
+                       placeholder="Ingresar Apellidos" maxlength="80">
                 <label class="label-modal" for="nacionalidadPasajero">Nacionalidad:</label>
                 <select class="select-modal" id="nacionalidadPasajero" name="nacionalidadPasajero">
                     <option value="">Seleccionar</option>
                 </select>
                 <label class="label-modal" for="numeroDocumentoPasajero">Número de Documento:</label>
-                <input class="input-modal" type="number" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero" placeholder="Ingresar Número de Documento" maxlength="20" oninput="validateNumberLength(this, 8, 20)"/>
+                <input class="input-modal" type="number" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero"
+                       placeholder="Ingresar Número de Documento" maxlength="20"
+                       oninput="validateNumberLength(this, 8, 20)"/>
 
                 <label class="label-modal" for="correoPasajero">Correo (Opcional):</label>
-                <input class="input-modal" type="email" id="correoPasajero" name="correoPasajero" placeholder="Ingresar Correo" maxlength="80" />
+                <input class="input-modal" type="email" id="correoPasajero" name="correoPasajero"
+                       placeholder="Ingresar Correo" maxlength="80"/>
 
                 <label class="label-modal" for="celularPasajero">Celular (Opcional):</label>
-                <input class="input-modal" type="number" id="celularPasajero" name="celularPasajero" placeholder="Ingresar Celular" maxlength="9" oninput="validateNumberLength(this, 9, 9)" />
+                <input class="input-modal" type="number" id="celularPasajero" name="celularPasajero"
+                       placeholder="Ingresar Celular" maxlength="9" oninput="validateNumberLength(this, 9, 9)"/>
 
             </div>
             <button class="button-modal" type="button" onclick="agregarPasajero()">Agregar Pasajero</button>
@@ -224,6 +236,24 @@
         }
     }
 
+    function validateNumberLength(input, minLength, maxLength) {
+        // Eliminar cualquier carácter que no sea un número
+        input.value = input.value.replace(/\D/g, '');
+
+        // Verificar que la longitud esté dentro de los límites permitidos
+        if (input.value.length > maxLength) {
+            input.value = input.value.slice(0, maxLength);
+        }
+
+        // Mostrar un mensaje si la longitud es menor que el mínimo (opcional)
+        if (input.value.length < minLength) {
+            input.setCustomValidity(`El número debe tener al menos ${minLength} dígitos.`);
+        } else {
+            input.setCustomValidity(''); // Limpia cualquier mensaje si es válido
+        }
+    }
+
+
     // Asignar la función adjustDocumentoInput al evento change del select
     tipDocSelect.addEventListener('change', adjustDocumentoInput);
 
@@ -231,22 +261,22 @@
     adjustDocumentoInput();
 
     // Validar que solo se ingresen números en el campo de documento
-    dniInput.addEventListener('input', function() {
+    dniInput.addEventListener('input', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
     });
 
-        function permitirSoloLetras(event) {
-            const input = event.target;
-            const valor = input.value;
-            const valorFiltrado = valor.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/g, ''); // Solo letras y espacios
-            input.value = valorFiltrado;
-        }
+    function permitirSoloLetras(event) {
+        const input = event.target;
+        const valor = input.value;
+        const valorFiltrado = valor.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/g, ''); // Solo letras y espacios
+        input.value = valorFiltrado;
+    }
 
-        // Agregar eventos a los campos
-        document.getElementById("nombrePasajero").addEventListener("input", permitirSoloLetras);
-        document.getElementById("apellidoPasajero").addEventListener("input", permitirSoloLetras);
-        document.getElementById("nombre").addEventListener("input", permitirSoloLetras);
-        document.getElementById("apellido").addEventListener("input", permitirSoloLetras);
+    // Agregar eventos a los campos
+    document.getElementById("nombrePasajero").addEventListener("input", permitirSoloLetras);
+    document.getElementById("apellidoPasajero").addEventListener("input", permitirSoloLetras);
+    document.getElementById("nombre").addEventListener("input", permitirSoloLetras);
+    document.getElementById("apellido").addEventListener("input", permitirSoloLetras);
 </script>
 </body>
 </html>

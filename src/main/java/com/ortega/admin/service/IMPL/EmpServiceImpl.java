@@ -109,7 +109,6 @@ public class EmpServiceImpl implements EmpService {
         return response;
     }
 
-
     @Transactional
     @Override
     public String updateEmpleado(Integer id, EmpleadoRequest.EmpleadoUpdateRequest empleadoUpdateDTO) {
@@ -133,7 +132,6 @@ public class EmpServiceImpl implements EmpService {
         empleado.setSalario(empleadoUpdateDTO.getSalario());
         empleado.setObservaciones(empleadoUpdateDTO.getObservaciones());
         empleado.setEstadoCuenta(empleadoUpdateDTO.getEstadoCuenta());
-        System.out.println(empleado);
 
         // Guardar la entidad actualizada
         iEmpleado.save(empleado);

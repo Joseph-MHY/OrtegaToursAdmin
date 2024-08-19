@@ -286,7 +286,6 @@ public class ReservaServiceImpl implements IReservaService {
         transaccion.setMontoPagado(reservaRequest.getCosto_total());
         transaccion.setEstadoPago(reservaRequest.getTransaccion().getEstado_pago());
         transaccion.setTipoMoneda(reservaRequest.getTransaccion().getTipo_moneda());
-        System.out.println(reservaRequest.getTransaccion());
         iTransaccion.save(transaccion);
 
         return "Reserva registrada exitosamente";

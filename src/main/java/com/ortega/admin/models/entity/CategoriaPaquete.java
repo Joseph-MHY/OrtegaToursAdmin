@@ -25,4 +25,11 @@ public class CategoriaPaquete {
     @OneToMany(mappedBy = "idCategoriaPaquete")
     private Set<Paquetes> paquetes = new LinkedHashSet<>();
 
+    public CategoriaPaquete(Integer id, String nombreCategoria) {
+        this.id = id;
+        this.nombreCategoria = nombreCategoria;
+    }
+
+    public CategoriaPaquete() {
+    }
 }

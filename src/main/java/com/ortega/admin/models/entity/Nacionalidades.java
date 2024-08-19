@@ -2,6 +2,7 @@ package com.ortega.admin.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
@@ -26,4 +27,8 @@ public class Nacionalidades {
     @OneToMany(mappedBy = "idNacionalidad")
     private Set<Pasajeros> pasajeros = new LinkedHashSet<>();
 
+    public Nacionalidades(Integer id, String nombreNacionalidad) {
+        this.id = id;
+        this.nombreNacionalidad = nombreNacionalidad;
+    }
 }

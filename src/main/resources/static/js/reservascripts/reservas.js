@@ -58,7 +58,7 @@ async function mostrarReservas() {
         reservasFiltradas = reservas; // Inicialmente, no hay filtro
         aplicarFiltrosYOrdenar(); // Aplicar filtros y ordenaciones iniciales
         ordenarReservas(reservas, 'inactivos')
-
+        console.log(response.data)
     } catch (error) {
         console.error('Error al obtener las reservas:', error);
         mostrarMensajeNoRegistros();

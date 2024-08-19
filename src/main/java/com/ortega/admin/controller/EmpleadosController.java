@@ -39,7 +39,6 @@ public class EmpleadosController {
     public ResponseEntity<String> updateEmpleado(@PathVariable Integer id,
                                                     @RequestBody EmpleadoRequest.EmpleadoUpdateRequest empleadoUpdateDTO) {
         try {
-            System.out.println(empleadoUpdateDTO);
             return new ResponseEntity<>(empService.updateEmpleado(id, empleadoUpdateDTO), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Error al crear usuario Exception: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

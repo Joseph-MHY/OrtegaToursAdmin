@@ -60,7 +60,7 @@ function updateCosts() {
             const igv = totalCost * 0.18;
             const total = totalCost + igv;
             costeTotalInput.value = total.toFixed(2);
-            tituloCosto.innerText = `Costo Total + IGV (${igv.toFixed(2)}):`;
+            tituloCosto.innerText = `Costo Total(${totalCost.toFixed(2)}) + IGV (${igv.toFixed(2)}):`;
         }
     } else {
         costeBaseInput.value = '0.00';
@@ -537,7 +537,7 @@ function updateReservation() {
         .then(res => {
             toastr["success"]("Reserva actualizada exitosamente");
             setTimeout(function () {
-                location.reload();
+                window.location.href = "/admin/reservas";
             }, 3500);
         })
         .catch(error => {

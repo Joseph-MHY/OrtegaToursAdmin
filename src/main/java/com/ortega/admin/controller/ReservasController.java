@@ -54,8 +54,7 @@ public class ReservasController {
     @PutMapping("/reserva/actualizar/{idReserva}")
     public ResponseEntity<String> actualizarReserva(@PathVariable int idReserva, @RequestBody ReservaRequest reservaRequest) {
         try {
-            String mensaje = reservaServiceImpl.actualizarReserva(idReserva,reservaRequest);
-            return ResponseEntity.status(HttpStatus.CREATED).body(mensaje);
+            return ResponseEntity.status(HttpStatus.CREATED).body(reservaServiceImpl.actualizarReserva(idReserva,reservaRequest));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar la reserva: " + e.getMessage());
         }

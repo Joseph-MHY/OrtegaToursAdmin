@@ -41,4 +41,16 @@ public class Paquetes {
     @OneToMany(mappedBy = "idPaquete")
     private Set<Reservas> reservas = new LinkedHashSet<>();
 
+    public Paquetes(Integer id, String nombrePaquete, CategoriaPaquete idCategoriaPaquete, Double costoBase, Double costoFijo, String descripcionPaquete, String urlimagen) {
+        this.id = id;
+        this.nombrePaquete = nombrePaquete;
+        this.idCategoriaPaquete = idCategoriaPaquete;
+        this.costoBase = costoBase;
+        this.costoFijo = costoFijo;
+        this.descripcionPaquete = descripcionPaquete;
+        this.urlimagen = urlimagen;
+    }
+
+    public Paquetes() {
+    }
 }

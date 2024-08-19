@@ -1,4 +1,4 @@
-import { BASE_URL } from '../BASE_URL.js';
+import {BASE_URL} from '../BASE_URL.js';
 
 const tituloCosto = document.getElementById('tituloCosto');
 let montoTotal = 0;
@@ -48,14 +48,13 @@ function updateCosts() {
         }
 
         if (isNaN(totalCost)) {
-            console.error('totalCost no es un número');
             costeTotalInput.value = '0.00';
             tituloCosto.innerText = 'Costo Total';
         } else {
             const igv = totalCost * 0.18;
             const total = totalCost + igv
             costeTotalInput.value = total.toFixed(2);
-            tituloCosto.innerText = `Costo Total + IGV (${igv.toFixed(2)}):`;
+            tituloCosto.innerText = `Costo Total(${totalCost.toFixed(2)}) + IGV (${igv.toFixed(2)}):`;
         }
     } else {
         costeBaseInput.value = '0.00';
@@ -164,7 +163,7 @@ window.agregarCosto = function () {
         updateCosts();
 
         // Agregar el costo a costos_local
-        costos_local.push({ descripcion, monto });
+        costos_local.push({descripcion, monto});
         console.log(costos_local);
     } else {
         alert("Por favor, complete ambos campos antes de agregar un costo.");
@@ -220,8 +219,6 @@ function toggleButtons() {
 // Event listener para mostrar u ocultar el botón de pasajeros cuando cambia la selección del paquete
 document.getElementById('nombrePaquete').addEventListener('change', toggleButtons);
 
-
-
 // Agregar un pasajero a la tabla
 window.agregarPasajero = function () {
     const nacionalidadSelect = document.getElementById("nacionalidadPasajero");
@@ -235,42 +232,51 @@ window.agregarPasajero = function () {
     const correo = document.getElementById("correoPasajero").value.trim() || null;
     const celular = document.getElementById("celularPasajero").value.trim() || null;
 
-    if (nombres && apellidos && id_nacionalidad && num_documento) {
-        const table = document.getElementById("tablaPasajeros").getElementsByTagName('tbody')[0];
-        const newRow = table.insertRow();
-
-        const cell1 = newRow.insertCell(0);
-        const cell2 = newRow.insertCell(1);
-        const cell3 = newRow.insertCell(2);
-        const cell4 = newRow.insertCell(3);
-        const cell5 = newRow.insertCell(4);
-        const cell6 = newRow.insertCell(5);
-        const cell7 = newRow.insertCell(6);
-
-        cell1.innerHTML = nombres;
-        cell2.innerHTML = apellidos;
-        cell3.innerHTML = nacionalidad;
-        cell4.innerHTML = num_documento;
-        cell5.innerHTML = correo || 'N/A';
-        cell6.innerHTML = celular || 'N/A';
-        cell7.innerHTML = '<ion-icon name="trash-outline" onclick="eliminarPasajero(this)" style="cursor: pointer; color: red;"></ion-icon>'; // Usando Ionicons
-
-        // Limpiar campos después de agregar
-        document.getElementById("nombrePasajero").value = "";
-        document.getElementById("apellidoPasajero").value = "";
-        document.getElementById("nacionalidadPasajero").value = "";
-        document.getElementById("numeroDocumentoPasajero").value = "";
-        document.getElementById("correoPasajero").value = "";
-        document.getElementById("celularPasajero").value = "";
-
-        // Agregar pasajero a la lista
-        pasajeros_local.push({ nombres, apellidos, id_nacionalidad, num_documento, correo, celular });
-
-        // Actualizar costos cuando se agrega un nuevo pasajero
-        updateCosts();
-    } else {
+    // Validaciones
+    if (!nombres || !apellidos || !id_nacionalidad || !num_documento) {
         alert("Por favor, complete todos los campos obligatorios antes de agregar un pasajero.");
+        return;
     }
+
+    // Validar que el número de celular tenga exactamente 9 dígitos, si está presente
+    if (celular && celular.length !== 9) {
+        alert("El número de celular debe tener exactamente 9 dígitos.");
+        return;
+    }
+
+    // Si todo está correcto, agregar el pasajero a la tabla
+    const table = document.getElementById("tablaPasajeros").getElementsByTagName('tbody')[0];
+    const newRow = table.insertRow();
+
+    const cell1 = newRow.insertCell(0);
+    const cell2 = newRow.insertCell(1);
+    const cell3 = newRow.insertCell(2);
+    const cell4 = newRow.insertCell(3);
+    const cell5 = newRow.insertCell(4);
+    const cell6 = newRow.insertCell(5);
+    const cell7 = newRow.insertCell(6);
+
+    cell1.innerHTML = nombres;
+    cell2.innerHTML = apellidos;
+    cell3.innerHTML = nacionalidad;
+    cell4.innerHTML = num_documento;
+    cell5.innerHTML = correo || 'N/A';
+    cell6.innerHTML = celular || 'N/A';
+    cell7.innerHTML = '<ion-icon name="trash-outline" onclick="eliminarPasajero(this)" style="cursor: pointer; color: red;"></ion-icon>'; // Usando Ionicons
+
+    // Limpiar campos después de agregar
+    document.getElementById("nombrePasajero").value = "";
+    document.getElementById("apellidoPasajero").value = "";
+    document.getElementById("nacionalidadPasajero").value = "";
+    document.getElementById("numeroDocumentoPasajero").value = "";
+    document.getElementById("correoPasajero").value = "";
+    document.getElementById("celularPasajero").value = "";
+
+    // Agregar pasajero a la lista
+    pasajeros_local.push({nombres, apellidos, id_nacionalidad, num_documento, correo, celular});
+
+    // Actualizar costos cuando se agrega un nuevo pasajero
+    updateCosts();
 }
 
 // Eliminar un pasajero de la tabla
@@ -402,8 +408,8 @@ function sendReservation() {
     })
         .then(res => {
             toastr["success"]("Reserva registrada exitosamente");
-            setTimeout(function() {
-                location.reload();
+            setTimeout(function () {
+                window.location.href = "/admin/reservas";
             }, 3500);
         })
         .catch(error => {
