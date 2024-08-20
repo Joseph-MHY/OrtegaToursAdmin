@@ -27,7 +27,7 @@ public interface IReserva extends JpaRepository<Reservas, Integer> {
             "LEFT JOIN paquetes p ON r.id_paquete = p.id_paquete " +
             "LEFT JOIN empleados e ON r.id_empleado = e.id_empleado " +
             "LEFT JOIN categoria_paquete cp ON p.id_categoria_paquete = cp.id_categoria_paquete " +
-            "WHERE r.id_estado = 3",
+            "WHERE r.id_estado = 2",
             nativeQuery = true)
     List<Object[]> findAllReservasForReport();
 
