@@ -116,7 +116,7 @@
                 </div>
                 <div class="form-group">
                     <label for="cuenta-bancaria">Número de cuenta bancaria (Opcional):</label>
-                    <input type="text" id="cuenta-bancaria" name="cuentaBancaria" placeholder="Ingresar número de cuenta bancaria" maxlength="40">
+                    <input type="text" id="cuenta-bancaria" name="cuentaBancaria" placeholder="Ingresar número de cuenta bancaria" maxlength="40" oninput="permitirSoloNumerosyguion(event)" >
                 </div>
                 <div class="form-group">
                     <label for="salario">Salario:</label>
@@ -168,6 +168,14 @@
         if (parts[1] && parts[1].length > 2) {
             input.value = parts[0] + '.' + parts[1].slice(0, 2);
         }
+    }
+
+     function permitirSoloNumerosyguion(event) {
+        const input = event.target;
+        const valor = input.value;
+        // Permitir solo números y guiones
+        const valorFiltrado = valor.replace(/[^0-9-]/g, '');
+        input.value = valorFiltrado;
     }
 </script>
 </body>
