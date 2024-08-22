@@ -1,1 +1,3 @@
 com\ortega\admin\AdminApplicationTests.class
+com\ortega\admin\EmpleadoTest\EmpServiceImplTest.class
+com\ortega\admin\ReservaTest\ReservaServiceTest.class
