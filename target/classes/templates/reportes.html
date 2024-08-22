@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Página Reportes</title>
+  <link rel="stylesheet" th:href="@{/css/reportes.css}" />
+  <link rel="icon" type="image/png" href="/images/colibriv3.png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div th:replace="~{menu}"></div>
+<main>
+  <h1>Reportes</h1>
+  <h2>Indique Parámetros De Filtro:</h2>
+  <div class="filters-report">
+    <div class="form-group">
+      <h3>Fecha de Inicio:</h3>
+      <input type="date" id="fechaInicio"/>
+    </div>
+    <div class="form-group">
+      <h3>Fecha de Fin:</h3>
+      <input type="date" id="fechaFin"/>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th style="text-align: center">#</th>
+      <th>Fecha de registro</th>
+      <th style="text-align: center">cliente</th>
+      <th style="text-align: center">N° documento</th>
+      <th style="text-align: center">N° de Pasajeros</th>
+      <th style="text-align: center">Paquete</th>
+      <th style="text-align: center">Categoría de Paquete</th>
+      <th style="text-align: center">Tipo de Viaje</th>
+      <th style="text-align: center">Conductor</th>
+      <th style="text-align: center">Total</th>
+    </tr>
+    </thead>
+    <tbody id="tablaReporte">
+
+    </tbody>
+  </table>
+  <div id="paginacion"></div>
+</main>
+
+<!-- Botón flotante de Excel -->
+<div class="excel-float">
+  <a id="exportarExcel">
+    <img th:src="@{/images/office365.png}" alt="Exportar a Excel" />
+  </a>
+</div>
+
+<script type="module" th:src="@{/js/reportes.js}"></script>
+</body>
+</html>

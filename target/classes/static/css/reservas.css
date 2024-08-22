@@ -1,0 +1,226 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Estilos para el contenido principal */
+main {
+    margin-left: 250px; /* Margen izquierdo para el contenido principal */
+    padding: 20px; /* Espaciado interno */
+    transition: margin-left 0.5s ease; /* Transición suave para el margen izquierdo */
+}
+
+/* Estilo alternativo para el contenido principal con margen reducido */
+main.min-main {
+    margin-left: 80px; /* Margen izquierdo reducido */
+}
+
+/* Estilos para la sección de búsqueda */
+.search-section {
+  margin-bottom: 20px; /* Espacio inferior */
+  display: flex; /* Utiliza flexbox */
+  align-items: center; /* Alinea verticalmente los elementos */
+}
+
+label {
+  margin-right: 10px; /* Espacio a la derecha del etiqueta */
+}
+
+input[type="text"] {
+  padding: 8px; /* Espaciado interno */
+  font-size: 14px; /* Tamaño de fuente */
+  border: 1px solid #ccc; /* Borde del campo de entrada */
+  border-radius: 4px; /* Bordes redondeados */
+  margin-right: 10px; /* Espacio a la derecha del cuadro de texto */
+}
+
+/* Estilos para el botón de búsqueda con ícono */
+.search-button {
+  width: 40px; /* Ancho del botón */
+  height: 40px; /* Alto del botón */
+  background-color:  #3a6f84; /* Color de fondo del botón */
+  border: none; /* Sin borde */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor de tipo puntero */
+  display: flex; /* Alineación de contenido centrada */
+  justify-content: center; /* Alineación de contenido centrada */
+  align-items: center; /* Alineación de contenido centrada */
+}
+
+.search-button ion-icon {
+  font-size: 24px; /* Tamaño del ícono */
+  color: #fff; /* Color del ícono */
+}
+
+.search-button:hover {
+  background-color: #285165; /* Color de fondo del botón al pasar el ratón */
+}
+
+.search-button:active {
+  background-color: #3a6f84; /* Color de fondo del botón al hacer clic */
+}
+
+/* Estilos para la sección de filtros */
+.filters {
+  display: flex; /* Utiliza flexbox */
+  justify-content: space-between; /* Espacio entre columnas */
+  flex-wrap: wrap; /* Permite envolver elementos en filas */
+  margin-bottom: 10px; /* Reducir espacio inferior */
+}
+
+.filter-column {
+  width: calc(50% - 20px); /* Ancho de cada columna con espacio entre ellas */
+}
+
+.filter-row {
+  margin-bottom: 10px; /* Espacio inferior entre filas */
+}
+
+.filter-row label {
+  margin-right: 10px; /* Espacio a la derecha del etiqueta */
+}
+
+/* Estilos para el cuadro de selección */
+select {
+  padding: 8px; /* Espaciado interno */
+  font-size: 14px; /* Tamaño de fuente */
+  border: 1px solid #ccc; /* Borde del cuadro de selección */
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+/* Estilo específico para el select de nombre del paquete */
+#nombrePaqueteFilter {
+  width: 250px; /* Ancho ajustado */
+}
+
+/* Estilos para el cuadro de fecha */
+input[type="date"] {
+  padding: 8px; /* Espaciado interno */
+  font-size: 14px; /* Tamaño de fuente */
+  border: 1px solid #ccc; /* Borde del cuadro de fecha */
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+/* Estilos adicionales para mejorar la apariencia y experiencia del usuario */
+select:focus,
+input[type="date"]:focus {
+  outline: none; /* Quita el contorno al estar enfocado */
+  border-color: #007bff; /* Cambia el color del borde al estar enfocado */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra al estar enfocado */
+}
+
+/* Estilos para la sección de acciones */
+.actions {
+  display: flow;
+  flex-direction: column;
+  align-items: flex-start;
+
+}
+
+/* Estilo para el botón Registrar Reserva */
+#registerButton {
+  background-color: #3a6f84;
+  color: white;
+  padding: 10px 15px;
+  margin-top: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-bottom:20px;
+}
+
+#registerButton:hover {
+  background-color: #285165;
+}
+
+#paginacion {
+  display: flex; /* Asegura que los elementos hijos se alineen en una fila */
+  flex-wrap: wrap; /* Permite que los botones pasen a la siguiente línea si no caben en una fila */
+  justify-content: center; /* Centra los botones horizontalmente en el contenedor */
+  margin-right:10px;
+}
+
+.paginas {
+  margin: 4px; /* Espacio alrededor de cada botón */
+  width: 30px; /* Ancho del botón */
+  height: 30px; /* Alto del botón */
+  background-color: #3a6f84; /* Color de fondo del botón */
+  color: white; /* Color del texto */
+  padding: 5px; /* Espacio interior del botón */
+  border: none; /* Sin borde */
+  border-radius: 50%; /* Hace que el botón sea circular */
+  cursor: pointer; /* Muestra un cursor de puntero al pasar sobre el botón */
+  display: flex; /* Usa flexbox para alinear el texto en el centro */
+  align-items: left; /* Alinea el contenido verticalmente */
+  justify-content: center; /* Alinea el contenido horizontalmente */
+}
+
+.paginas:hover {
+  background-color: #285165; /* Color de fondo al pasar el ratón */
+}
+
+
+/* Estilos para la tabla de reservas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 5px; /* Espacio superior */
+  margin-bottom:10px;
+}
+
+
+
+thead th {
+  background-color: #343a40;
+  color: white;
+}
+
+th,
+td {
+  padding: 3px;
+  text-align: center;
+  font-size: small;
+}
+
+td:nth-child(5) {
+  width: 120px;
+  max-width: 120px;/* Ajusta el ancho máximo según sea necesario */
+  max-height: 60px; /* Ajusta la altura máxima según sea necesario */
+  white-space: nowrap; /* Evita que el texto se rompa en múltiples líneas */
+  overflow: hidden; /* Oculta cualquier texto que exceda el ancho del contenedor */
+  text-overflow: ellipsis; /* Añade puntos suspensivos al texto truncado */
+  text-align:center;
+}
+
+
+
+/* Estilos para los íconos de ver y eliminar */
+.view-icon {
+  cursor: pointer; /* Cursor de puntero */
+  text-align: center; /* Alineación centrada del ícono */
+}
+.delete-icon {
+  cursor: pointer; /* Cursor de puntero */
+  text-align: center; /* Alineación centrada del ícono */
+}
+
+.view-icon ion-icon {
+  font-size: 20px; /* Tamaño del ícono */
+  margin: 0 8px; /* Margen alrededor del ícono */
+  color: #3a6f84; /* Color del ícono */
+}
+.view-icon ion-icon:hover {
+  color: #285165;
+}
+
+.delete-icon ion-icon {
+  font-size: 20px; /* Tamaño del ícono */
+  margin: 0 8px; /* Margen alrededor del ícono */
+  color: #dc3545; /* Color del ícono */
+}
+
+/* Estilo alternativo para filas impares */
+tbody tr:nth-child(odd) {
+  background-color: #f2f2f2; /* Color de fondo para filas impares */
+}

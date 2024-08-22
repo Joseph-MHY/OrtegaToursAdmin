@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Reservas</title>
+  <link rel="stylesheet" th:href="@{/css/reservas.css}">
+  <link rel="icon" type="image/png" href="/images/colibriv3.png">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div th:replace="~{menu}"></div>
+
+<main>
+  <!-- Encabezado de la página -->
+  <h1>Reservas</h1>
+  <br/>
+  <!-- Sección de búsqueda -->
+  <div class="search-section">
+    <label for="searchInput">Buscar por:</label>
+    <input type="text" id="searchInput" placeholder="Ingrese DNI o Nombre">
+    <button type="button" id="searchButton" class="search-button">
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </div>
+  <div class="filter-row">
+    <label for="nombrePaqueteFilter">Nombre Paquete:</label>
+    <select id="nombrePaqueteFilter">
+      <option value="">Seleccionar</option>
+    </select>
+  </div>
+  <section>
+    <div class="filters">
+
+      <div class="filter-row">
+        <label for="tipoViajeFilter">Tipo de Viaje:</label>
+        <select id="tipoViajeFilter">
+          <option value="">Seleccionar</option>
+          <option value="PUBLICO">público</option>
+          <option value="PRIVADO">privado</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <label for="select-orden">Ordenar por:</label>
+        <select id="select-orden">
+          <option value="seleccionar">Seleccionar</option>
+          <option value="nombre-az">nombre (A-Z)</option>
+          <option value="nombre-za">nombre (Z-A)</option>
+          <option value="activos">más recientes</option>
+          <option value="inactivos">más antiguos</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <label for="estadoFilter">Estado de Reserva:</label>
+        <select id="estadoFilter">
+          <option value="">Seleccionar</option>
+          <option value="Enprogreso">En progreso</option>
+          <option value="Reservado">Reservado</option>
+          <option value="Cancelado">Cancelado</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <label for="fechaPartidaFilter">Fecha de registro:</label>
+        <input type="date" id="fechaPartidaFilter">
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <!-- Acciones -->
+    <div class="actions">
+      <button type="button" id="registerButton">Registrar Reserva</button>
+    </div>
+  </section>
+
+  <table>
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Cliente</th>
+      <th>DNI</th>
+      <th>Teléfono</th>
+      <th>Paquete</th>
+      <th>Tipo Viaje</th>
+      <th>Estado</th>
+      <th>Fecha de registro</th>
+      <th>Ver</th>
+    </tr>
+    </thead>
+    <tbody id="tablaReservas">
+
+    </tbody>
+  </table>
+  <div id="paginacion"></div>
+</main>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script type="module" th:src="@{/js/reservascripts/reservas.js}"></script>
+</body>
+</html>

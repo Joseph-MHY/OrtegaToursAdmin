@@ -1,0 +1,371 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+}
+
+main {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.5s ease;
+}
+
+main.min-main {
+    margin-left: 80px;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+.section {
+    flex: 1;
+}
+
+
+/* Estilos para los grupos de formularios */
+.form-group {
+    display: flex;
+    flex-direction: column; /* Mostrar los elementos en una columna */
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    margin-bottom: 5px; /* Espacio debajo del label */
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Estilos independientes para los botones */
+
+/* Botón Pasajero */
+#Pasajero {
+    background-color: #3a6f84; /* Verde oscuro */
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #D3D3D3; /* Bordes más oscuros */
+    border-radius: 8px;
+    text-transform: uppercase; /* Mayúsculas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
+    display: block; /* Asegura que el botón se comporte como bloque */
+    margin: 10px auto; /* Centra el botón horizontalmente */
+}
+
+#Pasajero:hover {
+    background-color: #285165; /* Verde más brillante */
+    border-color: #D3D3D3; /* Bordes más brillantes */
+}
+
+/* Botón Costes Adicionales */
+#costesAdicionales {
+    background-color: #3a6f84; /* Azul brillante */
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #D3D3D3; /* Bordes más oscuros */
+    border-radius: 8px;
+    text-transform: uppercase; /* Mayúsculas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
+    display: block; /* Asegura que el botón se comporte como bloque */
+    margin: 10px auto; /* Centra el botón horizontalmente */
+}
+
+#costesAdicionales:hover {
+    background-color: #285165; /* Azul más oscuro */
+    border-color: #D3D3D3; /* Bordes más oscuros */
+}
+
+/* Botón Modificar */
+#modificar {
+    background-color: #148f77; /* Amarillo */
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #D3D3D3; /* Bordes más oscuros */
+    border-radius: 8px;
+    text-transform: uppercase; /* Mayúsculas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
+    display: block; /* Asegura que el botón se comporte como bloque */
+    margin: 10px auto; /* Centra el botón horizontalmente */
+}
+#modificar:hover {
+    background-color: #117864; /* Amarillo más claro */
+    border-color: #D3D3D3; /* Bordes más oscuros */
+}
+
+/* Botón Guardar */
+#guardar {
+    background-color: #148f77;  /* Verde */
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid #D3D3D3; /* Bordes más oscuros */
+    border-radius: 8px;
+    text-transform: uppercase; /* Mayúsculas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
+    display: block; /* Asegura que el botón se comporte como bloque */
+    margin: 10px auto; /* Centra el botón horizontalmente */
+}
+
+
+#guardar:hover {
+    background-color: #117864; /* Verde más oscuro */
+    border-color: #D3D3D3; /* Bordes más oscuros */
+}
+
+
+
+/* APARTIR DE AQUI SON LOS CAMBIOS PARA EL MODAL*/
+/* Botón del modal */
+.botonmodal {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.botonmodal button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #148f77;
+  color: white;
+  border: 2px solid #D3D3D3;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.botonmodal button:hover {
+    background-color: #117864; /* Verde más oscuro */
+    border-color: #D3D3D3; /* Bordes más oscuros */
+}
+
+/* Estilos de la tabla de pasajeros */
+table {
+  margin-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 100%; /* Asegura que la tabla ocupe el 100% del contenedor */
+  border-collapse: collapse;
+  table-layout: auto; /* Ajusta el layout de la tabla automáticamente */
+}
+
+th, td {
+  padding: 8px 10px; /* Ajuste de padding para asegurar que el contenido se ajuste */
+  text-align: left;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Muestra puntos suspensivos si el texto es demasiado largo */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+thead th {
+  background-color: #343a40;
+  color: white;
+}
+
+tbody {
+  display: block;
+  overflow-y: auto;
+  width: 100%;
+}
+
+thead, tbody tr {
+  display: table;
+  width: 100%;
+}
+
+td {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+/* Icono de acciones */
+.view-icon {
+  cursor: pointer;
+}
+
+.view-icon ion-icon {
+  width: 1.5rem;
+  height: 1.3rem;
+  margin-left: 20%;
+}
+
+.view-icon ion-icon:hover {
+  color: rgb(130, 130, 130);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 20px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%; /* Ancho adaptativo, hasta el máximo definido */
+  height: fit-content; /* Ajusta la altura del modal al contenido */
+  max-height: 90%; /* Altura máxima para evitar que el modal sea demasiado alto */
+  border-radius: 10px;
+  position: relative;
+  overflow-y: auto; /* Permite el desplazamiento si el contenido es demasiado grande */
+}
+
+@media (min-width: 1080px) {
+    .modal-content {
+        max-width: 750px; /* Ancho máximo para el modal */
+    }
+}
+
+@media (max-width: 1000px) and (min-width: 893px) {
+    .modal-content {
+        margin-left: 22rem;
+    }
+}
+
+@media (max-width: 1080px) {
+    .modal-content {
+        max-width: 500px;
+    }
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Formulario del modal */
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.register-btn {
+  background-color: #148f77;
+  color: white;
+  border: 2px solid #D3D3D3;
+  padding: 10px 15px;
+  margin-top: 10px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.register-btn:hover {
+   background-color: #117864; /* Verde más oscuro */
+   border-color: #D3D3D3; /* Bordes más oscuros */
+}
+
+/* Estilos del contenido dinámico en los modales */
+.form-group-modal, .form-group {
+  margin-bottom: 15px;
+}
+
+.input-modal, .select-modal {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.label-modal {
+  margin-bottom: 5px;
+}
+
+.button-modal, .button-modal-registrar {
+  margin-top: 10px;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color:  #148f77;
+  border: 2px solid #D3D3D3;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-modal:hover, .button-modal-registrar:hover {
+   background-color: #117864; /* Verde más oscuro */
+   border-color: #D3D3D3; /* Bordes más oscuros */
+}
+
+table#tablaCostos, table#tablaPasajeros {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table#tablaCostos th, table#tablaPasajeros th,
+table#tablaCostos td, table#tablaPasajeros td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+table#tablaCostos th, table#tablaPasajeros th {
+  background-color: #343a40;
+  color: white;
+}
+
+table#tablaCostos tbody, table#tablaPasajeros tbody {
+  display: block;
+  overflow-y: auto;
+}
+
+table#tablaCostos thead, table#tablaPasajeros thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table#tablaCostos tbody tr, table#tablaPasajeros tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}

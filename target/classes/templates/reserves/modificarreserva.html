@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Actualizar Reservas</title>
+    <link rel="stylesheet" th:href="@{/css/registrarreserva.css}">
+    <link rel="icon" type="image/png" href="/images/colibriv3.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div th:replace="~{menu}"></div>
+
+<main>
+    <h1>Datos de Reserva</h1>
+    <br/>
+
+    <div class="container">
+        <!-- Sección de la izquierda -->
+        <div class="section left-section">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ingresar Nombres" readonly>
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Ingresar su Apellidos"readonly>
+            </div>
+            <div class="form-group">
+                <label for="tipDoc">Tipo Documento:</label>
+                <select id="tipDoc" name="tipDoc" readonly>
+                    <option value="DNI">DNI</option>
+                    <option value="Pasaporte">Pasaporte</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="dni">Nro Documento:</label>
+                <input type="text" id="dni" name="dni" placeholder="Ingresar su DNI" readonly>
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" name="correo" placeholder="Ingrese su Correo" readonly>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono" placeholder="Ingresar su Teléfono"
+                       oninput="validateNumberLength(this, 9, 9)">
+            </div>
+            <div class="form-group">
+                <label for="fechaRegistro">Fecha de Registro:</label>
+                <input type="date" id="fechaRegistro" name="fechaRegistro" readonly>
+            </div>
+            <div class="form-group">
+                <label for="fechaPartida">Fecha de Partida:</label>
+                <input type="date" id="fechaPartida" name="fechaPartida">
+            </div>
+
+        </div>
+        <hr>
+        <!-- Sección media -->
+        <div class="section middle-section">
+            <div class="form-group">
+                <label for="nombrePaquete">Nombre de Paquete:</label>
+                <select id="nombrePaquete" name="nombrePaquete">
+                    <option value="">Seleccionar</option>
+                    <!-- Opciones dinámicas de paquetes -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tipoViaje">Tipo de Viaje:</label>
+                <select id="tipoViaje" name="tipoViaje">
+                    <option value="">Seleccionar</option>
+                    <option value="PUBLICO">público</option>
+                    <option value="PRIVADO">privado</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="conductor">Conductor Asignado:</label>
+                <select id="conductor" name="conductor">
+                    <option value="">Seleccionar</option>
+                    <!-- Opciones dinámicas de conductores -->
+                </select>
+            </div>
+            <button type="button" id="Pasajero" onclick="openModalPasajeros()">
+                Pasajero
+            </button>
+            <div class="form-group">
+                <label for="costeBase">Costo Base x Pasajero (Para Tours):</label>
+                <input type="text" id="costeBase" name="costeBase" placeholder="S/ 0.00" readonly>
+            </div>
+            <div class="form-group">
+                <label for="costeFijo">Costo Fijo x Pasajero (Para promociones):</label>
+                <input type="text" id="costeFijo" name="costeFijo" placeholder="S/ 0.00" readonly>
+            </div>
+            <button type="button" id="costesAdicionales" onclick="openModalCostosAdicionales()">
+                Costos Adicionales
+            </button>
+            <div class="form-group">
+                <label for="costeTotal" id="tituloCosto"></label>
+                <input type="text" id="costeTotal" name="costeTotal" placeholder="S/ 0.00" readonly>
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                <select id="estado" name="estado">
+                    <option value="">Seleccionar</option>
+                    <option value="1">en progreso</option>
+                    <option value="2">reservado</option>
+                    <option value="3">Cancelado</option>
+                </select>
+            </div>
+
+        </div>
+        <hr>
+        <!-- Sección derecha final -->
+        <div class="section right-section">
+            <div class="form-group">
+                <label for="tipoMoneda">Tipo de Moneda:</label>
+                <select id="tipoMoneda" name="tipoMoneda">
+                    <option value="">Seleccionar</option>
+                    <option value="USD">dólares</option>
+                    <option value="PEN">soles</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="notas">Notas Adicionales:</label>
+                <textarea id="notas" name="notas" placeholder="Opcional"></textarea>
+            </div>
+
+            <button type="button" id="modificar">Actualizar</button>
+        </div>
+    </div>
+
+    <!-- Modal de Costos Adicionales -->
+    <div id="costosAdicionalesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModalCostosAdicionales()">&times;</span>
+            <h2>Costos Adicionales</h2>
+            <!-- Contenido del modal de costos adicionales -->
+            <div class="form-group-modal">
+                <label class="label-modal" for="descripcion">Descripción:</label>
+                <input class="input-modal" type="text" id="descripcion" name="descripcion" placeholder="Ingresar Descripción" maxlength="40">
+                <label class="label-modal" for="costo">Costo:</label>
+                <input class="input-modal" type="number" id="costo" name="costo" placeholder="Ingresar Monto">
+            </div>
+            <button class="button-modal" type="button" onclick="agregarCosto()">Agregar</button>
+            <table id="tablaCostos">
+                <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Costo</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="tabla-costos">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal de Pasajeros -->
+    <div id="pasajerosModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModalPasajeros()">&times;</span>
+            <h2>Pasajeros</h2>
+            <div class="form-group-modal">
+                <label class="label-modal" for="nombrePasajero">Nombre:</label>
+                <input class="input-modal" type="text" id="nombrePasajero" name="nombrePasajero"
+                       placeholder="Ingresar Nombres" maxlength="80">
+                <label class="label-modal" for="apellidoPasajero">Apellido:</label>
+                <input class="input-modal" type="text" id="apellidoPasajero" name="apellidoPasajero"
+                       placeholder="Ingresar Apellidos" maxlength="80">
+                <label class="label-modal" for="nacionalidadPasajero">Nacionalidad:</label>
+                <select class="select-modal" id="nacionalidadPasajero" name="nacionalidadPasajero">
+                    <option value="">Seleccionar</option>
+                </select>
+                <label class="label-modal" for="numeroDocumentoPasajero">Número de Documento:</label>
+                <input class="input-modal" type="number" id="numeroDocumentoPasajero" name="numeroDocumentoPasajero"
+                       placeholder="Ingresar Número de Documento" maxlength="20"
+                       oninput="validateNumberLength(this, 8, 20)"/>
+
+                <label class="label-modal" for="correoPasajero">Correo (Opcional):</label>
+                <input class="input-modal" type="email" id="correoPasajero" name="correoPasajero"
+                       placeholder="Ingresar Correo" maxlength="80"/>
+
+                <label class="label-modal" for="celularPasajero">Celular (Opcional):</label>
+                <input class="input-modal" type="number" id="celularPasajero" name="celularPasajero"
+                       placeholder="Ingresar Celular" maxlength="9" oninput="validateNumberLength(this, 9, 9)"/>
+
+            </div>
+            <button class="button-modal" type="button" onclick="agregarPasajero()">Agregar Pasajero</button>
+            <table id="tablaPasajeros">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Nacionalidad</th>
+                    <th>Número de Documento</th>
+                    <th>Correo</th>
+                    <th>Celular</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="tabla-pasajeros">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script type="module" th:src="@{/js/reservascripts/modificarReserva.js}"></script>
+<script>
+
+
+    // Seleccionamos los elementos del DOM necesarios
+    var tipDocSelect = document.getElementById('tipDoc');
+    var dniInput = document.getElementById('dni');
+
+    // Función para ajustar el campo de documento según el tipo de documento seleccionado
+    function adjustDocumentoInput() {
+        if (tipDocSelect.value === 'DNI') {
+            dniInput.maxLength = 8;
+            dniInput.pattern = "\\d{8}";
+            dniInput.placeholder = "Ingresar su DNI";
+            dniInput.title = "Debe ingresar exactamente 8 dígitos para el DNI";
+        } else if (tipDocSelect.value === 'Pasaporte') {
+            dniInput.maxLength = 20;
+            dniInput.pattern = "\\d{1,20}";
+            dniInput.placeholder = "Ingresar su Pasaporte";
+            dniInput.title = "Debe ingresar un máximo de 20 dígitos para el Pasaporte";
+        }
+    }
+
+    function validateNumberLength(input, minLength, maxLength) {
+        // Eliminar cualquier carácter que no sea un número
+        input.value = input.value.replace(/\D/g, '');
+
+        // Verificar que la longitud esté dentro de los límites permitidos
+        if (input.value.length > maxLength) {
+            input.value = input.value.slice(0, maxLength);
+        }
+
+        // Mostrar un mensaje si la longitud es menor que el mínimo (opcional)
+        if (input.value.length < minLength) {
+            input.setCustomValidity(`El número debe tener al menos ${minLength} dígitos.`);
+        } else {
+            input.setCustomValidity(''); // Limpia cualquier mensaje si es válido
+        }
+    }
+
+
+    // Asignar la función adjustDocumentoInput al evento change del select
+    tipDocSelect.addEventListener('change', adjustDocumentoInput);
+
+    // Ejecutar la función al cargar la página para aplicar la configuración inicial
+    adjustDocumentoInput();
+
+    // Validar que solo se ingresen números en el campo de documento
+    dniInput.addEventListener('input', function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    function permitirSoloLetras(event) {
+        const input = event.target;
+        const valor = input.value;
+        const valorFiltrado = valor.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/g, ''); // Solo letras y espacios
+        input.value = valorFiltrado;
+    }
+
+    // Agregar eventos a los campos
+    document.getElementById("nombrePasajero").addEventListener("input", permitirSoloLetras);
+    document.getElementById("apellidoPasajero").addEventListener("input", permitirSoloLetras);
+    document.getElementById("nombre").addEventListener("input", permitirSoloLetras);
+    document.getElementById("apellido").addEventListener("input", permitirSoloLetras);
+</script>
+</body>
+</html>
