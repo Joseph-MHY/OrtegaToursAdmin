@@ -83,7 +83,6 @@ function mostrarTabla(empleados, pagina = 1) {
             tablaEmpleados.appendChild(row);
         });
 
-        // Añadir evento de clic a los íconos de visualización
         const linksVerEmpleado = document.querySelectorAll('.ver-empleado');
         linksVerEmpleado.forEach(link => {
             link.addEventListener('click', function (event) {
@@ -94,8 +93,6 @@ function mostrarTabla(empleados, pagina = 1) {
     }
 }
 
-
-// Función para crear botones de paginación
 function crearBotonesPaginacion(datos) {
     const paginacionContainer = document.getElementById('paginacion');
     paginacionContainer.innerHTML = ''; // Limpiar el contenido anterior
